@@ -8,8 +8,9 @@
 - `render.py` collapses control characters and escapes backslashes in table cells.
 - `recheck.py` matches licence-file titles by whole words, counts dropped connections as failed fetches, and reports a journal reference for a paper with no venue.
 - README: recheck result on the first screen, install and quickstart before the tables, how the scripts work, related lists, CI badge.
+- The taskledger line removed from the author tools section: unlike the others it ties to no entry in the list.
 - Author tools section regrouped by topic, each tool tied to the listed paper it relates to; contamscan linked.
-- Entry tables now follow the selection rules directly; Quickstart, Re-checking and Limitations moved below them.
+- Entry tables now follow the selection rules directly; Re-checking and Limitations moved below them.
 - Agentless and SWE-agent papers moved to the harness section, Benchmarks as Software to methodology.
 - `recheck.py` counts a licence-file title as a match only when it contains the whole stated licence.
 - `validate.py` defaults the year bound to the current year and checks per-entry fetch dates.
