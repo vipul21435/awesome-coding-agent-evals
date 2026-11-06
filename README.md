@@ -35,7 +35,7 @@ Status: 67 entries in 7 sections, each fetched on 2026-11-06. Not implemented ye
 - [Repository-level and issue-resolution benchmarks](#repository-level-and-issue-resolution-benchmarks) (18)
 - [Agent harnesses and scaffolds](#agent-harnesses-and-scaffolds) (15)
 - [Training environments and datasets for coding agents](#training-environments-and-datasets-for-coding-agents) (11)
-- [Terminal and tool-use benchmarks](#terminal-and-tool-use-benchmarks) (6)
+- [Terminal and tool-use benchmarks](#terminal-and-tool-use-benchmarks) (11)
 - [Evaluation methodology and statistics](#evaluation-methodology-and-statistics) (9)
 - [Contamination and leakage analyses](#contamination-and-leakage-analyses) (8)
 
@@ -130,10 +130,15 @@ Benchmarks where the agent works through a shell, tools or a simulated user rath
 |---|---|---|---|---|
 | [AgentBench](https://github.com/THUDM/AgentBench) | 2023 | code+data | Apache-2.0 | Benchmark of eight interactive environments, including operating system and database tasks, for evaluating language models acting as agents. |
 | [InterCode](https://github.com/princeton-nlp/intercode) | 2023 | code+data | MIT | Framework for interactive coding with execution feedback, where the model's actions are code run in Bash, SQL or Python environments. |
+| [AppWorld](https://arxiv.org/abs/2407.18901) | 2024 | paper | CC BY 4.0 (paper); ACL 2024 | Execution environment of 9 everyday apps reachable through 457 APIs with simulated users, and a benchmark of tasks that agents solve by writing code against those APIs. |
+| [Cybench](https://arxiv.org/abs/2408.08926) | 2024 | paper | CC BY 4.0 (paper); ICLR 2025 | Framework for specifying cybersecurity tasks for agents, with 40 Capture the Flag tasks from four competitions and subtasks for finer-grained scoring. |
+| [MLE-bench](https://arxiv.org/abs/2410.07095) | 2024 | paper | CC BY 4.0 (paper) | 75 machine learning engineering competitions from Kaggle with human baselines from the public leaderboards, used to measure agents that train models and run experiments. |
 | [tau-bench](https://github.com/sierra-research/tau-bench) | 2024 | code+data | MIT | Conversations between an agent with domain tools and policies and a language-model-simulated user, scored by the final database state. |
 | [tau-bench (paper)](https://arxiv.org/abs/2406.12045) | 2024 | paper | CC BY 4.0 (paper) | Introduces tau-bench and the pass^k metric for how consistently an agent succeeds across repeated trials of the same task. |
 | [tau2-bench](https://github.com/sierra-research/tau2-bench) | 2025 | code+data | MIT | Successor to tau-bench that adds a dual-control setting in which both the agent and the simulated user act on a shared environment. |
 | [Terminal-Bench](https://github.com/harbor-framework/terminal-bench-1) | 2025 | code+data | Apache-2.0 | Tasks for agents working in a real terminal sandbox, such as compiling code or setting up servers, with an execution harness; this repository holds the first version. |
+| [Terminal-Bench 2.0](https://github.com/harbor-framework/terminal-bench-2) | 2025 | code+data | Apache-2.0 | Second version of the Terminal-Bench task set, in which agents do work in containerised environments, run through the Harbor package. |
+| [Benchmarks as Software](https://arxiv.org/abs/2611.08417) | 2026 | paper | CC BY 4.0 (paper) | Argues that benchmarks accumulate maintenance debt as models and infrastructure change, and applies a continuous-validation workflow to Terminal-Bench 2.0. |
 
 ## Evaluation methodology and statistics
 
@@ -166,7 +171,7 @@ Studies of test data leaking into training data or into the task itself, and ben
 | [SWE-rebench (paper)](https://arxiv.org/abs/2505.20411) | 2025 | paper | CC BY 4.0 (paper); NeurIPS 2025 | Describes the pipeline that collects over 21,000 interactive Python tasks for SWE-rebench and a contamination-free benchmark built from freshly collected tasks. |
 | [The SWE-Bench Illusion](https://arxiv.org/abs/2506.12286) | 2025 | paper | CC BY-NC-ND 4.0 (paper) | Probes whether models can name the buggy file path from the issue text alone, as evidence that SWE-bench Verified scores partly reflect memorisation. |
 
-78 entries, all fetched on 2026-11-06.
+83 entries, all fetched on 2026-11-06.
 
 <!-- END ENTRIES -->
 

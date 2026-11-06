@@ -825,6 +825,58 @@
       "licence": "MIT",
       "summary": "Library of evaluations implemented on the Inspect framework, including ports of HumanEval, MBPP and SWE-bench, with a register for evaluations hosted elsewhere.",
       "fetched": "2026-11-06"
+    },
+    {
+      "name": "Terminal-Bench 2.0",
+      "url": "https://github.com/harbor-framework/terminal-bench-2",
+      "section": "terminal",
+      "kind": "code+data",
+      "year": 2025,
+      "licence": "Apache-2.0",
+      "summary": "Second version of the Terminal-Bench task set, in which agents do work in containerised environments, run through the Harbor package.",
+      "fetched": "2026-11-06"
+    },
+    {
+      "name": "Benchmarks as Software",
+      "url": "https://arxiv.org/abs/2611.08417",
+      "section": "terminal",
+      "kind": "paper",
+      "year": 2026,
+      "licence": "CC BY 4.0 (paper)",
+      "summary": "Argues that benchmarks accumulate maintenance debt as models and infrastructure change, and applies a continuous-validation workflow to Terminal-Bench 2.0.",
+      "fetched": "2026-11-06"
+    },
+    {
+      "name": "AppWorld",
+      "url": "https://arxiv.org/abs/2407.18901",
+      "section": "terminal",
+      "kind": "paper",
+      "year": 2024,
+      "licence": "CC BY 4.0 (paper)",
+      "venue": "ACL 2024",
+      "summary": "Execution environment of 9 everyday apps reachable through 457 APIs with simulated users, and a benchmark of tasks that agents solve by writing code against those APIs.",
+      "fetched": "2026-11-06"
+    },
+    {
+      "name": "MLE-bench",
+      "url": "https://arxiv.org/abs/2410.07095",
+      "section": "terminal",
+      "kind": "paper",
+      "year": 2024,
+      "licence": "CC BY 4.0 (paper)",
+      "summary": "75 machine learning engineering competitions from Kaggle with human baselines from the public leaderboards, used to measure agents that train models and run experiments.",
+      "fetched": "2026-11-06"
+    },
+    {
+      "name": "Cybench",
+      "url": "https://arxiv.org/abs/2408.08926",
+      "section": "terminal",
+      "kind": "paper",
+      "year": 2024,
+      "licence": "CC BY 4.0 (paper)",
+      "venue": "ICLR 2025",
+      "summary": "Framework for specifying cybersecurity tasks for agents, with 40 Capture the Flag tasks from four competitions and subtasks for finer-grained scoring.",
+      "fetched": "2026-11-06"
     }
   ]
 }
