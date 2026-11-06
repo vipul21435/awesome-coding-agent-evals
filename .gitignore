@@ -1,0 +1,10 @@
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+.coverage
+htmlcov/
+# downloaded pages and data are never committed
+downloads/
+_data/
+*.html
