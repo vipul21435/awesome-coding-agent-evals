@@ -18,6 +18,7 @@ A curated list of benchmarks, harnesses, datasets and papers for evaluating and 
 - [Repository-level and issue-resolution benchmarks](#repository-level-and-issue-resolution-benchmarks) (14)
 - [Agent harnesses and scaffolds](#agent-harnesses-and-scaffolds) (11)
 - [Training environments and datasets for coding agents](#training-environments-and-datasets-for-coding-agents) (11)
+- [Terminal and tool-use benchmarks](#terminal-and-tool-use-benchmarks) (6)
 
 ## Function-level code benchmarks
 
@@ -91,7 +92,20 @@ Executable task collections and agent trajectories released for fine-tuning or r
 | [SWE-smith dataset](https://huggingface.co/datasets/SWE-bench/SWE-smith) | 2025 | dataset | MIT | Task instances produced by the SWE-smith pipeline; the card notes it is no longer actively updated. |
 | [SWE-smith trajectories](https://huggingface.co/datasets/SWE-bench/SWE-smith-trajectories) | 2025 | dataset | MIT | 5,017 agent trajectories used to fine-tune a Qwen 2.5 Coder model into the SWE-agent-LM-32B agent. |
 
-44 entries, all fetched on 2026-11-06.
+## Terminal and tool-use benchmarks
+
+Benchmarks where the agent works through a shell, tools or a simulated user rather than returning a single patch.
+
+| Name | Year | Kind | Licence | What it is |
+|---|---|---|---|---|
+| [AgentBench](https://github.com/THUDM/AgentBench) | 2023 | code+data | Apache-2.0 | Benchmark of eight interactive environments, including operating system and database tasks, for evaluating language models acting as agents. |
+| [InterCode](https://github.com/princeton-nlp/intercode) | 2023 | code+data | MIT | Framework for interactive coding with execution feedback, where the model's actions are code run in Bash, SQL or Python environments. |
+| [tau-bench](https://github.com/sierra-research/tau-bench) | 2024 | code+data | MIT | Conversations between an agent with domain tools and policies and a language-model-simulated user, scored by the final database state. |
+| [tau-bench (paper)](https://arxiv.org/abs/2406.12045) | 2024 | paper | CC BY 4.0 (paper) | Introduces tau-bench and the pass^k metric for how consistently an agent succeeds across repeated trials of the same task. |
+| [tau2-bench](https://github.com/sierra-research/tau2-bench) | 2025 | code+data | MIT | Successor to tau-bench that adds a dual-control setting in which both the agent and the simulated user act on a shared environment. |
+| [Terminal-Bench](https://github.com/harbor-framework/terminal-bench-1) | 2025 | code+data | Apache-2.0 | Tasks for agents working in a real terminal sandbox, such as compiling code or setting up servers, with an execution harness; this repository holds the first version. |
+
+50 entries, all fetched on 2026-11-06.
 
 <!-- END ENTRIES -->
 

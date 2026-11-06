@@ -21,6 +21,11 @@
       "id": "training",
       "title": "Training environments and datasets for coding agents",
       "blurb": "Executable task collections and agent trajectories released for fine-tuning or reinforcement learning."
+    },
+    {
+      "id": "terminal",
+      "title": "Terminal and tool-use benchmarks",
+      "blurb": "Benchmarks where the agent works through a shell, tools or a simulated user rather than returning a single patch."
     }
   ],
   "entries": [
@@ -465,6 +470,66 @@
       "year": 2025,
       "licence": "CC BY-SA 4.0 (paper)",
       "summary": "Describes the SWE-smith data generation pipeline and the agent model trained on its trajectories.",
+      "fetched": "2026-11-06"
+    },
+    {
+      "name": "InterCode",
+      "url": "https://github.com/princeton-nlp/intercode",
+      "section": "terminal",
+      "kind": "code+data",
+      "year": 2023,
+      "licence": "MIT",
+      "summary": "Framework for interactive coding with execution feedback, where the model's actions are code run in Bash, SQL or Python environments.",
+      "fetched": "2026-11-06"
+    },
+    {
+      "name": "AgentBench",
+      "url": "https://github.com/THUDM/AgentBench",
+      "section": "terminal",
+      "kind": "code+data",
+      "year": 2023,
+      "licence": "Apache-2.0",
+      "summary": "Benchmark of eight interactive environments, including operating system and database tasks, for evaluating language models acting as agents.",
+      "fetched": "2026-11-06"
+    },
+    {
+      "name": "tau-bench",
+      "url": "https://github.com/sierra-research/tau-bench",
+      "section": "terminal",
+      "kind": "code+data",
+      "year": 2024,
+      "licence": "MIT",
+      "summary": "Conversations between an agent with domain tools and policies and a language-model-simulated user, scored by the final database state.",
+      "fetched": "2026-11-06"
+    },
+    {
+      "name": "tau-bench (paper)",
+      "url": "https://arxiv.org/abs/2406.12045",
+      "section": "terminal",
+      "kind": "paper",
+      "year": 2024,
+      "licence": "CC BY 4.0 (paper)",
+      "summary": "Introduces tau-bench and the pass^k metric for how consistently an agent succeeds across repeated trials of the same task.",
+      "fetched": "2026-11-06"
+    },
+    {
+      "name": "tau2-bench",
+      "url": "https://github.com/sierra-research/tau2-bench",
+      "section": "terminal",
+      "kind": "code+data",
+      "year": 2025,
+      "licence": "MIT",
+      "summary": "Successor to tau-bench that adds a dual-control setting in which both the agent and the simulated user act on a shared environment.",
+      "fetched": "2026-11-06"
+    },
+    {
+      "name": "Terminal-Bench",
+      "url": "https://github.com/harbor-framework/terminal-bench-1",
+      "section": "terminal",
+      "kind": "code+data",
+      "year": 2025,
+      "licence": "Apache-2.0",
+      "summary": "Tasks for agents working in a real terminal sandbox, such as compiling code or setting up servers, with an execution harness; this repository holds the first version.",
       "fetched": "2026-11-06"
     }
   ]
