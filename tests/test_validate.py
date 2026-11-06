@@ -199,9 +199,12 @@ def test_summary_must_be_one_sentence():
     assert any("one sentence" in p for p in out)
     assert problems(lambda d: d["entries"][0].update(summary="Covers v1.0 and 2.5 versions.")) == []
     for one in ("Exercises in several languages, e.g. Python and Rust.", "As in Chen et al. HumanEval.",
-                "Agents vs. Humans on the same tasks.", "Uses the Python API, i.e. Pandas calls."):
+                "Agents vs. Humans on the same tasks.", "Uses the Python API, i.e. Pandas calls.",
+                "e.g. Python and Rust exercises."):
         assert problems(lambda d, t=one: d["entries"][0].update(summary=t)) == [], one
-    for two in ("First sentence! Then a second one.", "Is it good? Some say so.", "One.  Two."):
+    # an abbreviation counts only as a whole word: 'tie.g.' is not 'e.g.'
+    for two in ("First sentence! Then a second one.", "Is it good? Some say so.", "One.  Two.",
+                "It ends in a tie.g. Then a second one."):
         out = problems(lambda d, t=two: d["entries"][0].update(summary=t))
         assert any("one sentence" in p for p in out), (two, out)
 
