@@ -18,10 +18,10 @@ The entry tables come first, with their own contents list. After them: [Quicksta
 
 - [Function-level code benchmarks](#function-level-code-benchmarks) (11)
 - [Repository-level and issue-resolution benchmarks](#repository-level-and-issue-resolution-benchmarks) (18)
-- [Agent harnesses and scaffolds](#agent-harnesses-and-scaffolds) (17)
+- [Agent harnesses and scaffolds](#agent-harnesses-and-scaffolds) (16)
 - [Training environments and datasets for coding agents](#training-environments-and-datasets-for-coding-agents) (11)
 - [Terminal and tool-use benchmarks](#terminal-and-tool-use-benchmarks) (10)
-- [Evaluation methodology and statistics](#evaluation-methodology-and-statistics) (13)
+- [Evaluation methodology and statistics](#evaluation-methodology-and-statistics) (14)
 - [Contamination and leakage analyses](#contamination-and-leakage-analyses) (9)
 - [Licences at a glance](#licences-at-a-glance)
 
@@ -32,7 +32,7 @@ Self-contained problems scored by running unit tests on a single generated funct
 | Name | Year | Kind | Licence | What it is |
 |---|---|---|---|---|
 | [APPS](https://github.com/hendrycks/apps) | 2021 | code+data | MIT | 10,000 coding problems collected from competitive programming sites, ranging from introductory to competition level, graded by test cases. |
-| [HumanEval](https://github.com/openai/human-eval) | 2021 | code+data | MIT | 164 hand-written Python problems, each a function signature and docstring checked by unit tests, with the harness that runs them. |
+| [HumanEval](https://github.com/openai/human-eval) | 2021 | code+data | MIT | 164 hand-written Python problems, each a function signature and docstring checked by unit tests, with the harness that runs them; its authors now mark it deprecated and unmaintained. |
 | [MBPP](https://huggingface.co/datasets/google-research-datasets/mbpp) | 2021 | dataset | CC BY 4.0 | About 1,000 crowd-sourced entry-level Python problems, each with a task description, a reference solution and three test cases. |
 | [DS-1000](https://github.com/xlang-ai/DS-1000) | 2022 | code+data | CC BY-SA 4.0 | 1,000 data science problems drawn from StackOverflow and spanning seven Python libraries such as NumPy and Pandas, with execution-based checks. |
 | [MultiPL-E](https://github.com/nuprl/MultiPL-E) | 2022 | code+data | BSD 3-Clause License with Machine Learning Restriction | System that translates unit-test-driven Python benchmarks to other languages, used to port HumanEval and MBPP to 18 further programming languages. |
@@ -63,9 +63,9 @@ Tasks set inside a real code base: resolve an issue, complete code that depends 
 | [FEA-Bench](https://arxiv.org/abs/2503.06680) | 2025 | paper | arXiv non-exclusive (paper); ACL 2025 | Feature-implementation tasks built from pull requests in 83 GitHub repositories, each paired with unit test files that check the new code. |
 | [Multi-SWE-bench](https://github.com/multi-swe-bench/multi-swe-bench) | 2025 | code+data | Apache-2.0 | Multilingual issue-resolution benchmark covering languages such as Java, TypeScript, JavaScript, Go, Rust, C and C++, with its evaluation code. |
 | [SWE-bench Multilingual](https://huggingface.co/datasets/SWE-bench/SWE-bench_Multilingual) | 2025 | dataset | MIT | 300 SWE-bench-style issue-resolution tasks from 41 repositories in 9 programming languages. |
-| [SWE-Bench Pro](https://arxiv.org/abs/2509.16941) | 2025 | paper | CC BY 4.0 (paper) | 1,865 long-horizon problems from 41 repositories, split into a public set, a held-out set and a commercial set whose problems are not released. |
+| [SWE-Bench Pro](https://arxiv.org/abs/2509.16941) | 2025 | paper | CC BY 4.0 (paper) | 1,865 long-horizon problems from 41 repositories, split into a public set and held-out and commercial sets whose problems are not released. |
 | [SWE-bench-Live](https://github.com/microsoft/SWE-bench-Live) | 2025 | code+data | MIT | Issue-resolution benchmark refreshed over time from issues created since 2024, built by an automated pipeline that also sets up a Docker image per task. |
-| [SWE-Lancer](https://github.com/openai/SWELancer-Benchmark) | 2025 | code+data | not stated | Over 1,400 freelance software tasks with their real payouts, including both coding tasks graded by end-to-end tests and managerial choices between proposals; the repository is archived. |
+| [SWE-Lancer](https://github.com/openai/SWELancer-Benchmark) | 2025 | code+data | not stated | Over 1,400 freelance software tasks with their real payouts, both coding tasks graded by end-to-end tests and choices between proposals; the repository is archived and its code moved to openai/frontier-evals. |
 | [SWE-PolyBench](https://github.com/amazon-science/SWE-PolyBench) | 2025 | code+data | MIT | Repository-level, execution-based benchmark of coding tasks in Python, Java, JavaScript and TypeScript, with additional metrics based on syntax tree analysis. |
 
 ## Agent harnesses and scaffolds
@@ -86,7 +86,6 @@ Open-source agents and the tooling used to run them against the benchmarks above
 | [sb-cli](https://github.com/SWE-bench/sb-cli) | 2024 | code | MIT | Command-line client for submitting SWE-bench predictions and running the evaluation remotely. |
 | [SWE-agent](https://github.com/SWE-agent/SWE-agent) | 2024 | code | MIT | Agent that takes a GitHub issue and tries to fix it through a purpose-built agent-computer interface for viewing, searching and editing files. |
 | [SWE-agent: Agent-Computer Interfaces](https://arxiv.org/abs/2405.15793) | 2024 | paper | CC BY 4.0 (paper) | Argues that the interface an agent uses to view and edit code affects its results, and studies interface design choices on SWE-bench. |
-| [SWE-bench experiments](https://github.com/SWE-bench/experiments) | 2024 | code+data | not stated | Published predictions, execution logs, trajectories and results from many system submissions to SWE-bench. |
 | [SWE-ReX](https://github.com/SWE-agent/SWE-ReX) | 2024 | code | MIT | Runtime interface that lets agent code run shell sessions locally, in Docker containers or on remote machines with the same API, and run many sessions in parallel. |
 | [Codex CLI](https://github.com/openai/codex) | 2025 | code | Apache-2.0 | Coding agent that runs locally in the terminal. |
 | [Harbor](https://github.com/harbor-framework/harbor) | 2025 | code | Apache-2.0 | Framework for evaluating and improving agents, pointed to by the Terminal-Bench authors for running Terminal-Bench 2.0. |
@@ -120,7 +119,7 @@ Benchmarks where the agent works through a shell, tools or a simulated user rath
 | [InterCode](https://github.com/princeton-nlp/intercode) | 2023 | code+data | MIT | Framework for interactive coding with execution feedback, where the model's actions are code run in Bash, SQL or Python environments. |
 | [AppWorld](https://arxiv.org/abs/2407.18901) | 2024 | paper | CC BY 4.0 (paper); ACL 2024 | Environment of 9 everyday apps reachable through 457 APIs and filled with activity for about 100 fictitious people, plus 750 tasks solved by writing code and checked by state-based tests. |
 | [Cybench](https://arxiv.org/abs/2408.08926) | 2024 | paper | CC BY 4.0 (paper); ICLR 2025 | Framework for specifying cybersecurity tasks for agents, with 40 Capture the Flag tasks from four competitions and subtasks for finer-grained scoring. |
-| [MLE-bench](https://arxiv.org/abs/2410.07095) | 2024 | paper | CC BY 4.0 (paper) | 75 machine learning engineering competitions from Kaggle with human baselines from the public leaderboards, used to measure agents that train models and run experiments. |
+| [MLE-bench](https://arxiv.org/abs/2410.07095) | 2024 | paper | CC BY 4.0 (paper); ICLR | 75 machine learning engineering competitions from Kaggle with human baselines from the public leaderboards, used to measure agents that train models and run experiments. |
 | [tau-bench](https://github.com/sierra-research/tau-bench) | 2024 | code+data | MIT | Conversations between an agent with domain tools and policies and a language-model-simulated user, scored by the final database state. |
 | [tau-bench (paper)](https://arxiv.org/abs/2406.12045) | 2024 | paper | CC BY 4.0 (paper) | Introduces tau-bench and the pass^k metric for how consistently an agent succeeds across repeated trials of the same task. |
 | [tau2-bench](https://github.com/sierra-research/tau2-bench) | 2025 | code+data | MIT | Successor to tau-bench that adds a dual-control setting in which both the agent and the simulated user act on a shared environment. |
@@ -138,8 +137,9 @@ How to measure, compare and report results: estimators, error bars, judge behavi
 | [Large Language Models are not Fair Evaluators](https://arxiv.org/abs/2305.17926) | 2023 | paper | arXiv non-exclusive (paper) | Shows that a model judge's preference between two responses can flip when their order is swapped, and proposes calibration strategies. |
 | [Rigorous Evaluation of Large Language Models for Code Generation](https://arxiv.org/abs/2305.01210) | 2023 | paper | arXiv non-exclusive (paper) | The EvalPlus paper: shows that the small test suites in existing code benchmarks accept wrong solutions, and extends them with generated tests. |
 | [Adding Error Bars to Evals](https://arxiv.org/abs/2411.00640) | 2024 | paper | arXiv non-exclusive (paper) | Treats eval questions as a sample from a larger population and gives formulas for standard errors, paired model comparisons and sample size planning. |
-| [Judging the Judges](https://arxiv.org/abs/2406.12624) | 2024 | paper | CC0 1.0 (paper) | Compares thirteen judge models with human scores and finds weaknesses such as leniency and sensitivity to prompt length and complexity. |
+| [Judging the Judges](https://arxiv.org/abs/2406.12624) | 2024 | paper | CC0 1.0 (paper); GEM2 workshop 2025 | Compares thirteen judge models with human scores and finds weaknesses such as leniency and sensitivity to prompt length and complexity. |
 | [Quantifying Variance in Evaluation Benchmarks](https://arxiv.org/abs/2406.10229) | 2024 | paper | CC BY 4.0 (paper) | Measures how much benchmark scores move with training seed and over training, across many models, and gives recommendations for judging whether a difference is meaningful. |
+| [SWE-bench experiments](https://github.com/SWE-bench/experiments) | 2024 | code+data | not stated | Published predictions, execution logs, trajectories and results from many system submissions to SWE-bench. |
 | [Are "Solved Issues" in SWE-bench Really Solved Correctly?](https://arxiv.org/abs/2503.15223) | 2025 | paper | arXiv non-exclusive (paper) | Tests and inspects patches that pass SWE-bench Verified against the developers' patches, using a differential testing technique called PatchDiff, to count plausible but incorrect fixes. |
 | [Establishing Best Practices for Building Rigorous Agentic Benchmarks](https://arxiv.org/abs/2507.02825) | 2025 | paper | arXiv non-exclusive (paper) | Catalogues task setup and reward design flaws in agentic benchmarks and proposes the Agentic Benchmark Checklist (ABC). |
 | [Holistic Agent Leaderboard](https://arxiv.org/abs/2510.11977) | 2025 | paper | arXiv non-exclusive (paper) | Shared harness that runs agent evaluations in parallel across many VMs, used for 21,730 rollouts over 9 models and 9 benchmarks to compare models, scaffolds and benchmarks. |
@@ -155,7 +155,7 @@ Studies of test data leaking into training data or into the task itself, and ben
 |---|---|---|---|---|
 | [Data Contamination Through the Lens of Time](https://arxiv.org/abs/2310.10628) | 2023 | paper | arXiv non-exclusive (paper) | Uses model training cut-offs as a natural experiment on Codeforces and Project Euler problems released over time to find contamination trends. |
 | [Rethinking Benchmark and Contamination with Rephrased Samples](https://arxiv.org/abs/2311.04850) | 2023 | paper | arXiv non-exclusive (paper) | Shows that paraphrased or translated test items pass n-gram decontamination, including for HumanEval, and proposes a model-based decontamination check. |
-| [Benchmarking Benchmark Leakage in Large Language Models](https://arxiv.org/abs/2404.18824) | 2024 | paper | arXiv non-exclusive (paper) | Detects possible benchmark leakage with perplexity and n-gram accuracy and proposes a Benchmark Transparency Card for reporting. |
+| [Benchmarking Benchmark Leakage in Large Language Models](https://arxiv.org/abs/2404.18824) | 2024 | paper | arXiv non-exclusive (paper) | Detects possible benchmark leakage with perplexity and n-gram accuracy, applied to 31 models on mathematical reasoning benchmarks, and proposes a Benchmark Transparency Card for reporting. |
 | [LiveCodeBench (paper)](https://arxiv.org/abs/2403.07974) | 2024 | paper | CC BY 4.0 (paper) | Describes LiveCodeBench and uses problem release dates relative to model training cut-offs to show contamination on older problems. |
 | [SWE-Bench+](https://arxiv.org/abs/2410.06992) | 2024 | paper | CC BY 4.0 (paper) | Manual review of successful SWE-bench patches that finds solutions leaked in the issue text, tests too weak to reject wrong patches, and most issues predating model knowledge cut-offs. |
 | [LessLeak-Bench](https://arxiv.org/abs/2502.06215) | 2025 | paper | CC BY 4.0 (paper) | Study of data leakage across 83 software engineering benchmarks: average leakage ratios of 4.8%, 2.8% and 0.7% for Python, Java and C/C++, and far higher for a few such as QuixBugs. |

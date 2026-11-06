@@ -46,7 +46,7 @@
       "kind": "code+data",
       "year": 2021,
       "licence": "MIT",
-      "summary": "164 hand-written Python problems, each a function signature and docstring checked by unit tests, with the harness that runs them.",
+      "summary": "164 hand-written Python problems, each a function signature and docstring checked by unit tests, with the harness that runs them; its authors now mark it deprecated and unmaintained.",
       "fetched": "2026-11-06"
     },
     {
@@ -217,7 +217,7 @@
       "kind": "code+data",
       "year": 2025,
       "licence": "not stated",
-      "summary": "Over 1,400 freelance software tasks with their real payouts, including both coding tasks graded by end-to-end tests and managerial choices between proposals; the repository is archived.",
+      "summary": "Over 1,400 freelance software tasks with their real payouts, both coding tasks graded by end-to-end tests and choices between proposals; the repository is archived and its code moved to openai/frontier-evals.",
       "fetched": "2026-11-06"
     },
     {
@@ -354,7 +354,7 @@
     {
       "name": "SWE-bench experiments",
       "url": "https://github.com/SWE-bench/experiments",
-      "section": "harness",
+      "section": "method",
       "kind": "code+data",
       "year": 2024,
       "licence": "not stated",
@@ -591,7 +591,8 @@
       "year": 2024,
       "licence": "CC0 1.0 (paper)",
       "summary": "Compares thirteen judge models with human scores and finds weaknesses such as leniency and sensitivity to prompt length and complexity.",
-      "fetched": "2026-11-06"
+      "fetched": "2026-11-06",
+      "venue": "GEM2 workshop 2025"
     },
     {
       "name": "Rigorous Evaluation of Large Language Models for Code Generation",
@@ -690,7 +691,7 @@
       "kind": "paper",
       "year": 2024,
       "licence": "arXiv non-exclusive (paper)",
-      "summary": "Detects possible benchmark leakage with perplexity and n-gram accuracy and proposes a Benchmark Transparency Card for reporting.",
+      "summary": "Detects possible benchmark leakage with perplexity and n-gram accuracy, applied to 31 models on mathematical reasoning benchmarks, and proposes a Benchmark Transparency Card for reporting.",
       "fetched": "2026-11-06"
     },
     {
@@ -782,7 +783,7 @@
       "kind": "paper",
       "year": 2025,
       "licence": "CC BY 4.0 (paper)",
-      "summary": "1,865 long-horizon problems from 41 repositories, split into a public set, a held-out set and a commercial set whose problems are not released.",
+      "summary": "1,865 long-horizon problems from 41 repositories, split into a public set and held-out and commercial sets whose problems are not released.",
       "fetched": "2026-11-06"
     },
     {
@@ -865,7 +866,8 @@
       "year": 2024,
       "licence": "CC BY 4.0 (paper)",
       "summary": "75 machine learning engineering competitions from Kaggle with human baselines from the public leaderboards, used to measure agents that train models and run experiments.",
-      "fetched": "2026-11-06"
+      "fetched": "2026-11-06",
+      "venue": "ICLR"
     },
     {
       "name": "Cybench",
