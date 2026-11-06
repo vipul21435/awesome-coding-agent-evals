@@ -616,7 +616,7 @@
     {
       "name": "SWE-agent: Agent-Computer Interfaces",
       "url": "https://arxiv.org/abs/2405.15793",
-      "section": "method",
+      "section": "harness",
       "kind": "paper",
       "year": 2024,
       "licence": "CC BY 4.0 (paper)",
@@ -626,7 +626,7 @@
     {
       "name": "Agentless (paper)",
       "url": "https://arxiv.org/abs/2407.01489",
-      "section": "method",
+      "section": "harness",
       "kind": "paper",
       "year": 2024,
       "licence": "CC BY 4.0 (paper)",
@@ -839,7 +839,7 @@
     {
       "name": "Benchmarks as Software",
       "url": "https://arxiv.org/abs/2611.08417",
-      "section": "terminal",
+      "section": "method",
       "kind": "paper",
       "year": 2026,
       "licence": "CC BY 4.0 (paper)",

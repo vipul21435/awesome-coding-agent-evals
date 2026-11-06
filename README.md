@@ -18,10 +18,10 @@ The entry tables come first, with their own contents list. After them: [Quicksta
 
 - [Function-level code benchmarks](#function-level-code-benchmarks) (11)
 - [Repository-level and issue-resolution benchmarks](#repository-level-and-issue-resolution-benchmarks) (18)
-- [Agent harnesses and scaffolds](#agent-harnesses-and-scaffolds) (15)
+- [Agent harnesses and scaffolds](#agent-harnesses-and-scaffolds) (17)
 - [Training environments and datasets for coding agents](#training-environments-and-datasets-for-coding-agents) (11)
-- [Terminal and tool-use benchmarks](#terminal-and-tool-use-benchmarks) (11)
-- [Evaluation methodology and statistics](#evaluation-methodology-and-statistics) (14)
+- [Terminal and tool-use benchmarks](#terminal-and-tool-use-benchmarks) (10)
+- [Evaluation methodology and statistics](#evaluation-methodology-and-statistics) (13)
 - [Contamination and leakage analyses](#contamination-and-leakage-analyses) (9)
 - [Licences at a glance](#licences-at-a-glance)
 
@@ -78,12 +78,14 @@ Open-source agents and the tooling used to run them against the benchmarks above
 | [Inspect](https://github.com/UKGovernmentBEIS/inspect_ai) | 2023 | code | MIT | Python framework for language model evaluations with components for prompt engineering, tool use, multi-turn dialogue and model-graded scoring. |
 | [Moatless Tools](https://github.com/aorwall/moatless-tools) | 2023 | code | MIT | Experimental code-editing tools for large existing code bases, built around putting the right context into the prompt, evaluated on SWE-bench. |
 | [Agentless](https://github.com/OpenAutoCoder/Agentless) | 2024 | code | MIT | Fixed three-phase pipeline of localisation, repair and patch validation for issue resolution, without letting the model choose its next action. |
+| [Agentless (paper)](https://arxiv.org/abs/2407.01489) | 2024 | paper | CC BY 4.0 (paper) | Asks whether complex autonomous agents are needed for issue resolution and compares them with a fixed localise-repair-validate pipeline. |
 | [AutoCodeRover](https://github.com/AutoCodeRoverSG/auto-code-rover) | 2024 | code | SONAR Source-Available License v1.0 | Program-improvement agent that uses code search over the program structure to localise an issue before writing a patch. |
 | [Inspect Evals](https://github.com/UKGovernmentBEIS/inspect_evals) | 2024 | code | MIT | Library of evaluations implemented on the Inspect framework, including ports of HumanEval, MBPP and SWE-bench, with a register for evaluations hosted elsewhere. |
 | [OpenHands](https://github.com/OpenHands/OpenHands) | 2024 | code | MIT | Open platform for software development agents that write code, run commands and browse the web inside a sandbox. |
 | [OpenHands (paper)](https://arxiv.org/abs/2407.16741) | 2024 | paper | CC BY 4.0 (paper); ICLR 2025 | Describes the OpenHands platform, formerly OpenDevin, for agents that write code, use a command line and browse the web inside sandboxed environments, with built-in benchmarks. |
 | [sb-cli](https://github.com/SWE-bench/sb-cli) | 2024 | code | MIT | Command-line client for submitting SWE-bench predictions and running the evaluation remotely. |
 | [SWE-agent](https://github.com/SWE-agent/SWE-agent) | 2024 | code | MIT | Agent that takes a GitHub issue and tries to fix it through a purpose-built agent-computer interface for viewing, searching and editing files. |
+| [SWE-agent: Agent-Computer Interfaces](https://arxiv.org/abs/2405.15793) | 2024 | paper | CC BY 4.0 (paper) | Argues that the interface an agent uses to view and edit code affects its results, and studies interface design choices on SWE-bench. |
 | [SWE-bench experiments](https://github.com/SWE-bench/experiments) | 2024 | code+data | not stated | Published predictions, execution logs, trajectories and results from many system submissions to SWE-bench. |
 | [SWE-ReX](https://github.com/SWE-agent/SWE-ReX) | 2024 | code | MIT | Runtime interface that lets agent code run shell sessions locally, in Docker containers or on remote machines with the same API, and run many sessions in parallel. |
 | [Codex CLI](https://github.com/openai/codex) | 2025 | code | Apache-2.0 | Coding agent that runs locally in the terminal. |
@@ -124,7 +126,6 @@ Benchmarks where the agent works through a shell, tools or a simulated user rath
 | [tau2-bench](https://github.com/sierra-research/tau2-bench) | 2025 | code+data | MIT | Successor to tau-bench that adds a dual-control setting in which both the agent and the simulated user act on a shared environment. |
 | [Terminal-Bench](https://github.com/harbor-framework/terminal-bench-1) | 2025 | code+data | Apache-2.0 | Tasks for agents working in a real terminal sandbox, such as compiling code or setting up servers, with an execution harness; this repository holds the first version. |
 | [Terminal-Bench 2.0](https://github.com/harbor-framework/terminal-bench-2) | 2025 | code+data | Apache-2.0 | Second version of the Terminal-Bench task set, in which agents do work in containerised environments, run through the Harbor package. |
-| [Benchmarks as Software](https://arxiv.org/abs/2611.08417) | 2026 | paper | CC BY 4.0 (paper) | Argues that benchmarks accumulate maintenance debt as models and infrastructure change, and applies a continuous-validation workflow to Terminal-Bench 2.0. |
 
 ## Evaluation methodology and statistics
 
@@ -137,14 +138,13 @@ How to measure, compare and report results: estimators, error bars, judge behavi
 | [Large Language Models are not Fair Evaluators](https://arxiv.org/abs/2305.17926) | 2023 | paper | arXiv non-exclusive (paper) | Shows that a model judge's preference between two responses can flip when their order is swapped, and proposes calibration strategies. |
 | [Rigorous Evaluation of Large Language Models for Code Generation](https://arxiv.org/abs/2305.01210) | 2023 | paper | arXiv non-exclusive (paper) | The EvalPlus paper: shows that the small test suites in existing code benchmarks accept wrong solutions, and extends them with generated tests. |
 | [Adding Error Bars to Evals](https://arxiv.org/abs/2411.00640) | 2024 | paper | arXiv non-exclusive (paper) | Treats eval questions as a sample from a larger population and gives formulas for standard errors, paired model comparisons and sample size planning. |
-| [Agentless (paper)](https://arxiv.org/abs/2407.01489) | 2024 | paper | CC BY 4.0 (paper) | Asks whether complex autonomous agents are needed for issue resolution and compares them with a fixed localise-repair-validate pipeline. |
 | [Judging the Judges](https://arxiv.org/abs/2406.12624) | 2024 | paper | CC0 1.0 (paper) | Compares thirteen judge models with human scores and finds weaknesses such as leniency and sensitivity to prompt length and complexity. |
 | [Quantifying Variance in Evaluation Benchmarks](https://arxiv.org/abs/2406.10229) | 2024 | paper | CC BY 4.0 (paper) | Measures how much benchmark scores move with training seed and over training, across many models, and gives recommendations for judging whether a difference is meaningful. |
-| [SWE-agent: Agent-Computer Interfaces](https://arxiv.org/abs/2405.15793) | 2024 | paper | CC BY 4.0 (paper) | Argues that the interface an agent uses to view and edit code affects its results, and studies interface design choices on SWE-bench. |
 | [Are "Solved Issues" in SWE-bench Really Solved Correctly?](https://arxiv.org/abs/2503.15223) | 2025 | paper | arXiv non-exclusive (paper) | Tests and inspects patches that pass SWE-bench Verified against the developers' patches, using a differential testing technique called PatchDiff, to count plausible but incorrect fixes. |
 | [Establishing Best Practices for Building Rigorous Agentic Benchmarks](https://arxiv.org/abs/2507.02825) | 2025 | paper | arXiv non-exclusive (paper) | Catalogues task setup and reward design flaws in agentic benchmarks and proposes the Agentic Benchmark Checklist (ABC). |
 | [Holistic Agent Leaderboard](https://arxiv.org/abs/2510.11977) | 2025 | paper | arXiv non-exclusive (paper) | Shared harness that runs agent evaluations in parallel across many VMs, used for 21,730 rollouts over 9 models and 9 benchmarks to compare models, scaffolds and benchmarks. |
 | [UTBoost](https://arxiv.org/abs/2506.09289) | 2025 | paper | CC BY 4.0 (paper); ACL 2025 | Generates extra unit tests for SWE-bench instances and finds 36 instances whose original tests were insufficient and 345 patches that had been wrongly counted as passing. |
+| [Benchmarks as Software](https://arxiv.org/abs/2611.08417) | 2026 | paper | CC BY 4.0 (paper) | Argues that benchmarks accumulate maintenance debt as models and infrastructure change, and applies a continuous-validation workflow to Terminal-Bench 2.0. |
 | [Hack-Verifiable Terminal Bench](https://arxiv.org/abs/2608.22103) | 2026 | paper | arXiv non-exclusive (paper) | Embeds detectable hacks into Terminal-Bench tasks so that reward hacking can be counted automatically, and measures how prompting about the hack changes the rate. |
 
 ## Contamination and leakage analyses
