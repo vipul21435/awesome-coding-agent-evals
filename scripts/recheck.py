@@ -140,16 +140,36 @@ def licence_title(text: str) -> str | None:
     return None
 
 
+# How some SPDX ids are spelled in the first line of a licence file.
+SPDX_TITLES = {
+    "apache-2.0": "apache-license-version-2.0",
+    "bsd-3-clause": "bsd-3-clause-license",
+    "gpl-3.0": "gnu-general-public-license-version-3",
+}
+
+
 def licence_matches(stated: str, seen: dict) -> bool:
+    """True when the licence stated in the data file is the one the page reports, or, when
+    GitHub reports NOASSERTION, the one the licence file's first line names."""
     if norm_licence(stated) == norm_licence(seen.get("licence")):
         return True
     title = seen.get("licence_title")
-    if title:
-        # The title must contain the whole stated licence, never the other way round:
-        # a generic first line such as "License" would otherwise match anything.
-        a, b = norm_licence(stated), norm_licence(title)
-        return a in b or _cc_words(a) in b
-    return False
+    if not title:
+        return False
+    # The title must contain the whole stated licence as whole words, never the other way
+    # round: a generic first line such as "License" would otherwise match anything, and a
+    # plain substring test would find 'mit' inside 'limited'.
+    a, b = _words(stated), _words(title)
+    spellings = {a, _cc_words(a), SPDX_TITLES.get(a, a)}
+    return any(re.search(r"(^|-)" + re.escape(w) + r"($|-)", b) for w in spellings)
+
+
+def _words(text: str) -> str:
+    """Lower-case words joined by hyphens, keeping version dots: 'Apache License, Version 2.0.'
+    -> 'apache-license-version-2.0'."""
+    t = text.lower().replace("(paper)", "")
+    t = re.sub(r"\.(?![0-9])", " ", t)
+    return re.sub(r"[^a-z0-9.]+", "-", t).strip("-")
 
 
 def _cc_words(token: str) -> str:

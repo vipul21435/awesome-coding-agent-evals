@@ -89,6 +89,17 @@ def test_licence_file_title_used_when_spdx_unknown():
     generic = {"licence": "NOASSERTION", "licence_title": "License"}
     assert not recheck.licence_matches("SONAR Source-Available License v1.0", generic)
     assert not recheck.licence_matches("MIT", generic)
+    # whole words only: 'mit' inside 'limited' is not a match
+    custom = {"licence": "NOASSERTION", "licence_title": "Limited Use License Agreement"}
+    assert not recheck.licence_matches("MIT", custom)
+    assert recheck.licence_matches("MIT", {"licence": "NOASSERTION", "licence_title": "The MIT License"})
+    apache = {"licence": "NOASSERTION", "licence_title": "Apache License, Version 2.0"}
+    assert recheck.licence_matches("Apache-2.0", apache)
+    assert not recheck.licence_matches("MIT", apache)
+    full = {"licence": "NOASSERTION",
+            "licence_title": "Creative Commons Attribution-NonCommercial 4.0 International Public License"}
+    assert recheck.licence_matches("CC BY-NC 4.0", full)
+    assert not recheck.licence_matches("CC BY 4.0", full)
     assert recheck.licence_title("\n\n# Some Licence\nbody") == "Some Licence"
     assert recheck.licence_title("  \n") is None
 
