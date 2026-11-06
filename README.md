@@ -17,6 +17,7 @@ A curated list of benchmarks, harnesses, datasets and papers for evaluating and 
 - [Function-level code benchmarks](#function-level-code-benchmarks) (8)
 - [Repository-level and issue-resolution benchmarks](#repository-level-and-issue-resolution-benchmarks) (14)
 - [Agent harnesses and scaffolds](#agent-harnesses-and-scaffolds) (11)
+- [Training environments and datasets for coding agents](#training-environments-and-datasets-for-coding-agents) (11)
 
 ## Function-level code benchmarks
 
@@ -72,7 +73,25 @@ Open-source agents and the tooling used to run them against the benchmarks above
 | [Harbor](https://github.com/harbor-framework/harbor) | 2025 | code | Apache-2.0 | Framework for evaluating and improving agents, pointed to by the Terminal-Bench authors for running Terminal-Bench 2.0. |
 | [mini-swe-agent](https://github.com/SWE-agent/mini-swe-agent) | 2025 | code | MIT | Agent of about 100 lines of Python whose only tool is bash, from the SWE-agent team, usable as a baseline or a command-line helper. |
 
-33 entries, all fetched on 2026-11-06.
+## Training environments and datasets for coding agents
+
+Executable task collections and agent trajectories released for fine-tuning or reinforcement learning.
+
+| Name | Year | Kind | Licence | What it is |
+|---|---|---|---|---|
+| [SWE-agent trajectories](https://huggingface.co/datasets/nebius/SWE-agent-trajectories) | 2024 | dataset | CC BY 4.0 | 80,036 trajectories produced by an agent built on SWE-agent with various models choosing the actions. |
+| [SWE-Gym](https://github.com/SWE-Gym/SWE-Gym) | 2024 | code | Apache-2.0 | Code for training software engineering agents and verifiers on executable Python tasks. |
+| [SWE-Gym (paper)](https://arxiv.org/abs/2412.21139) | 2024 | paper | CC BY 4.0 (paper); ICML 2025 | Describes SWE-Gym and reports fine-tuning agents and outcome verifiers on its trajectories. |
+| [SWE-Gym dataset](https://huggingface.co/datasets/SWE-Gym/SWE-Gym) | 2024 | dataset | MIT | 2,438 task instances from 11 Python repositories, collected the same way as SWE-bench, each with a runnable environment and unit tests. |
+| [R2E-Gym](https://github.com/R2E-Gym/R2E-Gym) | 2025 | code | Apache-2.0 | Procedurally curated executable environments for training open-weight software agents, plus hybrid verifiers for choosing among candidate patches. |
+| [SWE-rebench](https://huggingface.co/datasets/nebius/SWE-rebench) | 2025 | dataset | CC BY 4.0 | Large collection of interactive issue-resolution tasks gathered by an automated pipeline, for training and evaluating software agents. |
+| [SWE-RL](https://github.com/facebookresearch/swe-rl) | 2025 | code | CC BY-NC 4.0 | Code for reinforcement learning on open-source software history with a rule-based reward from similarity to the developer's actual change. |
+| [SWE-smith](https://github.com/SWE-bench/SWE-smith) | 2025 | code | MIT | Pipeline that builds an execution environment for a Python code base and synthesises many task instances that break its existing tests. |
+| [SWE-smith (paper)](https://arxiv.org/abs/2504.21798) | 2025 | paper | CC BY-SA 4.0 (paper) | Describes the SWE-smith data generation pipeline and the agent model trained on its trajectories. |
+| [SWE-smith dataset](https://huggingface.co/datasets/SWE-bench/SWE-smith) | 2025 | dataset | MIT | Task instances produced by the SWE-smith pipeline; the card notes it is no longer actively updated. |
+| [SWE-smith trajectories](https://huggingface.co/datasets/SWE-bench/SWE-smith-trajectories) | 2025 | dataset | MIT | 5,017 agent trajectories used to fine-tune a Qwen 2.5 Coder model into the SWE-agent-LM-32B agent. |
+
+44 entries, all fetched on 2026-11-06.
 
 <!-- END ENTRIES -->
 

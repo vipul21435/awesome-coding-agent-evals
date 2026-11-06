@@ -16,6 +16,11 @@
       "id": "harness",
       "title": "Agent harnesses and scaffolds",
       "blurb": "Open-source agents and the tooling used to run them against the benchmarks above."
+    },
+    {
+      "id": "training",
+      "title": "Training environments and datasets for coding agents",
+      "blurb": "Executable task collections and agent trajectories released for fine-tuning or reinforcement learning."
     }
   ],
   "entries": [
@@ -349,6 +354,117 @@
       "year": 2025,
       "licence": "Apache-2.0",
       "summary": "Framework for evaluating and improving agents, pointed to by the Terminal-Bench authors for running Terminal-Bench 2.0.",
+      "fetched": "2026-11-06"
+    },
+    {
+      "name": "SWE-Gym",
+      "url": "https://github.com/SWE-Gym/SWE-Gym",
+      "section": "training",
+      "kind": "code",
+      "year": 2024,
+      "licence": "Apache-2.0",
+      "summary": "Code for training software engineering agents and verifiers on executable Python tasks.",
+      "fetched": "2026-11-06"
+    },
+    {
+      "name": "SWE-Gym dataset",
+      "url": "https://huggingface.co/datasets/SWE-Gym/SWE-Gym",
+      "section": "training",
+      "kind": "dataset",
+      "year": 2024,
+      "licence": "MIT",
+      "summary": "2,438 task instances from 11 Python repositories, collected the same way as SWE-bench, each with a runnable environment and unit tests.",
+      "fetched": "2026-11-06"
+    },
+    {
+      "name": "SWE-smith",
+      "url": "https://github.com/SWE-bench/SWE-smith",
+      "section": "training",
+      "kind": "code",
+      "year": 2025,
+      "licence": "MIT",
+      "summary": "Pipeline that builds an execution environment for a Python code base and synthesises many task instances that break its existing tests.",
+      "fetched": "2026-11-06"
+    },
+    {
+      "name": "SWE-smith dataset",
+      "url": "https://huggingface.co/datasets/SWE-bench/SWE-smith",
+      "section": "training",
+      "kind": "dataset",
+      "year": 2025,
+      "licence": "MIT",
+      "summary": "Task instances produced by the SWE-smith pipeline; the card notes it is no longer actively updated.",
+      "fetched": "2026-11-06"
+    },
+    {
+      "name": "SWE-smith trajectories",
+      "url": "https://huggingface.co/datasets/SWE-bench/SWE-smith-trajectories",
+      "section": "training",
+      "kind": "dataset",
+      "year": 2025,
+      "licence": "MIT",
+      "summary": "5,017 agent trajectories used to fine-tune a Qwen 2.5 Coder model into the SWE-agent-LM-32B agent.",
+      "fetched": "2026-11-06"
+    },
+    {
+      "name": "R2E-Gym",
+      "url": "https://github.com/R2E-Gym/R2E-Gym",
+      "section": "training",
+      "kind": "code",
+      "year": 2025,
+      "licence": "Apache-2.0",
+      "summary": "Procedurally curated executable environments for training open-weight software agents, plus hybrid verifiers for choosing among candidate patches.",
+      "fetched": "2026-11-06"
+    },
+    {
+      "name": "SWE-rebench",
+      "url": "https://huggingface.co/datasets/nebius/SWE-rebench",
+      "section": "training",
+      "kind": "dataset",
+      "year": 2025,
+      "licence": "CC BY 4.0",
+      "summary": "Large collection of interactive issue-resolution tasks gathered by an automated pipeline, for training and evaluating software agents.",
+      "fetched": "2026-11-06"
+    },
+    {
+      "name": "SWE-agent trajectories",
+      "url": "https://huggingface.co/datasets/nebius/SWE-agent-trajectories",
+      "section": "training",
+      "kind": "dataset",
+      "year": 2024,
+      "licence": "CC BY 4.0",
+      "summary": "80,036 trajectories produced by an agent built on SWE-agent with various models choosing the actions.",
+      "fetched": "2026-11-06"
+    },
+    {
+      "name": "SWE-RL",
+      "url": "https://github.com/facebookresearch/swe-rl",
+      "section": "training",
+      "kind": "code",
+      "year": 2025,
+      "licence": "CC BY-NC 4.0",
+      "summary": "Code for reinforcement learning on open-source software history with a rule-based reward from similarity to the developer's actual change.",
+      "fetched": "2026-11-06"
+    },
+    {
+      "name": "SWE-Gym (paper)",
+      "url": "https://arxiv.org/abs/2412.21139",
+      "section": "training",
+      "kind": "paper",
+      "year": 2024,
+      "licence": "CC BY 4.0 (paper)",
+      "summary": "Describes SWE-Gym and reports fine-tuning agents and outcome verifiers on its trajectories.",
+      "fetched": "2026-11-06",
+      "venue": "ICML 2025"
+    },
+    {
+      "name": "SWE-smith (paper)",
+      "url": "https://arxiv.org/abs/2504.21798",
+      "section": "training",
+      "kind": "paper",
+      "year": 2025,
+      "licence": "CC BY-SA 4.0 (paper)",
+      "summary": "Describes the SWE-smith data generation pipeline and the agent model trained on its trajectories.",
       "fetched": "2026-11-06"
     }
   ]
