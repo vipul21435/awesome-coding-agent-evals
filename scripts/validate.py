@@ -88,6 +88,10 @@ def check_data(
         if not isinstance(s, dict):
             problems.append(f"section {j}: must be an object")
             continue
+        if s.get("id") is not None and not isinstance(s["id"], str):
+            # skipped, so an unhashable id cannot break the duplicate check below
+            problems.append(f"section {j}: id must be a string")
+            continue
         sections.append(s)
         for key in ("id", "title", "blurb"):
             if s.get(key) is None or (isinstance(s[key], str) and not s[key].strip()):

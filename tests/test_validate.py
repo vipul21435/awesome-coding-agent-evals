@@ -161,6 +161,10 @@ def test_wrong_types_are_reported_not_raised():
         (lambda d: d.update(entries={}), "entries must be a list"),
         (lambda d: d["sections"].append(7), "section 2: must be an object"),
         (lambda d: d["sections"][0].update(title=3), "title must be a string"),
+        (lambda d: d["sections"].append({"id": ["x"], "title": "X", "blurb": "Y."}),
+         "section 2: id must be a string"),
+        (lambda d: d["sections"].append({"id": {"x": 1}, "title": "X", "blurb": "Y."}),
+         "section 2: id must be a string"),
     ]
     for mutate, want in cases:
         out = problems(mutate)
