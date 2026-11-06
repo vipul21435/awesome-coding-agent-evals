@@ -173,6 +173,8 @@ def test_a_dropped_connection_is_a_failed_fetch_not_a_crash(tmp_path, monkeypatc
     data = {"fetched": "2026-11-06", "sections": [], "entries": [
         entry(name="Drop", url="https://github.com/a/b"),
         entry(name="Reset", url="https://github.com/c/d"),
+        entry(name="Short", url="https://github.com/g/h"),
+        entry(name="Garbled", url="https://github.com/i/j"),
         entry(name="Fine", url="https://github.com/e/f"),
     ]}
     path = tmp_path / "entries.json"
@@ -183,11 +185,16 @@ def test_a_dropped_connection_is_a_failed_fetch_not_a_crash(tmp_path, monkeypatc
             raise http.client.RemoteDisconnected("closed")
         if url.endswith("c/d"):
             raise ConnectionResetError("reset")
+        # IncompleteRead and BadStatusLine are HTTPException but not OSError
+        if url.endswith("g/h"):
+            raise http.client.IncompleteRead(b"")
+        if url.endswith("i/j"):
+            raise http.client.BadStatusLine("garbled")
         return json.dumps({"license": {"spdx_id": "MIT"}, "created_at": "2024-01-01",
                            "full_name": "e/f"}).encode()
 
     monkeypatch.setattr(recheck, "fetch", fake_fetch)
     out_json = tmp_path / "report.json"
     assert recheck.main(["--data", str(path), "--delay", "0", "--json", str(out_json)]) == 1
-    assert "fetched 1, failed 2" in capsys.readouterr().out
-    assert [r["ok"] for r in json.loads(out_json.read_text())] == [False, False, True]
+    assert "fetched 1, failed 4" in capsys.readouterr().out
+    assert [r["ok"] for r in json.loads(out_json.read_text())] == [False, False, False, False, True]

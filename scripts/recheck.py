@@ -262,8 +262,9 @@ def main(argv: list[str] | None = None) -> int:
         try:
             seen = observe(source, key, args.timeout)
         except (OSError, http.client.HTTPException, ValueError, KeyError) as exc:
-            # OSError covers URLError, timeouts and reset connections; HTTPException covers
-            # a server that closes the connection before answering.
+            # OSError covers URLError, timeouts and reset or closed connections (including
+            # RemoteDisconnected); HTTPException covers IncompleteRead and BadStatusLine, which
+            # are not OSError.
             failed += 1
             row.update(ok=False, error=str(exc))
             print(f"FAIL  {entry['name']}: {exc}")
