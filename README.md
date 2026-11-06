@@ -242,7 +242,7 @@ These are the author's own projects, not independent entries, and they were not 
 - [patchmin](https://github.com/vipul21435/patchmin): delta debugging over the hunks and lines of a fix to find the part that makes the target tests pass.
 - [issuelint](https://github.com/vipul21435/issuelint): checks issue-to-fix task records for solution leaks, test leaks and underspecification.
 - [sftlint](https://github.com/vipul21435/sftlint): lints chat, SFT and tool-calling datasets for structure, tool-call validity, secrets and duplicates.
-- contamscan: not yet public on GitHub as of 2026-11-06.
+- [contamscan](https://github.com/vipul21435/contamscan): measures n-gram overlap between a benchmark and a training corpus with published methods, and compares scores on clean and overlapping items.
 
 ## Contributing
 
