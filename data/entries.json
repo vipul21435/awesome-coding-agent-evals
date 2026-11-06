@@ -743,6 +743,47 @@
       "licence": "not stated",
       "summary": "Programming exercises taken from Exercism's C++, Go, Java, JavaScript, Python and Rust tracks, used by Aider's benchmark harness; the exercises keep Exercism's licences.",
       "fetched": "2026-11-06"
+    },
+    {
+      "name": "Commit0",
+      "url": "https://github.com/commit-0/commit0",
+      "section": "repo",
+      "kind": "code+data",
+      "year": 2024,
+      "licence": "MIT",
+      "summary": "Challenge to rebuild 57 core Python libraries from their specification and documentation until their unit tests pass, with tooling to run tests in isolated environments.",
+      "fetched": "2026-11-06"
+    },
+    {
+      "name": "FEA-Bench",
+      "url": "https://arxiv.org/abs/2503.06680",
+      "section": "repo",
+      "kind": "paper",
+      "year": 2025,
+      "licence": "arXiv non-exclusive (paper)",
+      "venue": "ACL 2025",
+      "summary": "Feature-implementation tasks built from pull requests in 83 GitHub repositories, each paired with unit test files that check the new code.",
+      "fetched": "2026-11-06"
+    },
+    {
+      "name": "SWT-Bench",
+      "url": "https://github.com/logic-star-ai/swt-bench",
+      "section": "repo",
+      "kind": "code+data",
+      "year": 2024,
+      "licence": "MIT",
+      "summary": "Test-generation benchmark and harness: given a repository and an issue, write a test that fails on the original code and passes once the fix is applied.",
+      "fetched": "2026-11-06"
+    },
+    {
+      "name": "SWE-Bench Pro",
+      "url": "https://arxiv.org/abs/2509.16941",
+      "section": "repo",
+      "kind": "paper",
+      "year": 2025,
+      "licence": "CC BY 4.0 (paper)",
+      "summary": "1,865 long-horizon problems from 41 repositories, split into a public set, a held-out set and a commercial set whose problems are not released.",
+      "fetched": "2026-11-06"
     }
   ]
 }
