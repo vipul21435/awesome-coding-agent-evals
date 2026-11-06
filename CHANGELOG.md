@@ -1,5 +1,14 @@
 # Changelog
 
+## Unreleased
+
+- Author tools section regrouped by topic, each tool tied to the listed paper it relates to; contamscan linked.
+- Entry tables now follow the selection rules directly; Quickstart, Re-checking and Limitations moved below them.
+- Agentless and SWE-agent papers moved to the harness section, Benchmarks as Software to methodology.
+- `recheck.py` counts a licence-file title as a match only when it contains the whole stated licence.
+- `validate.py` defaults the year bound to the current year and checks per-entry fetch dates.
+- Help text for every script option; pyproject version set to 0.2.0.
+
 ## 0.2.0 - 2026-11-06
 
 - 22 more entries (89 in all): MultiPL-E, ClassEval, the Aider polyglot benchmark, Commit0, FEA-Bench, SWT-Bench, SWE-Bench Pro, the OpenHands paper, SWE-ReX, Inspect, Inspect Evals, Terminal-Bench 2.0 and its maintenance paper, AppWorld, MLE-bench, Cybench, and six papers on variance, harnesses, patch correctness, weak tests, reward hacking and leakage.

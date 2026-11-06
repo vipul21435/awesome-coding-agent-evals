@@ -200,7 +200,10 @@ ok: 89 entries in 7 sections
 $ uv run python scripts/render.py --check
 README.md is in sync with the data file
 $ uv run pytest -q
-30 passed in 0.06s
+32 passed in 0.05s
+$ uv run pytest -q --cov=scripts
+...
+TOTAL                   374     10    97%
 ```
 
 ## Re-checking the pages
