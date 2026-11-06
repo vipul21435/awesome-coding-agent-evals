@@ -713,6 +713,36 @@
       "licence": "arXiv non-exclusive (paper)",
       "summary": "The SWE-bench-Live paper: argues fixed benchmarks risk overfitting and contamination and presents a continuously updated set of tasks.",
       "fetched": "2026-11-06"
+    },
+    {
+      "name": "MultiPL-E",
+      "url": "https://github.com/nuprl/MultiPL-E",
+      "section": "function",
+      "kind": "code+data",
+      "year": 2022,
+      "licence": "BSD 3-Clause License with Machine Learning Restriction",
+      "summary": "System that translates unit-test-driven Python benchmarks to other languages, used to port HumanEval and MBPP to 18 further programming languages.",
+      "fetched": "2026-11-06"
+    },
+    {
+      "name": "ClassEval",
+      "url": "https://github.com/FudanSELab/ClassEval",
+      "section": "function",
+      "kind": "code+data",
+      "year": 2023,
+      "licence": "MIT",
+      "summary": "100 hand-built class-level Python tasks with 410 methods that depend on libraries, fields and other methods, averaging 33.1 test cases per class.",
+      "fetched": "2026-11-06"
+    },
+    {
+      "name": "Aider polyglot benchmark",
+      "url": "https://github.com/Aider-AI/polyglot-benchmark",
+      "section": "function",
+      "kind": "dataset",
+      "year": 2024,
+      "licence": "not stated",
+      "summary": "Programming exercises taken from Exercism's C++, Go, Java, JavaScript, Python and Rust tracks, used by Aider's benchmark harness; the exercises keep Exercism's licences.",
+      "fetched": "2026-11-06"
     }
   ]
 }

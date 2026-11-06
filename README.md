@@ -31,7 +31,7 @@ Status: 67 entries in 7 sections, each fetched on 2026-11-06. Not implemented ye
 
 ## Contents
 
-- [Function-level code benchmarks](#function-level-code-benchmarks) (8)
+- [Function-level code benchmarks](#function-level-code-benchmarks) (11)
 - [Repository-level and issue-resolution benchmarks](#repository-level-and-issue-resolution-benchmarks) (14)
 - [Agent harnesses and scaffolds](#agent-harnesses-and-scaffolds) (11)
 - [Training environments and datasets for coding agents](#training-environments-and-datasets-for-coding-agents) (11)
@@ -49,7 +49,10 @@ Self-contained problems scored by running unit tests on a single generated funct
 | [HumanEval](https://github.com/openai/human-eval) | 2021 | code+data | MIT | 164 hand-written Python problems, each a function signature and docstring checked by unit tests, with the harness that runs them. |
 | [MBPP](https://huggingface.co/datasets/google-research-datasets/mbpp) | 2021 | dataset | CC BY 4.0 | About 1,000 crowd-sourced entry-level Python problems, each with a task description, a reference solution and three test cases. |
 | [DS-1000](https://github.com/xlang-ai/DS-1000) | 2022 | code+data | CC-BY-SA-4.0 | 1,000 data science problems drawn from StackOverflow and spanning seven Python libraries such as NumPy and Pandas, with execution-based checks. |
+| [MultiPL-E](https://github.com/nuprl/MultiPL-E) | 2022 | code+data | BSD 3-Clause License with Machine Learning Restriction | System that translates unit-test-driven Python benchmarks to other languages, used to port HumanEval and MBPP to 18 further programming languages. |
+| [ClassEval](https://github.com/FudanSELab/ClassEval) | 2023 | code+data | MIT | 100 hand-built class-level Python tasks with 410 methods that depend on libraries, fields and other methods, averaging 33.1 test cases per class. |
 | [EvalPlus (HumanEval+ and MBPP+)](https://github.com/evalplus/evalplus) | 2023 | code+data | Apache-2.0 | Framework that adds many generated test inputs to HumanEval and MBPP so that plausible but wrong solutions are caught. |
+| [Aider polyglot benchmark](https://github.com/Aider-AI/polyglot-benchmark) | 2024 | dataset | not stated | Programming exercises taken from Exercism's C++, Go, Java, JavaScript, Python and Rust tracks, used by Aider's benchmark harness; the exercises keep Exercism's licences. |
 | [BigCodeBench](https://github.com/bigcode-project/bigcodebench) | 2024 | code+data | Apache-2.0 | Python tasks that require calls to many functions across common libraries, offered as docstring completion and as natural-language instructions; the repository is archived. |
 | [CRUXEval](https://github.com/facebookresearch/cruxeval) | 2024 | code+data | MIT | 800 short Python functions, each with one input-output pair, used for two tasks: predict the output from the input and predict an input for the output; the repository is archived. |
 | [LiveCodeBench](https://github.com/LiveCodeBench/LiveCodeBench) | 2024 | code+data | MIT | Code benchmark that keeps adding problems from programming contests with their release dates, covering generation, self-repair, test output prediction and execution. |
@@ -155,7 +158,7 @@ Studies of test data leaking into training data or into the task itself, and ben
 | [SWE-rebench (paper)](https://arxiv.org/abs/2505.20411) | 2025 | paper | CC BY 4.0 (paper); NeurIPS 2025 | Describes the pipeline that collects over 21,000 interactive Python tasks for SWE-rebench and a contamination-free benchmark built from freshly collected tasks. |
 | [The SWE-Bench Illusion](https://arxiv.org/abs/2506.12286) | 2025 | paper | CC BY-NC-ND 4.0 (paper) | Probes whether models can name the buggy file path from the issue text alone, as evidence that SWE-bench Verified scores partly reflect memorisation. |
 
-67 entries, all fetched on 2026-11-06.
+70 entries, all fetched on 2026-11-06.
 
 <!-- END ENTRIES -->
 
