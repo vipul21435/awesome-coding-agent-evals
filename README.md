@@ -36,8 +36,8 @@ Status: 67 entries in 7 sections, each fetched on 2026-11-06. Not implemented ye
 - [Agent harnesses and scaffolds](#agent-harnesses-and-scaffolds) (15)
 - [Training environments and datasets for coding agents](#training-environments-and-datasets-for-coding-agents) (11)
 - [Terminal and tool-use benchmarks](#terminal-and-tool-use-benchmarks) (11)
-- [Evaluation methodology and statistics](#evaluation-methodology-and-statistics) (9)
-- [Contamination and leakage analyses](#contamination-and-leakage-analyses) (8)
+- [Evaluation methodology and statistics](#evaluation-methodology-and-statistics) (14)
+- [Contamination and leakage analyses](#contamination-and-leakage-analyses) (9)
 
 ## Function-level code benchmarks
 
@@ -153,8 +153,13 @@ How to measure, compare and report results: estimators, error bars, judge behavi
 | [Adding Error Bars to Evals](https://arxiv.org/abs/2411.00640) | 2024 | paper | arXiv non-exclusive (paper) | Treats eval questions as a sample from a larger population and gives formulas for standard errors, paired model comparisons and sample size planning. |
 | [Agentless (paper)](https://arxiv.org/abs/2407.01489) | 2024 | paper | CC BY 4.0 (paper) | Asks whether complex autonomous agents are needed for issue resolution and compares them with a fixed localise-repair-validate pipeline. |
 | [Judging the Judges](https://arxiv.org/abs/2406.12624) | 2024 | paper | CC0 1.0 (paper) | Compares thirteen judge models with human scores and finds weaknesses such as leniency and sensitivity to prompt length and complexity. |
+| [Quantifying Variance in Evaluation Benchmarks](https://arxiv.org/abs/2406.10229) | 2024 | paper | CC BY 4.0 (paper) | Measures how much benchmark scores move with training seed and over training, across many models, and gives recommendations for judging whether a difference is meaningful. |
 | [SWE-agent: Agent-Computer Interfaces](https://arxiv.org/abs/2405.15793) | 2024 | paper | CC BY 4.0 (paper) | Argues that the interface an agent uses to view and edit code affects its results, and studies interface design choices on SWE-bench. |
+| [Are "Solved Issues" in SWE-bench Really Solved Correctly?](https://arxiv.org/abs/2503.15223) | 2025 | paper | arXiv non-exclusive (paper) | Tests and inspects patches that pass SWE-bench Verified against the developers' patches, using a differential testing technique called PatchDiff, to count plausible but incorrect fixes. |
 | [Establishing Best Practices for Building Rigorous Agentic Benchmarks](https://arxiv.org/abs/2507.02825) | 2025 | paper | arXiv non-exclusive (paper) | Catalogues task setup and reward design flaws in agentic benchmarks and proposes the Agentic Benchmark Checklist (ABC). |
+| [Holistic Agent Leaderboard](https://arxiv.org/abs/2510.11977) | 2025 | paper | arXiv non-exclusive (paper) | Shared harness that runs agent evaluations in parallel across many VMs, used for 21,730 rollouts over 9 models and 9 benchmarks to compare models, scaffolds and benchmarks. |
+| [UTBoost](https://arxiv.org/abs/2506.09289) | 2025 | paper | CC BY 4.0 (paper); ACL 2025 | Generates extra unit tests for SWE-bench instances and finds 36 instances whose original tests were insufficient and 345 patches that had been wrongly counted as passing. |
+| [Hack-Verifiable Terminal Bench](https://arxiv.org/abs/2608.22103) | 2026 | paper | arXiv non-exclusive (paper) | Embeds detectable hacks into Terminal-Bench tasks so that reward hacking can be counted automatically, and measures how prompting about the hack changes the rate. |
 
 ## Contamination and leakage analyses
 
@@ -167,11 +172,12 @@ Studies of test data leaking into training data or into the task itself, and ben
 | [Benchmarking Benchmark Leakage in Large Language Models](https://arxiv.org/abs/2404.18824) | 2024 | paper | arXiv non-exclusive (paper) | Detects possible benchmark leakage with perplexity and n-gram accuracy and proposes a Benchmark Transparency Card for reporting. |
 | [LiveCodeBench (paper)](https://arxiv.org/abs/2403.07974) | 2024 | paper | CC BY 4.0 (paper) | Describes LiveCodeBench and uses problem release dates relative to model training cut-offs to show contamination on older problems. |
 | [SWE-Bench+](https://arxiv.org/abs/2410.06992) | 2024 | paper | CC BY 4.0 (paper) | Manual review of successful SWE-bench patches that finds solutions leaked in the issue text, tests too weak to reject wrong patches, and most issues predating model knowledge cut-offs. |
+| [LessLeak-Bench](https://arxiv.org/abs/2502.06215) | 2025 | paper | CC BY 4.0 (paper) | Study of data leakage across 83 software engineering benchmarks: average leakage ratios of 4.8%, 2.8% and 0.7% for Python, Java and C/C++, and far higher for a few such as QuixBugs. |
 | [SWE-bench Goes Live!](https://arxiv.org/abs/2505.23419) | 2025 | paper | arXiv non-exclusive (paper) | The SWE-bench-Live paper: argues fixed benchmarks risk overfitting and contamination and presents a continuously updated set of tasks. |
 | [SWE-rebench (paper)](https://arxiv.org/abs/2505.20411) | 2025 | paper | CC BY 4.0 (paper); NeurIPS 2025 | Describes the pipeline that collects over 21,000 interactive Python tasks for SWE-rebench and a contamination-free benchmark built from freshly collected tasks. |
 | [The SWE-Bench Illusion](https://arxiv.org/abs/2506.12286) | 2025 | paper | CC BY-NC-ND 4.0 (paper) | Probes whether models can name the buggy file path from the issue text alone, as evidence that SWE-bench Verified scores partly reflect memorisation. |
 
-83 entries, all fetched on 2026-11-06.
+89 entries, all fetched on 2026-11-06.
 
 <!-- END ENTRIES -->
 

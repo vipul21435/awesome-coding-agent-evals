@@ -877,6 +877,67 @@
       "venue": "ICLR 2025",
       "summary": "Framework for specifying cybersecurity tasks for agents, with 40 Capture the Flag tasks from four competitions and subtasks for finer-grained scoring.",
       "fetched": "2026-11-06"
+    },
+    {
+      "name": "Quantifying Variance in Evaluation Benchmarks",
+      "url": "https://arxiv.org/abs/2406.10229",
+      "section": "method",
+      "kind": "paper",
+      "year": 2024,
+      "licence": "CC BY 4.0 (paper)",
+      "summary": "Measures how much benchmark scores move with training seed and over training, across many models, and gives recommendations for judging whether a difference is meaningful.",
+      "fetched": "2026-11-06"
+    },
+    {
+      "name": "Holistic Agent Leaderboard",
+      "url": "https://arxiv.org/abs/2510.11977",
+      "section": "method",
+      "kind": "paper",
+      "year": 2025,
+      "licence": "arXiv non-exclusive (paper)",
+      "summary": "Shared harness that runs agent evaluations in parallel across many VMs, used for 21,730 rollouts over 9 models and 9 benchmarks to compare models, scaffolds and benchmarks.",
+      "fetched": "2026-11-06"
+    },
+    {
+      "name": "Are \"Solved Issues\" in SWE-bench Really Solved Correctly?",
+      "url": "https://arxiv.org/abs/2503.15223",
+      "section": "method",
+      "kind": "paper",
+      "year": 2025,
+      "licence": "arXiv non-exclusive (paper)",
+      "summary": "Tests and inspects patches that pass SWE-bench Verified against the developers' patches, using a differential testing technique called PatchDiff, to count plausible but incorrect fixes.",
+      "fetched": "2026-11-06"
+    },
+    {
+      "name": "UTBoost",
+      "url": "https://arxiv.org/abs/2506.09289",
+      "section": "method",
+      "kind": "paper",
+      "year": 2025,
+      "licence": "CC BY 4.0 (paper)",
+      "venue": "ACL 2025",
+      "summary": "Generates extra unit tests for SWE-bench instances and finds 36 instances whose original tests were insufficient and 345 patches that had been wrongly counted as passing.",
+      "fetched": "2026-11-06"
+    },
+    {
+      "name": "Hack-Verifiable Terminal Bench",
+      "url": "https://arxiv.org/abs/2608.22103",
+      "section": "method",
+      "kind": "paper",
+      "year": 2026,
+      "licence": "arXiv non-exclusive (paper)",
+      "summary": "Embeds detectable hacks into Terminal-Bench tasks so that reward hacking can be counted automatically, and measures how prompting about the hack changes the rate.",
+      "fetched": "2026-11-06"
+    },
+    {
+      "name": "LessLeak-Bench",
+      "url": "https://arxiv.org/abs/2502.06215",
+      "section": "contam",
+      "kind": "paper",
+      "year": 2025,
+      "licence": "CC BY 4.0 (paper)",
+      "summary": "Study of data leakage across 83 software engineering benchmarks: average leakage ratios of 4.8%, 2.8% and 0.7% for Python, Java and C/C++, and far higher for a few such as QuixBugs.",
+      "fetched": "2026-11-06"
     }
   ]
 }
