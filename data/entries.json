@@ -854,7 +854,7 @@
       "year": 2024,
       "licence": "CC BY 4.0 (paper)",
       "venue": "ACL 2024",
-      "summary": "Execution environment of 9 everyday apps reachable through 457 APIs with simulated users, and a benchmark of tasks that agents solve by writing code against those APIs.",
+      "summary": "Environment of 9 everyday apps reachable through 457 APIs and filled with activity for about 100 fictitious people, plus 750 tasks solved by writing code and checked by state-based tests.",
       "fetched": "2026-11-06"
     },
     {
