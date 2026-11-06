@@ -940,6 +940,108 @@
       "licence": "CC BY 4.0 (paper)",
       "summary": "Study of data leakage across 83 software engineering benchmarks: average leakage ratios of 4.8%, 2.8% and 0.7% for Python, Java and C/C++, and far higher for a few such as QuixBugs.",
       "fetched": "2026-11-06"
+    },
+    {
+      "name": "CodeContests",
+      "url": "https://github.com/google-deepmind/code_contests",
+      "section": "function",
+      "kind": "code+data",
+      "year": 2022,
+      "licence": "Apache-2.0",
+      "summary": "Competitive programming problems from Aizu, AtCoder, CodeChef, Codeforces and HackerEarth with input-output tests and correct and incorrect human solutions; non-code files are CC BY 4.0, and the repository is archived.",
+      "fetched": "2026-11-06"
+    },
+    {
+      "name": "AlphaCode (CodeContests paper)",
+      "url": "https://arxiv.org/abs/2203.07814",
+      "section": "function",
+      "kind": "paper",
+      "year": 2022,
+      "licence": "CC BY 4.0 (paper)",
+      "summary": "Introduces the AlphaCode system and the CodeContests dataset, evaluated in simulated Codeforces contests by sampling many programs and filtering them by how they behave on example tests.",
+      "fetched": "2026-11-06"
+    },
+    {
+      "name": "bigcode-evaluation-harness",
+      "url": "https://github.com/bigcode-project/bigcode-evaluation-harness",
+      "section": "harness",
+      "kind": "code",
+      "year": 2022,
+      "licence": "Apache-2.0",
+      "summary": "Framework that runs code generation models from the Hugging Face Hub on tasks such as HumanEval, MBPP, APPS and DS-1000 and scores them by executing the generated code.",
+      "fetched": "2026-11-06"
+    },
+    {
+      "name": "RepoCoder and RepoEval",
+      "url": "https://arxiv.org/abs/2303.12570",
+      "section": "repo",
+      "kind": "paper",
+      "year": 2023,
+      "licence": "arXiv non-exclusive (paper)",
+      "summary": "Iterative retrieval and generation for repository-level code completion, with the RepoEval benchmark of line, API call and function body completions taken from recent real repositories.",
+      "fetched": "2026-11-06",
+      "venue": "EMNLP 2023"
+    },
+    {
+      "name": "DevEval",
+      "url": "https://arxiv.org/abs/2405.19856",
+      "section": "repo",
+      "kind": "paper",
+      "year": 2024,
+      "licence": "arXiv non-exclusive (paper)",
+      "summary": "1,874 code generation samples from 117 real repositories in 10 domains, annotated by 13 developers with requirements, reference code and the dependencies each function uses.",
+      "fetched": "2026-11-06",
+      "venue": "ACL 2024"
+    },
+    {
+      "name": "Multi-SWE-bench (paper)",
+      "url": "https://arxiv.org/abs/2504.02605",
+      "section": "repo",
+      "kind": "paper",
+      "year": 2025,
+      "licence": "CC BY 4.0 (paper)",
+      "summary": "Describes 1,632 annotated issue-resolution instances in seven languages besides Python, results for Agentless, SWE-agent and OpenHands, and 4,723 further instances released for reinforcement learning.",
+      "fetched": "2026-11-06"
+    },
+    {
+      "name": "SWE-bench-extra",
+      "url": "https://huggingface.co/datasets/nebius/SWE-bench-extra",
+      "section": "training",
+      "kind": "dataset",
+      "year": 2024,
+      "licence": "CC BY 4.0",
+      "summary": "6,415 issue and pull request pairs from 1,988 Python repositories, built with the SWE-bench method for training or evaluating agents; its card names SWE-rebench as the larger successor.",
+      "fetched": "2026-11-06"
+    },
+    {
+      "name": "Gorilla and the Berkeley Function Calling Leaderboard (BFCL)",
+      "url": "https://github.com/ShishirPatil/gorilla",
+      "section": "terminal",
+      "kind": "code+data",
+      "year": 2023,
+      "licence": "Apache-2.0",
+      "summary": "Repository holding the Gorilla API-calling models and the BFCL function-calling benchmark, whose later versions add multi-turn and multi-step calls and agentic tasks such as web search and memory.",
+      "fetched": "2026-11-06"
+    },
+    {
+      "name": "AI Agents That Matter",
+      "url": "https://arxiv.org/abs/2407.01502",
+      "section": "method",
+      "kind": "paper",
+      "year": 2024,
+      "licence": "arXiv non-exclusive (paper)",
+      "summary": "Argues that agent benchmarks should report cost alongside accuracy, separate the needs of model and application developers, keep proper held-out sets and standardise evaluation so results can be reproduced.",
+      "fetched": "2026-11-06"
+    },
+    {
+      "name": "Quantifying Contamination in Evaluating Code Generation Capabilities of Language Models",
+      "url": "https://arxiv.org/abs/2403.04811",
+      "section": "contam",
+      "kind": "paper",
+      "year": 2024,
+      "licence": "CC BY-SA 4.0 (paper)",
+      "summary": "Measures surface-level and semantic overlap between popular code generation benchmarks and open training corpora, and finds models score better on problems whose similar solutions were seen in training.",
+      "fetched": "2026-11-06"
     }
   ]
 }

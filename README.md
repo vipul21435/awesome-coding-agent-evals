@@ -16,13 +16,13 @@ The entry tables come first, with their own contents list. After them: [Quicksta
 
 ## Contents
 
-- [Function-level code benchmarks](#function-level-code-benchmarks) (11)
-- [Repository-level and issue-resolution benchmarks](#repository-level-and-issue-resolution-benchmarks) (18)
-- [Agent harnesses and scaffolds](#agent-harnesses-and-scaffolds) (16)
-- [Training environments and datasets for coding agents](#training-environments-and-datasets-for-coding-agents) (11)
-- [Terminal and tool-use benchmarks](#terminal-and-tool-use-benchmarks) (10)
-- [Evaluation methodology and statistics](#evaluation-methodology-and-statistics) (14)
-- [Contamination and leakage analyses](#contamination-and-leakage-analyses) (9)
+- [Function-level code benchmarks](#function-level-code-benchmarks) (13)
+- [Repository-level and issue-resolution benchmarks](#repository-level-and-issue-resolution-benchmarks) (21)
+- [Agent harnesses and scaffolds](#agent-harnesses-and-scaffolds) (17)
+- [Training environments and datasets for coding agents](#training-environments-and-datasets-for-coding-agents) (12)
+- [Terminal and tool-use benchmarks](#terminal-and-tool-use-benchmarks) (11)
+- [Evaluation methodology and statistics](#evaluation-methodology-and-statistics) (15)
+- [Contamination and leakage analyses](#contamination-and-leakage-analyses) (10)
 - [Licences at a glance](#licences-at-a-glance)
 
 ## Function-level code benchmarks
@@ -34,6 +34,8 @@ Self-contained problems scored by running unit tests on a single generated funct
 | [APPS](https://github.com/hendrycks/apps) | 2021 | code+data | MIT | 10,000 coding problems collected from competitive programming sites, ranging from introductory to competition level, graded by test cases. |
 | [HumanEval](https://github.com/openai/human-eval) | 2021 | code+data | MIT | 164 hand-written Python problems, each a function signature and docstring checked by unit tests, with the harness that runs them; its authors now mark it deprecated and unmaintained. |
 | [MBPP](https://huggingface.co/datasets/google-research-datasets/mbpp) | 2021 | dataset | CC BY 4.0 | About 1,000 crowd-sourced entry-level Python problems, each with a task description, a reference solution and three test cases. |
+| [AlphaCode (CodeContests paper)](https://arxiv.org/abs/2203.07814) | 2022 | paper | CC BY 4.0 (paper) | Introduces the AlphaCode system and the CodeContests dataset, evaluated in simulated Codeforces contests by sampling many programs and filtering them by how they behave on example tests. |
+| [CodeContests](https://github.com/google-deepmind/code_contests) | 2022 | code+data | Apache-2.0 | Competitive programming problems from Aizu, AtCoder, CodeChef, Codeforces and HackerEarth with input-output tests and correct and incorrect human solutions; non-code files are CC BY 4.0, and the repository is archived. |
 | [DS-1000](https://github.com/xlang-ai/DS-1000) | 2022 | code+data | CC BY-SA 4.0 | 1,000 data science problems drawn from StackOverflow and spanning seven Python libraries such as NumPy and Pandas, with execution-based checks. |
 | [MultiPL-E](https://github.com/nuprl/MultiPL-E) | 2022 | code+data | BSD 3-Clause License with Machine Learning Restriction | System that translates unit-test-driven Python benchmarks to other languages, used to port HumanEval and MBPP to 18 further programming languages. |
 | [ClassEval](https://github.com/FudanSELab/ClassEval) | 2023 | code+data | MIT | 100 hand-built class-level Python tasks with 410 methods that depend on libraries, fields and other methods, averaging 33.1 test cases per class. |
@@ -51,9 +53,11 @@ Tasks set inside a real code base: resolve an issue, complete code that depends 
 |---|---|---|---|---|
 | [CrossCodeEval](https://arxiv.org/abs/2310.11248) | 2023 | paper | arXiv non-exclusive (paper); NeurIPS 2023 Datasets and Benchmarks | Code completion benchmark in four languages where the correct completion depends on context from other files in the repository. |
 | [RepoBench](https://arxiv.org/abs/2306.03091) | 2023 | paper | arXiv non-exclusive (paper) | Benchmark for repository-level code completion with three tasks: retrieving relevant cross-file snippets, completing the next line, and both together. |
+| [RepoCoder and RepoEval](https://arxiv.org/abs/2303.12570) | 2023 | paper | arXiv non-exclusive (paper); EMNLP 2023 | Iterative retrieval and generation for repository-level code completion, with the RepoEval benchmark of line, API call and function body completions taken from recent real repositories. |
 | [SWE-bench](https://github.com/SWE-bench/SWE-bench) | 2023 | code | MIT | Benchmark and Docker-based evaluation harness in which a system receives a real GitHub issue and its repository and must produce a patch that makes the hidden tests pass. |
 | [SWE-bench (paper)](https://arxiv.org/abs/2310.06770) | 2023 | paper | CC BY 4.0 (paper); ICLR 2024 | Introduces SWE-bench: 2,294 issue and pull request pairs from 12 popular Python repositories, scored by running the repository's tests. |
 | [Commit0](https://github.com/commit-0/commit0) | 2024 | code+data | MIT | Challenge to rebuild 57 core Python libraries from their specification and documentation until their unit tests pass, with tooling to run tests in isolated environments. |
+| [DevEval](https://arxiv.org/abs/2405.19856) | 2024 | paper | arXiv non-exclusive (paper); ACL 2024 | 1,874 code generation samples from 117 real repositories in 10 domains, annotated by 13 developers with requirements, reference code and the dependencies each function uses. |
 | [REPOCOD](https://arxiv.org/abs/2410.21647) | 2024 | paper | CC BY-NC-SA 4.0 (paper) | 980 whole-function generation tasks from 11 large Python projects, many needing repository context, each checked by the project's developer-written tests. |
 | [SWE-bench Lite](https://huggingface.co/datasets/princeton-nlp/SWE-bench_Lite) | 2024 | dataset | not stated | A 300-instance subset of the SWE-bench test set chosen to be cheaper to run. |
 | [SWE-bench Multimodal](https://arxiv.org/abs/2410.03859) | 2024 | paper | CC BY 4.0 (paper) | 617 issue-resolution tasks from 17 user-facing JavaScript libraries, each with at least one image in its problem statement or tests. |
@@ -62,6 +66,7 @@ Tasks set inside a real code base: resolve an issue, complete code that depends 
 | [SWT-Bench](https://github.com/logic-star-ai/swt-bench) | 2024 | code+data | MIT | Test-generation benchmark and harness: given a repository and an issue, write a test that fails on the original code and passes once the fix is applied. |
 | [FEA-Bench](https://arxiv.org/abs/2503.06680) | 2025 | paper | arXiv non-exclusive (paper); ACL 2025 | Feature-implementation tasks built from pull requests in 83 GitHub repositories, each paired with unit test files that check the new code. |
 | [Multi-SWE-bench](https://github.com/multi-swe-bench/multi-swe-bench) | 2025 | code+data | Apache-2.0 | Multilingual issue-resolution benchmark covering languages such as Java, TypeScript, JavaScript, Go, Rust, C and C++, with its evaluation code. |
+| [Multi-SWE-bench (paper)](https://arxiv.org/abs/2504.02605) | 2025 | paper | CC BY 4.0 (paper) | Describes 1,632 annotated issue-resolution instances in seven languages besides Python, results for Agentless, SWE-agent and OpenHands, and 4,723 further instances released for reinforcement learning. |
 | [SWE-bench Multilingual](https://huggingface.co/datasets/SWE-bench/SWE-bench_Multilingual) | 2025 | dataset | MIT | 300 SWE-bench-style issue-resolution tasks from 41 repositories in 9 programming languages. |
 | [SWE-Bench Pro](https://arxiv.org/abs/2509.16941) | 2025 | paper | CC BY 4.0 (paper) | 1,865 long-horizon problems from 41 repositories, split into a public set and held-out and commercial sets whose problems are not released. |
 | [SWE-bench-Live](https://github.com/microsoft/SWE-bench-Live) | 2025 | code+data | MIT | Issue-resolution benchmark refreshed over time from issues created since 2024, built by an automated pipeline that also sets up a Docker image per task. |
@@ -74,6 +79,7 @@ Open-source agents and the tooling used to run them against the benchmarks above
 
 | Name | Year | Kind | Licence | What it is |
 |---|---|---|---|---|
+| [bigcode-evaluation-harness](https://github.com/bigcode-project/bigcode-evaluation-harness) | 2022 | code | Apache-2.0 | Framework that runs code generation models from the Hugging Face Hub on tasks such as HumanEval, MBPP, APPS and DS-1000 and scores them by executing the generated code. |
 | [Aider](https://github.com/Aider-AI/aider) | 2023 | code | Apache-2.0 | Pair-programming tool that runs in the terminal and edits files in a local git repository through a language model. |
 | [Inspect](https://github.com/UKGovernmentBEIS/inspect_ai) | 2023 | code | MIT | Python framework for language model evaluations with components for prompt engineering, tool use, multi-turn dialogue and model-graded scoring. |
 | [Moatless Tools](https://github.com/aorwall/moatless-tools) | 2023 | code | MIT | Experimental code-editing tools for large existing code bases, built around putting the right context into the prompt, evaluated on SWE-bench. |
@@ -98,6 +104,7 @@ Executable task collections and agent trajectories released for fine-tuning or r
 | Name | Year | Kind | Licence | What it is |
 |---|---|---|---|---|
 | [SWE-agent trajectories](https://huggingface.co/datasets/nebius/SWE-agent-trajectories) | 2024 | dataset | CC BY 4.0 | 80,036 trajectories produced by an agent built on SWE-agent with various models choosing the actions. |
+| [SWE-bench-extra](https://huggingface.co/datasets/nebius/SWE-bench-extra) | 2024 | dataset | CC BY 4.0 | 6,415 issue and pull request pairs from 1,988 Python repositories, built with the SWE-bench method for training or evaluating agents; its card names SWE-rebench as the larger successor. |
 | [SWE-Gym](https://github.com/SWE-Gym/SWE-Gym) | 2024 | code | Apache-2.0 | Code for training software engineering agents and verifiers on executable Python tasks. |
 | [SWE-Gym (paper)](https://arxiv.org/abs/2412.21139) | 2024 | paper | CC BY 4.0 (paper); ICML 2025 | Describes SWE-Gym and reports fine-tuning agents and outcome verifiers on its trajectories. |
 | [SWE-Gym dataset](https://huggingface.co/datasets/SWE-Gym/SWE-Gym) | 2024 | dataset | MIT | 2,438 task instances from 11 Python repositories, collected the same way as SWE-bench, each with a runnable environment and unit tests. |
@@ -116,6 +123,7 @@ Benchmarks where the agent works through a shell, tools or a simulated user rath
 | Name | Year | Kind | Licence | What it is |
 |---|---|---|---|---|
 | [AgentBench](https://github.com/THUDM/AgentBench) | 2023 | code+data | Apache-2.0 | Benchmark of eight interactive environments, including operating system and database tasks, for evaluating language models acting as agents. |
+| [Gorilla and the Berkeley Function Calling Leaderboard (BFCL)](https://github.com/ShishirPatil/gorilla) | 2023 | code+data | Apache-2.0 | Repository holding the Gorilla API-calling models and the BFCL function-calling benchmark, whose later versions add multi-turn and multi-step calls and agentic tasks such as web search and memory. |
 | [InterCode](https://github.com/princeton-nlp/intercode) | 2023 | code+data | MIT | Framework for interactive coding with execution feedback, where the model's actions are code run in Bash, SQL or Python environments. |
 | [AppWorld](https://arxiv.org/abs/2407.18901) | 2024 | paper | CC BY 4.0 (paper); ACL 2024 | Environment of 9 everyday apps reachable through 457 APIs and filled with activity for about 100 fictitious people, plus 750 tasks solved by writing code and checked by state-based tests. |
 | [Cybench](https://arxiv.org/abs/2408.08926) | 2024 | paper | CC BY 4.0 (paper); ICLR 2025 | Framework for specifying cybersecurity tasks for agents, with 40 Capture the Flag tasks from four competitions and subtasks for finer-grained scoring. |
@@ -137,6 +145,7 @@ How to measure, compare and report results: estimators, error bars, judge behavi
 | [Large Language Models are not Fair Evaluators](https://arxiv.org/abs/2305.17926) | 2023 | paper | arXiv non-exclusive (paper) | Shows that a model judge's preference between two responses can flip when their order is swapped, and proposes calibration strategies. |
 | [Rigorous Evaluation of Large Language Models for Code Generation](https://arxiv.org/abs/2305.01210) | 2023 | paper | arXiv non-exclusive (paper) | The EvalPlus paper: shows that the small test suites in existing code benchmarks accept wrong solutions, and extends them with generated tests. |
 | [Adding Error Bars to Evals](https://arxiv.org/abs/2411.00640) | 2024 | paper | arXiv non-exclusive (paper) | Treats eval questions as a sample from a larger population and gives formulas for standard errors, paired model comparisons and sample size planning. |
+| [AI Agents That Matter](https://arxiv.org/abs/2407.01502) | 2024 | paper | arXiv non-exclusive (paper) | Argues that agent benchmarks should report cost alongside accuracy, separate the needs of model and application developers, keep proper held-out sets and standardise evaluation so results can be reproduced. |
 | [Judging the Judges](https://arxiv.org/abs/2406.12624) | 2024 | paper | CC0 1.0 (paper); GEM2 workshop 2025 | Compares thirteen judge models with human scores and finds weaknesses such as leniency and sensitivity to prompt length and complexity. |
 | [Quantifying Variance in Evaluation Benchmarks](https://arxiv.org/abs/2406.10229) | 2024 | paper | CC BY 4.0 (paper) | Measures how much benchmark scores move with training seed and over training, across many models, and gives recommendations for judging whether a difference is meaningful. |
 | [SWE-bench experiments](https://github.com/SWE-bench/experiments) | 2024 | code+data | not stated | Published predictions, execution logs, trajectories and results from many system submissions to SWE-bench. |
@@ -157,6 +166,7 @@ Studies of test data leaking into training data or into the task itself, and ben
 | [Rethinking Benchmark and Contamination with Rephrased Samples](https://arxiv.org/abs/2311.04850) | 2023 | paper | arXiv non-exclusive (paper) | Shows that paraphrased or translated test items pass n-gram decontamination, including for HumanEval, and proposes a model-based decontamination check. |
 | [Benchmarking Benchmark Leakage in Large Language Models](https://arxiv.org/abs/2404.18824) | 2024 | paper | arXiv non-exclusive (paper) | Detects possible benchmark leakage with perplexity and n-gram accuracy, applied to 31 models on mathematical reasoning benchmarks, and proposes a Benchmark Transparency Card for reporting. |
 | [LiveCodeBench (paper)](https://arxiv.org/abs/2403.07974) | 2024 | paper | CC BY 4.0 (paper) | Describes LiveCodeBench and uses problem release dates relative to model training cut-offs to show contamination on older problems. |
+| [Quantifying Contamination in Evaluating Code Generation Capabilities of Language Models](https://arxiv.org/abs/2403.04811) | 2024 | paper | CC BY-SA 4.0 (paper) | Measures surface-level and semantic overlap between popular code generation benchmarks and open training corpora, and finds models score better on problems whose similar solutions were seen in training. |
 | [SWE-Bench+](https://arxiv.org/abs/2410.06992) | 2024 | paper | CC BY 4.0 (paper) | Manual review of successful SWE-bench patches that finds solutions leaked in the issue text, tests too weak to reject wrong patches, and most issues predating model knowledge cut-offs. |
 | [LessLeak-Bench](https://arxiv.org/abs/2502.06215) | 2025 | paper | CC BY 4.0 (paper) | Study of data leakage across 83 software engineering benchmarks: average leakage ratios of 4.8%, 2.8% and 0.7% for Python, Java and C/C++, and far higher for a few such as QuixBugs. |
 | [SWE-bench Goes Live!](https://arxiv.org/abs/2505.23419) | 2025 | paper | arXiv non-exclusive (paper) | The SWE-bench-Live paper: argues fixed benchmarks risk overfitting and contamination and presents a continuously updated set of tasks. |
@@ -170,11 +180,11 @@ Counted from the data file. For papers this is the licence of the text on arXiv.
 | Licence as stated | Code and data | Papers |
 |---|---|---|
 | MIT | 27 | 0 |
-| CC BY 4.0 | 3 | 19 |
-| arXiv non-exclusive | 0 | 16 |
-| Apache-2.0 | 11 | 0 |
+| CC BY 4.0 | 4 | 21 |
+| arXiv non-exclusive | 0 | 19 |
+| Apache-2.0 | 14 | 0 |
 | not stated | 5 | 0 |
-| CC BY-SA 4.0 | 1 | 1 |
+| CC BY-SA 4.0 | 1 | 2 |
 | BSD 3-Clause License with Machine Learning Restriction | 1 | 0 |
 | CC BY-NC 4.0 | 1 | 0 |
 | CC BY-NC-ND 4.0 | 0 | 1 |
@@ -182,9 +192,9 @@ Counted from the data file. For papers this is the licence of the text on arXiv.
 | CC0 1.0 | 0 | 1 |
 | SONAR Source-Available License v1.0 | 1 | 0 |
 
-By kind: paper 39, code+data 22, code 18, dataset 10.
+By kind: paper 45, code+data 24, code 19, dataset 11.
 
-89 entries, all fetched on 2026-11-06.
+99 entries, all fetched on 2026-11-06.
 
 <!-- END ENTRIES -->
 
