@@ -5,6 +5,7 @@
 ### Added
 
 - patchsim in the author's tools section of the README.
+- Tests that the invalid top-level date check, the section markup check, the 220-character and 1990 bounds, a README with only the END marker, and `IncompleteRead` and `BadStatusLine` during a recheck are each caught. The quickstart now shows 55 tests and 98% coverage.
 
 ### Fixed
 

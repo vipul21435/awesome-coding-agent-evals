@@ -20,10 +20,10 @@ ok: 99 entries in 7 sections
 $ uv run python scripts/render.py --check
 README.md is in sync with the data file
 $ uv run pytest -q
-50 passed in 0.57s
+55 passed in 0.63s
 $ uv run pytest -q --cov=scripts
 ...
-TOTAL                   476     13    97%
+TOTAL                   494     11    98%
 ```
 
 ## How entries are chosen and checked
