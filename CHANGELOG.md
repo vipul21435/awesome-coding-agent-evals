@@ -7,6 +7,7 @@
 - The APPS and SWE-Lancer summaries gave task counts that are not on their GitHub pages; they now say the counts come from the paper's arXiv abstract, and Limitations says so. The SWE-bench Lite summary no longer says the subset was chosen to be cheaper to run, which its card does not state.
 - The tau-bench and SWE-agent summaries now give the notices on their pages (outdated tasks; superseded by mini-swe-agent). The tau2-bench summary describes the repository as it now is, holding τ-bench 2.0. The SWE-bench-extra summary gives both the 6,415 pairs in its card's text and the 6,376 rows in its metadata.
 - Two paper names left words out of their arXiv titles; they now use the full titles of arXiv 2311.04850 and 2405.15793.
+- Limitations now says that leaderboard websites are not listed but benchmarks and papers that run a leaderboard are, and why MLE-bench's venue has no year.
 - The validator accepted GitHub and Hugging Face URLs with a space, `|` or `)` in them, so a URL with a trailing space listed the same page twice. Each URL part now allows only the characters the host allows in names, and a final newline no longer matches.
 - A section whose id was a list or an object stopped the validator with a traceback; it is now reported as `section N: id must be a string`.
 - Two section titles that differed only in punctuation, or a title such as `Licences at a glance`, passed validation and gave two headings with one anchor. Titles are now compared by anchor, and the anchors of the generated headings are reserved.

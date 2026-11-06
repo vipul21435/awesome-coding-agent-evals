@@ -257,9 +257,10 @@ Every page was fetched and every licence matched the data file. The five differe
 
 ## Limitations
 
-- Coverage is a selection, not a census. Leaderboards are not listed as separate entries, and these areas are not covered yet: web-browsing agent benchmarks, code review and pull request review benchmarks, and most security benchmarks beyond Cybench.
+- Coverage is a selection, not a census. Leaderboard websites are not listed; benchmarks, harnesses and papers that run a leaderboard (such as BFCL and the Holistic Agent Leaderboard) are. These areas are not covered yet: web-browsing agent benchmarks, code review and pull request review benchmarks, and most security benchmarks beyond Cybench.
 - Licences are recorded as each page states them and are not legal advice. A dataset card that names no licence is listed as `not stated`; that is not permission to reuse. The SWE-bench Lite and SWE-bench Verified cards state none, and the Aider polyglot exercises keep the licences of the Exercism tracks they come from. Where a repository states a second licence for its non-code files in its README, as CodeContests does, the summary says so and the Licence column keeps the one GitHub reports.
 - The year of a repository is the year GitHub shows it was created. That can be earlier than a public release, and for older datasets moved to the Hugging Face Hub the creation date is the move, not the release (see MBPP above).
+- A venue is written as the arXiv page states it. MLE-bench's venue is `ICLR` with no year because its arXiv comment says only "ICLR version".
 - Summaries are one sentence each and leave out most of what a paper reports. Numbers in them (task counts, rollouts, leakage ratios) are as stated on the fetched page, except the APPS and SWE-Lancer counts, which their summaries attribute to the paper's arXiv abstract. None were reproduced here.
 - The validator accepts only new-style arXiv ids (such as 2310.06770), GitHub repository roots and Hugging Face dataset pages; an entry hosted anywhere else cannot be added without extending `scripts/recheck.py`.
 - CI checks the data and the README offline. It does not check that links are live; run `scripts/recheck.py` for that.
