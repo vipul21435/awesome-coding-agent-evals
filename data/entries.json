@@ -6,6 +6,11 @@
       "id": "function",
       "title": "Function-level code benchmarks",
       "blurb": "Self-contained problems scored by running unit tests on a single generated function or program."
+    },
+    {
+      "id": "repo",
+      "title": "Repository-level and issue-resolution benchmarks",
+      "blurb": "Tasks set inside a real code base: resolve an issue, complete code that depends on other files, or ship a change that passes the project's tests."
     }
   ],
   "entries": [
@@ -87,6 +92,148 @@
       "year": 2024,
       "licence": "Apache-2.0",
       "summary": "Python tasks that require calls to many functions across common libraries, offered as docstring completion and as natural-language instructions.",
+      "fetched": "2026-11-06"
+    },
+    {
+      "name": "SWE-bench",
+      "url": "https://github.com/SWE-bench/SWE-bench",
+      "section": "repo",
+      "kind": "code",
+      "year": 2023,
+      "licence": "MIT",
+      "summary": "Benchmark and Docker-based evaluation harness in which a system receives a real GitHub issue and its repository and must produce a patch that makes the hidden tests pass.",
+      "fetched": "2026-11-06"
+    },
+    {
+      "name": "SWE-bench (paper)",
+      "url": "https://arxiv.org/abs/2310.06770",
+      "section": "repo",
+      "kind": "paper",
+      "year": 2023,
+      "licence": "CC BY 4.0 (paper)",
+      "summary": "Introduces SWE-bench: 2,294 issue and pull request pairs from 12 popular Python repositories, scored by running the repository's tests.",
+      "fetched": "2026-11-06",
+      "venue": "ICLR 2024"
+    },
+    {
+      "name": "SWE-bench Lite",
+      "url": "https://huggingface.co/datasets/princeton-nlp/SWE-bench_Lite",
+      "section": "repo",
+      "kind": "dataset",
+      "year": 2024,
+      "licence": "not stated",
+      "summary": "A 300-instance subset of the SWE-bench test set chosen to be cheaper to run.",
+      "fetched": "2026-11-06"
+    },
+    {
+      "name": "SWE-bench Verified",
+      "url": "https://huggingface.co/datasets/princeton-nlp/SWE-bench_Verified",
+      "section": "repo",
+      "kind": "dataset",
+      "year": 2024,
+      "licence": "not stated",
+      "summary": "A 500-instance subset of the SWE-bench test set whose issues and tests were checked by human annotators.",
+      "fetched": "2026-11-06"
+    },
+    {
+      "name": "SWE-bench Multimodal",
+      "url": "https://arxiv.org/abs/2410.03859",
+      "section": "repo",
+      "kind": "paper",
+      "year": 2024,
+      "licence": "CC BY 4.0 (paper)",
+      "summary": "617 issue-resolution tasks from 17 user-facing JavaScript libraries, each with at least one image in its problem statement or tests.",
+      "fetched": "2026-11-06"
+    },
+    {
+      "name": "SWE-bench Multilingual",
+      "url": "https://huggingface.co/datasets/SWE-bench/SWE-bench_Multilingual",
+      "section": "repo",
+      "kind": "dataset",
+      "year": 2025,
+      "licence": "MIT",
+      "summary": "300 SWE-bench-style issue-resolution tasks from 41 repositories in 9 programming languages.",
+      "fetched": "2026-11-06"
+    },
+    {
+      "name": "SWE-bench-java",
+      "url": "https://arxiv.org/abs/2408.14354",
+      "section": "repo",
+      "kind": "paper",
+      "year": 2024,
+      "licence": "CC BY 4.0 (paper)",
+      "summary": "A Java version of the SWE-bench task, with the dataset, a Docker-based evaluation setup and a leaderboard.",
+      "fetched": "2026-11-06"
+    },
+    {
+      "name": "Multi-SWE-bench",
+      "url": "https://github.com/multi-swe-bench/multi-swe-bench",
+      "section": "repo",
+      "kind": "code+data",
+      "year": 2025,
+      "licence": "Apache-2.0",
+      "summary": "Multilingual issue-resolution benchmark covering languages such as Java, TypeScript, JavaScript, Go, Rust, C and C++, with its evaluation code.",
+      "fetched": "2026-11-06"
+    },
+    {
+      "name": "SWE-PolyBench",
+      "url": "https://github.com/amazon-science/SWE-PolyBench",
+      "section": "repo",
+      "kind": "code+data",
+      "year": 2025,
+      "licence": "MIT",
+      "summary": "Repository-level, execution-based benchmark of coding tasks in Python, Java, JavaScript and TypeScript, with additional metrics based on syntax tree analysis.",
+      "fetched": "2026-11-06"
+    },
+    {
+      "name": "SWE-Lancer",
+      "url": "https://github.com/openai/SWELancer-Benchmark",
+      "section": "repo",
+      "kind": "code+data",
+      "year": 2025,
+      "licence": "not stated",
+      "summary": "Over 1,400 freelance software tasks with their real payouts, including both coding tasks graded by end-to-end tests and managerial choices between proposals; the repository is archived.",
+      "fetched": "2026-11-06"
+    },
+    {
+      "name": "SWE-bench-Live",
+      "url": "https://github.com/microsoft/SWE-bench-Live",
+      "section": "repo",
+      "kind": "code+data",
+      "year": 2025,
+      "licence": "MIT",
+      "summary": "Issue-resolution benchmark refreshed over time from issues created since 2024, built by an automated pipeline that also sets up a Docker image per task.",
+      "fetched": "2026-11-06"
+    },
+    {
+      "name": "RepoBench",
+      "url": "https://arxiv.org/abs/2306.03091",
+      "section": "repo",
+      "kind": "paper",
+      "year": 2023,
+      "licence": "arXiv non-exclusive (paper)",
+      "summary": "Benchmark for repository-level code completion with three tasks: retrieving relevant cross-file snippets, completing the next line, and both together.",
+      "fetched": "2026-11-06"
+    },
+    {
+      "name": "CrossCodeEval",
+      "url": "https://arxiv.org/abs/2310.11248",
+      "section": "repo",
+      "kind": "paper",
+      "year": 2023,
+      "licence": "arXiv non-exclusive (paper)",
+      "summary": "Code completion benchmark in four languages where the correct completion depends on context from other files in the repository.",
+      "fetched": "2026-11-06",
+      "venue": "NeurIPS 2023 Datasets and Benchmarks"
+    },
+    {
+      "name": "REPOCOD",
+      "url": "https://arxiv.org/abs/2410.21647",
+      "section": "repo",
+      "kind": "paper",
+      "year": 2024,
+      "licence": "CC BY-NC-SA 4.0 (paper)",
+      "summary": "980 whole-function generation tasks from 11 large Python projects, many needing repository context, each checked by the project's developer-written tests.",
       "fetched": "2026-11-06"
     }
   ]

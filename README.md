@@ -15,6 +15,7 @@ A curated list of benchmarks, harnesses, datasets and papers for evaluating and 
 ## Contents
 
 - [Function-level code benchmarks](#function-level-code-benchmarks) (8)
+- [Repository-level and issue-resolution benchmarks](#repository-level-and-issue-resolution-benchmarks) (14)
 
 ## Function-level code benchmarks
 
@@ -31,7 +32,28 @@ Self-contained problems scored by running unit tests on a single generated funct
 | [CRUXEval](https://github.com/facebookresearch/cruxeval) | 2024 | code+data | MIT | 800 short Python functions, each with one input-output pair, used for two tasks: predict the output from the input and predict an input for the output. |
 | [LiveCodeBench](https://github.com/LiveCodeBench/LiveCodeBench) | 2024 | code+data | MIT | Code benchmark that keeps adding problems from programming contests with their release dates, covering generation, self-repair, test output prediction and execution. |
 
-8 entries, all fetched on 2026-11-06.
+## Repository-level and issue-resolution benchmarks
+
+Tasks set inside a real code base: resolve an issue, complete code that depends on other files, or ship a change that passes the project's tests.
+
+| Name | Year | Kind | Licence | What it is |
+|---|---|---|---|---|
+| [CrossCodeEval](https://arxiv.org/abs/2310.11248) | 2023 | paper | arXiv non-exclusive (paper); NeurIPS 2023 Datasets and Benchmarks | Code completion benchmark in four languages where the correct completion depends on context from other files in the repository. |
+| [RepoBench](https://arxiv.org/abs/2306.03091) | 2023 | paper | arXiv non-exclusive (paper) | Benchmark for repository-level code completion with three tasks: retrieving relevant cross-file snippets, completing the next line, and both together. |
+| [SWE-bench](https://github.com/SWE-bench/SWE-bench) | 2023 | code | MIT | Benchmark and Docker-based evaluation harness in which a system receives a real GitHub issue and its repository and must produce a patch that makes the hidden tests pass. |
+| [SWE-bench (paper)](https://arxiv.org/abs/2310.06770) | 2023 | paper | CC BY 4.0 (paper); ICLR 2024 | Introduces SWE-bench: 2,294 issue and pull request pairs from 12 popular Python repositories, scored by running the repository's tests. |
+| [REPOCOD](https://arxiv.org/abs/2410.21647) | 2024 | paper | CC BY-NC-SA 4.0 (paper) | 980 whole-function generation tasks from 11 large Python projects, many needing repository context, each checked by the project's developer-written tests. |
+| [SWE-bench Lite](https://huggingface.co/datasets/princeton-nlp/SWE-bench_Lite) | 2024 | dataset | not stated | A 300-instance subset of the SWE-bench test set chosen to be cheaper to run. |
+| [SWE-bench Multimodal](https://arxiv.org/abs/2410.03859) | 2024 | paper | CC BY 4.0 (paper) | 617 issue-resolution tasks from 17 user-facing JavaScript libraries, each with at least one image in its problem statement or tests. |
+| [SWE-bench Verified](https://huggingface.co/datasets/princeton-nlp/SWE-bench_Verified) | 2024 | dataset | not stated | A 500-instance subset of the SWE-bench test set whose issues and tests were checked by human annotators. |
+| [SWE-bench-java](https://arxiv.org/abs/2408.14354) | 2024 | paper | CC BY 4.0 (paper) | A Java version of the SWE-bench task, with the dataset, a Docker-based evaluation setup and a leaderboard. |
+| [Multi-SWE-bench](https://github.com/multi-swe-bench/multi-swe-bench) | 2025 | code+data | Apache-2.0 | Multilingual issue-resolution benchmark covering languages such as Java, TypeScript, JavaScript, Go, Rust, C and C++, with its evaluation code. |
+| [SWE-bench Multilingual](https://huggingface.co/datasets/SWE-bench/SWE-bench_Multilingual) | 2025 | dataset | MIT | 300 SWE-bench-style issue-resolution tasks from 41 repositories in 9 programming languages. |
+| [SWE-bench-Live](https://github.com/microsoft/SWE-bench-Live) | 2025 | code+data | MIT | Issue-resolution benchmark refreshed over time from issues created since 2024, built by an automated pipeline that also sets up a Docker image per task. |
+| [SWE-Lancer](https://github.com/openai/SWELancer-Benchmark) | 2025 | code+data | not stated | Over 1,400 freelance software tasks with their real payouts, including both coding tasks graded by end-to-end tests and managerial choices between proposals; the repository is archived. |
+| [SWE-PolyBench](https://github.com/amazon-science/SWE-PolyBench) | 2025 | code+data | MIT | Repository-level, execution-based benchmark of coding tasks in Python, Java, JavaScript and TypeScript, with additional metrics based on syntax tree analysis. |
+
+22 entries, all fetched on 2026-11-06.
 
 <!-- END ENTRIES -->
 
