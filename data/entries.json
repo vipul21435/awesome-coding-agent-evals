@@ -615,7 +615,7 @@
       "fetched": "2026-11-06"
     },
     {
-      "name": "SWE-agent: Agent-Computer Interfaces",
+      "name": "SWE-agent: Agent-Computer Interfaces Enable Automated Software Engineering",
       "url": "https://arxiv.org/abs/2405.15793",
       "section": "harness",
       "kind": "paper",
@@ -675,7 +675,7 @@
       "fetched": "2026-11-06"
     },
     {
-      "name": "Rethinking Benchmark and Contamination with Rephrased Samples",
+      "name": "Rethinking Benchmark and Contamination for Language Models with Rephrased Samples",
       "url": "https://arxiv.org/abs/2311.04850",
       "section": "contam",
       "kind": "paper",

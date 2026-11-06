@@ -113,7 +113,7 @@ Open-source agents and the tooling used to run them against the benchmarks above
 | [OpenHands (paper)](https://arxiv.org/abs/2407.16741) | 2024 | paper | CC BY 4.0 (paper); ICLR 2025 | Describes the OpenHands platform, formerly OpenDevin, for agents that write code, use a command line and browse the web inside sandboxed environments, with built-in benchmarks. |
 | [sb-cli](https://github.com/SWE-bench/sb-cli) | 2024 | code | MIT | Command-line client for submitting SWE-bench predictions and running the evaluation remotely. |
 | [SWE-agent](https://github.com/SWE-agent/SWE-agent) | 2024 | code | MIT | Agent that takes a GitHub issue and tries to fix it through a purpose-built agent-computer interface for editing files; its README says mini-swe-agent has superseded it. |
-| [SWE-agent: Agent-Computer Interfaces](https://arxiv.org/abs/2405.15793) | 2024 | paper | CC BY 4.0 (paper) | Argues that the interface an agent uses to view and edit code affects its results, and studies interface design choices on SWE-bench. |
+| [SWE-agent: Agent-Computer Interfaces Enable Automated Software Engineering](https://arxiv.org/abs/2405.15793) | 2024 | paper | CC BY 4.0 (paper) | Argues that the interface an agent uses to view and edit code affects its results, and studies interface design choices on SWE-bench. |
 | [SWE-ReX](https://github.com/SWE-agent/SWE-ReX) | 2024 | code | MIT | Runtime interface that lets agent code run shell sessions locally, in Docker containers or on remote machines with the same API, and run many sessions in parallel. |
 | [Codex CLI](https://github.com/openai/codex) | 2025 | code | Apache-2.0 | Coding agent that runs locally in the terminal. |
 | [Harbor](https://github.com/harbor-framework/harbor) | 2025 | code | Apache-2.0 | Framework for evaluating and improving agents, pointed to by the Terminal-Bench authors for running Terminal-Bench 2.0. |
@@ -185,7 +185,7 @@ Studies of test data leaking into training data or into the task itself, and ben
 | Name | Year | Kind | Licence | What it is |
 |---|---|---|---|---|
 | [Data Contamination Through the Lens of Time](https://arxiv.org/abs/2310.10628) | 2023 | paper | arXiv non-exclusive (paper) | Uses model training cut-offs as a natural experiment on Codeforces and Project Euler problems released over time to find contamination trends. |
-| [Rethinking Benchmark and Contamination with Rephrased Samples](https://arxiv.org/abs/2311.04850) | 2023 | paper | arXiv non-exclusive (paper) | Shows that paraphrased or translated test items pass n-gram decontamination, including for HumanEval, and proposes a model-based decontamination check. |
+| [Rethinking Benchmark and Contamination for Language Models with Rephrased Samples](https://arxiv.org/abs/2311.04850) | 2023 | paper | arXiv non-exclusive (paper) | Shows that paraphrased or translated test items pass n-gram decontamination, including for HumanEval, and proposes a model-based decontamination check. |
 | [Benchmarking Benchmark Leakage in Large Language Models](https://arxiv.org/abs/2404.18824) | 2024 | paper | arXiv non-exclusive (paper) | Detects possible benchmark leakage with perplexity and n-gram accuracy, applied to 31 models on mathematical reasoning benchmarks, and proposes a Benchmark Transparency Card for reporting. |
 | [LiveCodeBench (paper)](https://arxiv.org/abs/2403.07974) | 2024 | paper | CC BY 4.0 (paper) | Describes LiveCodeBench and uses problem release dates relative to model training cut-offs to show contamination on older problems. |
 | [Quantifying Contamination in Evaluating Code Generation Capabilities of Language Models](https://arxiv.org/abs/2403.04811) | 2024 | paper | CC BY-SA 4.0 (paper) | Measures surface-level and semantic overlap between popular code generation benchmarks and open training corpora, and finds models score better on problems whose similar solutions were seen in training. |
@@ -288,7 +288,7 @@ Test output and trajectories:
 
 Data checks:
 
-- [contamscan](https://github.com/vipul21435/contamscan): measures n-gram overlap between a benchmark and a training corpus with published methods, the kind of decontamination check examined in *Rethinking Benchmark and Contamination with Rephrased Samples*, and compares scores on clean and overlapping items.
+- [contamscan](https://github.com/vipul21435/contamscan): measures n-gram overlap between a benchmark and a training corpus with published methods, the kind of decontamination check examined in *Rethinking Benchmark and Contamination for Language Models with Rephrased Samples*, and compares scores on clean and overlapping items.
 - [issuelint](https://github.com/vipul21435/issuelint): checks issue-to-fix task records for the solution leaks described in *SWE-Bench+*, and for test leaks and underspecified issue text.
 - [sftlint](https://github.com/vipul21435/sftlint): checks chat, fine-tuning and tool-calling datasets, such as the trajectory sets in the training section, for structure, valid tool calls, secrets and duplicates.
 
