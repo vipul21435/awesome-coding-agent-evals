@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.2.0 - 2026-11-06
+
+- 22 more entries (89 in all): MultiPL-E, ClassEval, the Aider polyglot benchmark, Commit0, FEA-Bench, SWT-Bench, SWE-Bench Pro, the OpenHands paper, SWE-ReX, Inspect, Inspect Evals, Terminal-Bench 2.0 and its maintenance paper, AppWorld, MLE-bench, Cybench, and six papers on variance, harnesses, patch correctness, weak tests, reward hacking and leakage.
+- `scripts/recheck.py` re-fetches every page and reports licence, year, archived and moved differences; not run in CI.
+- Licence counts table rendered from the data file.
+- Ruff lint in CI; Limitations section in the README.
+
 ## 0.1.0 - 2026-11-06
 
 - Data file `data/entries.json` with 67 entries in 7 sections, each fetched on 2026-11-06 with year and licence from its page.
