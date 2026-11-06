@@ -784,6 +784,47 @@
       "licence": "CC BY 4.0 (paper)",
       "summary": "1,865 long-horizon problems from 41 repositories, split into a public set, a held-out set and a commercial set whose problems are not released.",
       "fetched": "2026-11-06"
+    },
+    {
+      "name": "OpenHands (paper)",
+      "url": "https://arxiv.org/abs/2407.16741",
+      "section": "harness",
+      "kind": "paper",
+      "year": 2024,
+      "licence": "CC BY 4.0 (paper)",
+      "venue": "ICLR 2025",
+      "summary": "Describes the OpenHands platform, formerly OpenDevin, for agents that write code, use a command line and browse the web inside sandboxed environments, with built-in benchmarks.",
+      "fetched": "2026-11-06"
+    },
+    {
+      "name": "SWE-ReX",
+      "url": "https://github.com/SWE-agent/SWE-ReX",
+      "section": "harness",
+      "kind": "code",
+      "year": 2024,
+      "licence": "MIT",
+      "summary": "Runtime interface that lets agent code run shell sessions locally, in Docker containers or on remote machines with the same API, and run many sessions in parallel.",
+      "fetched": "2026-11-06"
+    },
+    {
+      "name": "Inspect",
+      "url": "https://github.com/UKGovernmentBEIS/inspect_ai",
+      "section": "harness",
+      "kind": "code",
+      "year": 2023,
+      "licence": "MIT",
+      "summary": "Python framework for language model evaluations with components for prompt engineering, tool use, multi-turn dialogue and model-graded scoring.",
+      "fetched": "2026-11-06"
+    },
+    {
+      "name": "Inspect Evals",
+      "url": "https://github.com/UKGovernmentBEIS/inspect_evals",
+      "section": "harness",
+      "kind": "code",
+      "year": 2024,
+      "licence": "MIT",
+      "summary": "Library of evaluations implemented on the Inspect framework, including ports of HumanEval, MBPP and SWE-bench, with a register for evaluations hosted elsewhere.",
+      "fetched": "2026-11-06"
     }
   ]
 }

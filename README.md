@@ -33,7 +33,7 @@ Status: 67 entries in 7 sections, each fetched on 2026-11-06. Not implemented ye
 
 - [Function-level code benchmarks](#function-level-code-benchmarks) (11)
 - [Repository-level and issue-resolution benchmarks](#repository-level-and-issue-resolution-benchmarks) (18)
-- [Agent harnesses and scaffolds](#agent-harnesses-and-scaffolds) (11)
+- [Agent harnesses and scaffolds](#agent-harnesses-and-scaffolds) (15)
 - [Training environments and datasets for coding agents](#training-environments-and-datasets-for-coding-agents) (11)
 - [Terminal and tool-use benchmarks](#terminal-and-tool-use-benchmarks) (6)
 - [Evaluation methodology and statistics](#evaluation-methodology-and-statistics) (9)
@@ -89,13 +89,17 @@ Open-source agents and the tooling used to run them against the benchmarks above
 | Name | Year | Kind | Licence | What it is |
 |---|---|---|---|---|
 | [Aider](https://github.com/Aider-AI/aider) | 2023 | code | Apache-2.0 | Pair-programming tool that runs in the terminal and edits files in a local git repository through a language model. |
+| [Inspect](https://github.com/UKGovernmentBEIS/inspect_ai) | 2023 | code | MIT | Python framework for language model evaluations with components for prompt engineering, tool use, multi-turn dialogue and model-graded scoring. |
 | [Moatless Tools](https://github.com/aorwall/moatless-tools) | 2023 | code | MIT | Experimental code-editing tools for large existing code bases, built around putting the right context into the prompt, evaluated on SWE-bench. |
 | [Agentless](https://github.com/OpenAutoCoder/Agentless) | 2024 | code | MIT | Fixed three-phase pipeline of localisation, repair and patch validation for issue resolution, without letting the model choose its next action. |
 | [AutoCodeRover](https://github.com/AutoCodeRoverSG/auto-code-rover) | 2024 | code | SONAR Source-Available License v1.0 | Program-improvement agent that uses code search over the program structure to localise an issue before writing a patch. |
+| [Inspect Evals](https://github.com/UKGovernmentBEIS/inspect_evals) | 2024 | code | MIT | Library of evaluations implemented on the Inspect framework, including ports of HumanEval, MBPP and SWE-bench, with a register for evaluations hosted elsewhere. |
 | [OpenHands](https://github.com/OpenHands/OpenHands) | 2024 | code | MIT | Open platform for software development agents that write code, run commands and browse the web inside a sandbox. |
+| [OpenHands (paper)](https://arxiv.org/abs/2407.16741) | 2024 | paper | CC BY 4.0 (paper); ICLR 2025 | Describes the OpenHands platform, formerly OpenDevin, for agents that write code, use a command line and browse the web inside sandboxed environments, with built-in benchmarks. |
 | [sb-cli](https://github.com/SWE-bench/sb-cli) | 2024 | code | MIT | Command-line client for submitting SWE-bench predictions and running the evaluation remotely. |
 | [SWE-agent](https://github.com/SWE-agent/SWE-agent) | 2024 | code | MIT | Agent that takes a GitHub issue and tries to fix it through a purpose-built agent-computer interface for viewing, searching and editing files. |
 | [SWE-bench experiments](https://github.com/SWE-bench/experiments) | 2024 | code+data | not stated | Published predictions, execution logs, trajectories and results from many system submissions to SWE-bench. |
+| [SWE-ReX](https://github.com/SWE-agent/SWE-ReX) | 2024 | code | MIT | Runtime interface that lets agent code run shell sessions locally, in Docker containers or on remote machines with the same API, and run many sessions in parallel. |
 | [Codex CLI](https://github.com/openai/codex) | 2025 | code | Apache-2.0 | Coding agent that runs locally in the terminal. |
 | [Harbor](https://github.com/harbor-framework/harbor) | 2025 | code | Apache-2.0 | Framework for evaluating and improving agents, pointed to by the Terminal-Bench authors for running Terminal-Bench 2.0. |
 | [mini-swe-agent](https://github.com/SWE-agent/mini-swe-agent) | 2025 | code | MIT | Agent of about 100 lines of Python whose only tool is bash, from the SWE-agent team, usable as a baseline or a command-line helper. |
@@ -162,7 +166,7 @@ Studies of test data leaking into training data or into the task itself, and ben
 | [SWE-rebench (paper)](https://arxiv.org/abs/2505.20411) | 2025 | paper | CC BY 4.0 (paper); NeurIPS 2025 | Describes the pipeline that collects over 21,000 interactive Python tasks for SWE-rebench and a contamination-free benchmark built from freshly collected tasks. |
 | [The SWE-Bench Illusion](https://arxiv.org/abs/2506.12286) | 2025 | paper | CC BY-NC-ND 4.0 (paper) | Probes whether models can name the buggy file path from the issue text alone, as evidence that SWE-bench Verified scores partly reflect memorisation. |
 
-74 entries, all fetched on 2026-11-06.
+78 entries, all fetched on 2026-11-06.
 
 <!-- END ENTRIES -->
 
