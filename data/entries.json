@@ -268,7 +268,7 @@
       "kind": "code",
       "year": 2024,
       "licence": "MIT",
-      "summary": "Agent that takes a GitHub issue and tries to fix it through a purpose-built agent-computer interface for viewing, searching and editing files.",
+      "summary": "Agent that takes a GitHub issue and tries to fix it through a purpose-built agent-computer interface for editing files; its README says mini-swe-agent has superseded it.",
       "fetched": "2026-11-06"
     },
     {
@@ -509,7 +509,7 @@
       "kind": "code+data",
       "year": 2024,
       "licence": "MIT",
-      "summary": "Conversations between an agent with domain tools and policies and a language-model-simulated user, scored by the final database state.",
+      "summary": "Conversations between an agent with domain tools and policies and a language-model-simulated user, scored by the final database state; its README warns that these tasks are outdated and points to tau2-bench.",
       "fetched": "2026-11-06"
     },
     {
@@ -529,7 +529,7 @@
       "kind": "code+data",
       "year": 2025,
       "licence": "MIT",
-      "summary": "Successor to tau-bench that adds a dual-control setting in which both the agent and the simulated user act on a shared environment.",
+      "summary": "Repository of τ²-bench, whose cited paper puts agent and simulated user in a dual-control environment, and now of τ-bench 2.0, which adds tasks in six languages in text and full-duplex voice.",
       "fetched": "2026-11-06"
     },
     {
@@ -1010,7 +1010,7 @@
       "kind": "dataset",
       "year": 2024,
       "licence": "CC BY 4.0",
-      "summary": "6,415 issue and pull request pairs from 1,988 Python repositories, built with the SWE-bench method for training or evaluating agents; its card names SWE-rebench as the larger successor.",
+      "summary": "Issue and pull request pairs from 1,988 Python repositories (6,415 in the card's text, 6,376 rows in its metadata) built with the SWE-bench method; the card names SWE-rebench as its successor.",
       "fetched": "2026-11-06"
     },
     {
