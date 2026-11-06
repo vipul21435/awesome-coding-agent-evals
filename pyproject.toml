@@ -1,6 +1,6 @@
 [project]
 name = "awesome-coding-agent-evals"
-version = "0.2.0"
+version = "0.1.0"
 description = "Curated list of benchmarks, harnesses, datasets and papers for evaluating coding agents"
 requires-python = ">=3.10"
 license = "MIT"
