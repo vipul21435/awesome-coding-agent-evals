@@ -177,3 +177,11 @@ def test_cli_reports_unreadable_input_in_one_line(tmp_path, capsys):
     good.write_text(json.dumps(sample()))
     assert validate.main(["--data", str(good), "--readme", str(tmp_path / "no.md")]) == 2
     assert "no.md" in capsys.readouterr().err
+
+
+def test_control_characters_rejected_in_every_string_field():
+    for field in ("name", "summary", "licence", "venue", "kind", "section"):
+        out = problems(lambda d, f=field: d["entries"][1].update({f: "Foo\rbar."}))
+        assert any(f"{field} contains a line break or control character" in p for p in out), (field, out)
+    out = problems(lambda d: d["sections"][0].update(blurb="x\ty."))
+    assert any("blurb contains a line break" in p for p in out)

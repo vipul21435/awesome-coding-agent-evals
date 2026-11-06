@@ -72,6 +72,8 @@ def check_data(
                 problems.append(f"section {s.get('id')!r}: missing '{key}'")
             elif not isinstance(s[key], str):
                 problems.append(f"section {s.get('id')!r}: {key} must be a string")
+            elif render.CONTROL_RE.search(s[key]):
+                problems.append(f"section {s.get('id')!r}: {key} contains a line break or control character")
     section_ids = [s.get("id") for s in sections]
     if len(set(section_ids)) != len(section_ids):
         problems.append("sections: duplicate section id")
@@ -91,6 +93,8 @@ def check_data(
         if wrong:
             problems += [f"{label}: {k} must be a string" for k in wrong]
             continue
+        problems += [f"{label}: {k} contains a line break or control character"
+                     for k in STRING_FIELDS if k in e and render.CONTROL_RE.search(e[k])]
         extra = set(e) - set(REQUIRED) - {"venue"}
         if extra:
             problems.append(f"{label}: unknown field(s) {', '.join(sorted(extra))}")
@@ -134,8 +138,6 @@ def check_data(
             problems.append(f"{label}: summary longer than {MAX_SUMMARY} characters")
         if not s.endswith("."):
             problems.append(f"{label}: summary should be one sentence ending in a period")
-        if "\n" in s:
-            problems.append(f"{label}: summary must not contain newlines")
     for sid in section_ids:
         if sid not in used_sections:
             problems.append(f"section {sid!r}: has no entries")

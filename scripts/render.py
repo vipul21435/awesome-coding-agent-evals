@@ -11,6 +11,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import re
 import sys
 from pathlib import Path
 
@@ -48,8 +49,15 @@ def anchor(title: str) -> str:
     return "".join(out)
 
 
+# Line breaks and other control characters; any of them would end a table row on GitHub.
+CONTROL_RE = re.compile(r"[\x00-\x1f\x7f-\x9f\u2028\u2029]+")
+
+
 def cell(text: str) -> str:
-    return str(text).replace("|", "\\|").replace("\n", " ").strip()
+    """Make text safe inside one Markdown table cell: control characters become a space, and
+    backslashes and pipes are escaped so that both show as written."""
+    text = CONTROL_RE.sub(" ", str(text))
+    return text.replace("\\", "\\\\").replace("|", "\\|").strip()
 
 
 def licence_cell(entry: dict) -> str:

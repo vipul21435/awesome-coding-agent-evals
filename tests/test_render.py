@@ -1,8 +1,12 @@
 import copy
+import datetime as dt
 
 import pytest
+from hypothesis import given, settings
+from hypothesis import strategies as st
 
 import render
+import validate
 
 
 def sample():
@@ -105,3 +109,44 @@ def test_cli_reports_bad_input_in_one_line(tmp_path, capsys):
     readme.write_text(f"t\n{render.BEGIN}\n{render.END}\n")
     assert render.main(["--data", str(data), "--readme", str(readme)]) == 2
     assert "line 1 column 2" in capsys.readouterr().err
+
+
+def test_cell_collapses_line_breaks_and_control_characters():
+    assert render.cell("Foo\rbar.") == "Foo bar."
+    assert render.cell("a\r\n\tb\x00c d\x85e") == "a b c d e"
+
+
+def test_cell_keeps_a_backslash_before_a_pipe():
+    # GitHub reads '\\|' as an escaped backslash then a cell boundary, and '\|' as a pipe, so
+    # the backslash itself must be escaped too: 'Back \| slash.' must show as written.
+    assert render.cell("Back \\| slash.") == "Back \\\\\\| slash."
+    assert render.cell("a\\b") == "a\\\\b"
+
+
+def unescaped_pipes(line):
+    n, i = 0, 0
+    while i < len(line):
+        if line[i] == "\\":
+            i += 2
+            continue
+        n += line[i] == "|"
+        i += 1
+    return n
+
+
+@settings(max_examples=300, deadline=None)
+@given(name=st.text(min_size=1, max_size=40), summary=st.text(min_size=1, max_size=150))
+def test_any_text_that_passes_validation_renders_one_five_cell_row(name, summary):
+    d = sample()
+    d["entries"] = d["entries"][:1]
+    d["entries"][0].update(name=name, summary=summary.rstrip() + ".")
+    d["sections"] = d["sections"][:1]
+    if validate.check_data(d, today=dt.date(2026, 11, 6)):
+        return
+    block = render.render_block(d)
+    # splitlines breaks on \r, \x85 and \u2028 as well, as a Markdown renderer may
+    rows = [line for line in block.splitlines() if line.startswith("| [")]
+    assert len(rows) == 1
+    assert unescaped_pipes(rows[0]) == 6
+    readme = render.rendered_readme(d, f"x\n{render.BEGIN}\n{render.END}\ny\n")
+    assert render.rendered_readme(d, readme) == readme
