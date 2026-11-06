@@ -38,6 +38,7 @@ Status: 67 entries in 7 sections, each fetched on 2026-11-06. Not implemented ye
 - [Terminal and tool-use benchmarks](#terminal-and-tool-use-benchmarks) (11)
 - [Evaluation methodology and statistics](#evaluation-methodology-and-statistics) (14)
 - [Contamination and leakage analyses](#contamination-and-leakage-analyses) (9)
+- [Licences at a glance](#licences-at-a-glance)
 
 ## Function-level code benchmarks
 
@@ -48,7 +49,7 @@ Self-contained problems scored by running unit tests on a single generated funct
 | [APPS](https://github.com/hendrycks/apps) | 2021 | code+data | MIT | 10,000 coding problems collected from competitive programming sites, ranging from introductory to competition level, graded by test cases. |
 | [HumanEval](https://github.com/openai/human-eval) | 2021 | code+data | MIT | 164 hand-written Python problems, each a function signature and docstring checked by unit tests, with the harness that runs them. |
 | [MBPP](https://huggingface.co/datasets/google-research-datasets/mbpp) | 2021 | dataset | CC BY 4.0 | About 1,000 crowd-sourced entry-level Python problems, each with a task description, a reference solution and three test cases. |
-| [DS-1000](https://github.com/xlang-ai/DS-1000) | 2022 | code+data | CC-BY-SA-4.0 | 1,000 data science problems drawn from StackOverflow and spanning seven Python libraries such as NumPy and Pandas, with execution-based checks. |
+| [DS-1000](https://github.com/xlang-ai/DS-1000) | 2022 | code+data | CC BY-SA 4.0 | 1,000 data science problems drawn from StackOverflow and spanning seven Python libraries such as NumPy and Pandas, with execution-based checks. |
 | [MultiPL-E](https://github.com/nuprl/MultiPL-E) | 2022 | code+data | BSD 3-Clause License with Machine Learning Restriction | System that translates unit-test-driven Python benchmarks to other languages, used to port HumanEval and MBPP to 18 further programming languages. |
 | [ClassEval](https://github.com/FudanSELab/ClassEval) | 2023 | code+data | MIT | 100 hand-built class-level Python tasks with 410 methods that depend on libraries, fields and other methods, averaging 33.1 test cases per class. |
 | [EvalPlus (HumanEval+ and MBPP+)](https://github.com/evalplus/evalplus) | 2023 | code+data | Apache-2.0 | Framework that adds many generated test inputs to HumanEval and MBPP so that plausible but wrong solutions are caught. |
@@ -176,6 +177,27 @@ Studies of test data leaking into training data or into the task itself, and ben
 | [SWE-bench Goes Live!](https://arxiv.org/abs/2505.23419) | 2025 | paper | arXiv non-exclusive (paper) | The SWE-bench-Live paper: argues fixed benchmarks risk overfitting and contamination and presents a continuously updated set of tasks. |
 | [SWE-rebench (paper)](https://arxiv.org/abs/2505.20411) | 2025 | paper | CC BY 4.0 (paper); NeurIPS 2025 | Describes the pipeline that collects over 21,000 interactive Python tasks for SWE-rebench and a contamination-free benchmark built from freshly collected tasks. |
 | [The SWE-Bench Illusion](https://arxiv.org/abs/2506.12286) | 2025 | paper | CC BY-NC-ND 4.0 (paper) | Probes whether models can name the buggy file path from the issue text alone, as evidence that SWE-bench Verified scores partly reflect memorisation. |
+
+## Licences at a glance
+
+Counted from the data file. For papers this is the licence of the text on arXiv.
+
+| Licence as stated | Code and data | Papers |
+|---|---|---|
+| MIT | 27 | 0 |
+| CC BY 4.0 | 3 | 19 |
+| arXiv non-exclusive | 0 | 16 |
+| Apache-2.0 | 11 | 0 |
+| not stated | 5 | 0 |
+| CC BY-SA 4.0 | 1 | 1 |
+| BSD 3-Clause License with Machine Learning Restriction | 1 | 0 |
+| CC BY-NC 4.0 | 1 | 0 |
+| CC BY-NC-ND 4.0 | 0 | 1 |
+| CC BY-NC-SA 4.0 | 0 | 1 |
+| CC0 1.0 | 0 | 1 |
+| SONAR Source-Available License v1.0 | 1 | 0 |
+
+By kind: paper 39, code+data 22, code 18, dataset 10.
 
 89 entries, all fetched on 2026-11-06.
 

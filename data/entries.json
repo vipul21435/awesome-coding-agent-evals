@@ -75,7 +75,7 @@
       "section": "function",
       "kind": "code+data",
       "year": 2022,
-      "licence": "CC-BY-SA-4.0",
+      "licence": "CC BY-SA 4.0",
       "summary": "1,000 data science problems drawn from StackOverflow and spanning seven Python libraries such as NumPy and Pandas, with execution-based checks.",
       "fetched": "2026-11-06"
     },

@@ -48,6 +48,27 @@ def licence_cell(entry: dict) -> str:
     return f"{lic}; {venue}" if venue else lic
 
 
+def licence_table(entries: list[dict]) -> list[str]:
+    """Count entries per stated licence, split into code/data and papers."""
+    counts: dict[str, list[int]] = {}
+    for e in entries:
+        lic = e["licence"].replace(" (paper)", "")
+        col = 1 if e["kind"] == "paper" else 0
+        counts.setdefault(lic, [0, 0])[col] += 1
+    rows = sorted(counts.items(), key=lambda kv: (-sum(kv[1]), kv[0].lower()))
+    lines = ["| Licence as stated | Code and data | Papers |", "|---|---|---|"]
+    lines += [f"| {cell(lic)} | {a} | {b} |" for lic, (a, b) in rows]
+    return lines
+
+
+def kind_line(entries: list[dict]) -> str:
+    kinds: dict[str, int] = {}
+    for e in entries:
+        kinds[e["kind"]] = kinds.get(e["kind"], 0) + 1
+    parts = [f"{k} {n}" for k, n in sorted(kinds.items(), key=lambda kv: (-kv[1], kv[0]))]
+    return "By kind: " + ", ".join(parts) + "."
+
+
 def render_block(data: dict) -> str:
     sections = data["sections"]
     entries = data["entries"]
@@ -55,6 +76,7 @@ def render_block(data: dict) -> str:
     for sec in sections:
         n = sum(1 for e in entries if e["section"] == sec["id"])
         lines.append(f"- [{sec['title']}](#{anchor(sec['title'])}) ({n})")
+    lines.append(f"- [Licences at a glance](#{anchor('Licences at a glance')})")
     lines.append("")
     for sec in sections:
         rows = [e for e in entries if e["section"] == sec["id"]]
@@ -68,6 +90,10 @@ def render_block(data: dict) -> str:
                 f"| {cell(licence_cell(e))} | {cell(e['summary'])} |"
             )
         lines.append("")
+    lines += ["## Licences at a glance", "",
+              "Counted from the data file. For papers this is the licence of the text on arXiv.", ""]
+    lines += licence_table(entries)
+    lines += ["", kind_line(entries), ""]
     lines.append(f"{len(entries)} entries, all fetched on {data['fetched']}.")
     lines += ["", END]
     return "\n".join(lines)

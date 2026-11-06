@@ -72,3 +72,12 @@ def test_render_does_not_mutate_input():
     before = copy.deepcopy(d)
     render.render_block(d)
     assert d == before
+
+
+def test_licence_table_and_kind_line():
+    block = render.render_block(sample())
+    assert "| Licence as stated | Code and data | Papers |" in block
+    assert "| CC BY 4.0 | 0 | 1 |" in block
+    assert "| MIT | 1 | 0 |" in block
+    assert "By kind: code 1, dataset 1, paper 1." in block
+    assert "- [Licences at a glance](#licences-at-a-glance)" in block
