@@ -13,12 +13,12 @@ def sample():
             {"id": "b", "title": "Beta and gamma", "blurb": "Second."},
         ],
         "entries": [
-            {"name": "Zed", "url": "https://example.org/z", "section": "a", "kind": "code",
+            {"name": "Zed", "url": "https://github.com/o/z", "section": "a", "kind": "code",
              "year": 2024, "licence": "MIT", "summary": "Z thing.", "fetched": "2026-11-06"},
-            {"name": "Aye", "url": "https://example.org/a", "section": "a", "kind": "paper",
+            {"name": "Aye", "url": "https://arxiv.org/abs/2101.00001", "section": "a", "kind": "paper",
              "year": 2021, "licence": "CC BY 4.0 (paper)", "venue": "ICLR 2022",
              "summary": "A | pipe.", "fetched": "2026-11-06"},
-            {"name": "Bee", "url": "https://example.org/b", "section": "b", "kind": "dataset",
+            {"name": "Bee", "url": "https://huggingface.co/datasets/o/b", "section": "b", "kind": "dataset",
              "year": 2023, "licence": "not stated", "summary": "B thing.", "fetched": "2026-11-06"},
         ],
     }

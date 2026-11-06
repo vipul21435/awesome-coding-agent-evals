@@ -29,6 +29,9 @@ def test_classify_sources():
     assert recheck.classify("https://huggingface.co/datasets/a/b") == ("hf", "a/b")
     assert recheck.classify("https://example.org/x")[0] == "other"
     assert recheck.classify("https://github.com/a/b/tree/main")[0] == "other"
+    assert recheck.classify("https://github.com/a/b.git") == ("github", "a/b")
+    assert recheck.canonical_url("https://arxiv.org/abs/2310.06770v2/") == "https://arxiv.org/abs/2310.06770"
+    assert recheck.canonical_url("https://www.github.com/a/b") is None
 
 
 def test_norm_licence_equates_spellings():

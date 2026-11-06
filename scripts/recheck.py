@@ -35,9 +35,14 @@ import render  # noqa: E402
 
 USER_AGENT = "awesome-coding-agent-evals-recheck/0.1 (+https://github.com/vipul21435/awesome-coding-agent-evals)"
 
-GITHUB_RE = re.compile(r"^https://github\.com/([^/]+)/([^/#?]+)/?$")
+GITHUB_RE = re.compile(r"^https://github\.com/([^/#?]+)/([^/#?]+?)(?:\.git)?/?$")
 ARXIV_RE = re.compile(r"^https://arxiv\.org/abs/(\d{4}\.\d{4,5})(v\d+)?/?$")
-HF_RE = re.compile(r"^https://huggingface\.co/datasets/([^/]+/[^/#?]+)/?$")
+HF_RE = re.compile(r"^https://huggingface\.co/datasets/([^/#?]+/[^/#?]+)/?$")
+CANONICAL = {
+    "github": "https://github.com/{}",
+    "arxiv": "https://arxiv.org/abs/{}",
+    "hf": "https://huggingface.co/datasets/{}",
+}
 
 # Licence URLs that arXiv links from an abstract page, mapped to the wording in the data file.
 ARXIV_LICENCES = {
@@ -60,6 +65,13 @@ def classify(url: str) -> tuple[str, str]:
     if m := HF_RE.match(url):
         return "hf", m.group(1)
     return "other", url
+
+
+def canonical_url(url: str) -> str | None:
+    """The one spelling of a URL that the list uses: no arXiv version, no trailing slash or
+    '.git'. None when the URL is not a form this script can fetch."""
+    source, key = classify(url)
+    return CANONICAL[source].format(key) if source in CANONICAL else None
 
 
 def norm_licence(text: str | None) -> str:

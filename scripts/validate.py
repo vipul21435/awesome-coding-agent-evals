@@ -3,7 +3,8 @@
     python scripts/validate.py [--data PATH] [--readme PATH] [--min-year N] [--max-year N]
 
 Exits 0 when there are no problems, 1 otherwise, printing one line per problem.
-No network access: links are checked for shape only.
+No network access: links are checked for shape only, and must be one of the three
+forms scripts/recheck.py can fetch (GitHub repository, arXiv abstract, Hugging Face dataset).
 """
 
 from __future__ import annotations
@@ -15,11 +16,11 @@ import sys
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
+import recheck  # noqa: E402
 import render  # noqa: E402
 
 REQUIRED = ("name", "url", "section", "kind", "year", "licence", "summary", "fetched")
 KINDS = {"paper", "code", "dataset", "code+data"}
-URL_RE = re.compile(r"^https://[A-Za-z0-9.-]+\.[A-Za-z]{2,}(/[^\s|()<>]*)?$")
 DATE_RE = re.compile(r"^\d{4}-\d{2}-\d{2}$")
 MAX_SUMMARY = 220
 MIN_YEAR = 1990
@@ -72,12 +73,19 @@ def check_data(
         extra = set(e) - set(REQUIRED) - {"venue"}
         if extra:
             problems.append(f"{label}: unknown field(s) {', '.join(sorted(extra))}")
-        if not URL_RE.match(e["url"]):
-            problems.append(f"{label}: url is not a plain https URL: {e['url']}")
-        norm = e["url"].rstrip("/").lower()
-        if norm in seen_urls:
-            problems.append(f"{label}: duplicate url, also used by {seen_urls[norm]}")
-        seen_urls[norm] = e["name"]
+        canonical = recheck.canonical_url(e["url"])
+        if canonical is None:
+            problems.append(
+                f"{label}: url must be https://github.com/OWNER/REPO, https://arxiv.org/abs/ID or "
+                f"https://huggingface.co/datasets/OWNER/NAME: {e['url']}"
+            )
+        else:
+            if canonical != e["url"]:
+                problems.append(f"{label}: url {e['url']}: write it as {canonical}")
+            norm = canonical.lower()
+            if norm in seen_urls:
+                problems.append(f"{label}: duplicate url, also used by {seen_urls[norm]}")
+            seen_urls[norm] = e["name"]
         lname = e["name"].lower()
         if lname in seen_names:
             problems.append(f"{label}: duplicate name")

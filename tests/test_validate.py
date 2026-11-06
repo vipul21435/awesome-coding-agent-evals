@@ -30,8 +30,28 @@ def test_bad_url_shapes():
         assert any("url" in p for p in out), bad
 
 
-def test_duplicate_url_ignores_case_and_trailing_slash():
-    out = problems(lambda d: d["entries"][1].update(url="https://EXAMPLE.org/z/"))
+def test_url_must_be_a_form_recheck_can_fetch():
+    for bad in ("https://example.org/x", "https://www.github.com/o/z", "https://github.com/o/z?tab=readme",
+                "https://github.com/o/z#readme", "https://github.com/o/z/tree/main",
+                "https://arxiv.org/pdf/2101.00001", "https://huggingface.co/o/b"):
+        out = problems(lambda d, bad=bad: d["entries"][0].update(url=bad))
+        assert any("url" in p for p in out), bad
+
+
+def test_non_canonical_url_forms_are_rejected_with_the_canonical_one():
+    cases = {"https://github.com/o/z.git": "https://github.com/o/z",
+             "https://github.com/o/z/": "https://github.com/o/z",
+             "https://arxiv.org/abs/2101.00001v2": "https://arxiv.org/abs/2101.00001"}
+    for bad, good in cases.items():
+        out = problems(lambda d, bad=bad: d["entries"][0].update(url=bad))
+        assert any(f"write it as {good}" in p for p in out), (bad, out)
+
+
+def test_duplicate_url_variants_are_caught():
+    for variant in ("https://github.com/O/Z", "https://github.com/o/z.git", "https://github.com/o/z/"):
+        out = problems(lambda d, v=variant: d["entries"][1].update(url=v, kind="code", licence="MIT"))
+        assert any("duplicate url" in p for p in out), variant
+    out = problems(lambda d: d["entries"][0].update(url="https://arxiv.org/abs/2101.00001v3"))
     assert any("duplicate url" in p for p in out)
 
 
