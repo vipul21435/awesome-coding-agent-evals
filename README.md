@@ -229,20 +229,34 @@ By kind: paper 39, code+data 22, code 18, dataset 10.
 
 ## Tools by the author of this list
 
-These are the author's own projects, not independent entries, and they were not chosen by the rules above. They cover parts of the evaluation workflow that the papers in this list discuss.
+These are the author's own projects, not independent entries, and they were not chosen by the rules above. Each is a separate utility. Where an entry above describes the method or problem a tool works on, that entry is named in italics.
 
-- [commitminer](https://github.com/vipul21435/commitminer): mines candidate fail-to-pass tasks from repository history and ranks them.
-- [reporewind](https://github.com/vipul21435/reporewind): resolves Python fix commits and pull requests into exact source and test patches.
-- [taskledger](https://github.com/vipul21435/taskledger): schema validation, lint rules and content hashing for benchmark task bundles.
-- [graderguard](https://github.com/vipul21435/graderguard): audits task graders for holes that let wrong solutions pass, and for flaky results.
-- [evalstats](https://github.com/vipul21435/evalstats): error bars, paired comparisons, pass@k and sample-size planning for evaluations.
-- [trajlens](https://github.com/vipul21435/trajlens): reads coding-agent trajectories, measures run behaviour and classifies failures by stated rules.
-- [testlogs](https://github.com/vipul21435/testlogs): parses pytest, JUnit XML and TAP output into per-test records and diffs two runs.
-- [judgebias](https://github.com/vipul21435/judgebias): checks a model judge for position, length and self-preference bias and agreement with humans.
-- [patchmin](https://github.com/vipul21435/patchmin): delta debugging over the hunks and lines of a fix to find the part that makes the target tests pass.
-- [issuelint](https://github.com/vipul21435/issuelint): checks issue-to-fix task records for solution leaks, test leaks and underspecification.
-- [sftlint](https://github.com/vipul21435/sftlint): lints chat, SFT and tool-calling datasets for structure, tool-call validity, secrets and duplicates.
-- [contamscan](https://github.com/vipul21435/contamscan): measures n-gram overlap between a benchmark and a training corpus with published methods, and compares scores on clean and overlapping items.
+Statistics and judges:
+
+- [evalstats](https://github.com/vipul21435/evalstats): standard errors, paired comparisons and sample-size planning as in *Adding Error Bars to Evals*, and the unbiased pass@k estimator from *Evaluating Large Language Models Trained on Code*.
+- [judgebias](https://github.com/vipul21435/judgebias): checks a model judge for the position, length and self-preference biases described in *Judging LLM-as-a-Judge with MT-Bench and Chatbot Arena* and *Large Language Models are not Fair Evaluators*, and measures its agreement with human labels.
+
+Test output and trajectories:
+
+- [testlogs](https://github.com/vipul21435/testlogs): parses pytest, JUnit XML, TAP, go test and other runner output into per-test results and diffs two runs; per-test pass and fail status is what *SWE-bench* scoring compares.
+- [trajlens](https://github.com/vipul21435/trajlens): reads coding-agent trajectories in open formats, including those of *SWE-agent* and *mini-swe-agent*, measures how the agent behaved and labels failures with documented rules.
+
+Data checks:
+
+- [contamscan](https://github.com/vipul21435/contamscan): measures n-gram overlap between a benchmark and a training corpus with published methods, the kind of decontamination check examined in *Rethinking Benchmark and Contamination with Rephrased Samples*, and compares scores on clean and overlapping items.
+- [issuelint](https://github.com/vipul21435/issuelint): checks issue-to-fix task records for the solution leaks described in *SWE-Bench+*, and for test leaks and underspecified issue text.
+- [sftlint](https://github.com/vipul21435/sftlint): checks chat, fine-tuning and tool-calling datasets, such as the trajectory sets in the training section, for structure, valid tool calls, secrets and duplicates.
+- [taskledger](https://github.com/vipul21435/taskledger): validates benchmark task records against a strict schema.
+
+Graders and patches:
+
+- [graderguard](https://github.com/vipul21435/graderguard): looks for ways a wrong solution can pass a task's tests, the problem measured in *UTBoost* and *Hack-Verifiable Terminal Bench*, and for flaky test results.
+- [patchmin](https://github.com/vipul21435/patchmin): applies delta debugging to the hunks and lines of a fix to find the part that makes the target tests pass.
+
+Repository history:
+
+- [commitminer](https://github.com/vipul21435/commitminer): finds commits whose added or changed tests fail on the parent commit and pass on the fix, the fail-to-pass criterion described in the *SWE-bench (paper)*.
+- [reporewind](https://github.com/vipul21435/reporewind): turns a Python fix commit or pull request into a separate source patch and test patch, the split that *SWE-bench* task instances store.
 
 ## Contributing
 
