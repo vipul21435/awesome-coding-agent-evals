@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+### Added
+
+- patchsim in the author's tools section of the README.
+
 ### Fixed
 
 - The APPS and SWE-Lancer summaries gave task counts that are not on their GitHub pages; they now say the counts come from the paper's arXiv abstract, and Limitations says so. The SWE-bench Lite summary no longer says the subset was chosen to be cheaper to run, which its card does not state.

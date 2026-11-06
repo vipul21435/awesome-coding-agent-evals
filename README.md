@@ -296,6 +296,7 @@ Data checks:
 Graders and patches:
 
 - [graderguard](https://github.com/vipul21435/graderguard): looks for ways a wrong solution can pass a task's tests, the problem measured in *UTBoost* and *Hack-Verifiable Terminal Bench*, and for flaky test results.
+- [patchsim](https://github.com/vipul21435/patchsim): measures how well file, hunk, token and syntax-tree similarity to the gold patch separates candidate patches that pass the tests from those that fail, against the test-based scoring of *SWE-bench*.
 - [patchmin](https://github.com/vipul21435/patchmin): applies delta debugging to the hunks and lines of a fix to find the part that makes the target tests pass.
 
 Repository history:
