@@ -7,6 +7,7 @@
 - The validator accepted GitHub and Hugging Face URLs with a space, `|` or `)` in them, so a URL with a trailing space listed the same page twice. Each URL part now allows only the characters the host allows in names, and a final newline no longer matches.
 - A section whose id was a list or an object stopped the validator with a traceback; it is now reported as `section N: id must be a string`.
 - Two section titles that differed only in punctuation, or a title such as `Licences at a glance`, passed validation and gave two headings with one anchor. Titles are now compared by anchor, and the anchors of the generated headings are reserved.
+- The one-sentence check rejected a single sentence with `e.g.` before a capital and accepted a second sentence after `!` or `?`. It now skips `e.g.`, `i.e.`, `et al.`, `vs.` and `cf.`, and treats `!` and `?` as sentence ends.
 
 ## 0.1.0 - 2026-11-06
 

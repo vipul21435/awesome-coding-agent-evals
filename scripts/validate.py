@@ -25,8 +25,10 @@ STRING_FIELDS = ("name", "url", "section", "kind", "licence", "summary", "fetche
 KINDS = {"paper", "code", "dataset", "code+data"}
 DATE_RE = re.compile(r"^\d{4}-\d{2}-\d{2}$")
 MAX_SUMMARY = 220
-# A period, space and capital letter means a second sentence has started.
-SECOND_SENTENCE_RE = re.compile(r"\.\s+[A-Z]")
+# A period, '!' or '?', then space and a capital letter, means a second sentence has started,
+# unless the period ends one of these abbreviations.
+SECOND_SENTENCE_RE = re.compile(r"[.!?]\s+[A-Z]")
+ABBREVIATIONS = ("e.g.", "i.e.", "et al.", "vs.", "cf.")
 # Licences for code and data, spelled as in the data file. Papers use the arXiv licences in
 # scripts/recheck.py with " (paper)" appended. A new licence is added here on purpose.
 CODE_LICENCES = {
@@ -185,12 +187,23 @@ def check_data(
         s = e["summary"]
         if len(s) > MAX_SUMMARY:
             problems.append(f"{label}: summary longer than {MAX_SUMMARY} characters")
-        if not s.endswith(".") or SECOND_SENTENCE_RE.search(s):
+        if not s.endswith(".") or has_second_sentence(s):
             problems.append(f"{label}: summary should be one sentence ending in a period")
     for sid in section_ids:
         if sid not in used_sections:
             problems.append(f"section {sid!r}: has no entries")
     return problems
+
+
+def has_second_sentence(text: str) -> bool:
+    """True when a sentence end is followed by a capital letter. A period that ends one of
+    ABBREVIATIONS, written as a whole word, does not end a sentence."""
+    for m in SECOND_SENTENCE_RE.finditer(text):
+        before = text[: m.start() + 1]
+        if not any(before.endswith(a) and (len(before) == len(a) or not before[-len(a) - 1].isalnum())
+                   for a in ABBREVIATIONS):
+            return True
+    return False
 
 
 def check_licence(label: str, e: dict) -> list[str]:

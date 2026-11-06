@@ -198,6 +198,12 @@ def test_summary_must_be_one_sentence():
     out = problems(lambda d: d["entries"][0].update(summary="First sentence. Second sentence."))
     assert any("one sentence" in p for p in out)
     assert problems(lambda d: d["entries"][0].update(summary="Covers v1.0 and 2.5 versions.")) == []
+    for one in ("Exercises in several languages, e.g. Python and Rust.", "As in Chen et al. HumanEval.",
+                "Agents vs. Humans on the same tasks.", "Uses the Python API, i.e. Pandas calls."):
+        assert problems(lambda d, t=one: d["entries"][0].update(summary=t)) == [], one
+    for two in ("First sentence! Then a second one.", "Is it good? Some say so.", "One.  Two."):
+        out = problems(lambda d, t=two: d["entries"][0].update(summary=t))
+        assert any("one sentence" in p for p in out), (two, out)
 
 
 def test_whitespace_only_strings_count_as_missing():
