@@ -25,6 +25,27 @@ STRING_FIELDS = ("name", "url", "section", "kind", "licence", "summary", "fetche
 KINDS = {"paper", "code", "dataset", "code+data"}
 DATE_RE = re.compile(r"^\d{4}-\d{2}-\d{2}$")
 MAX_SUMMARY = 220
+# A period, space and capital letter means a second sentence has started.
+SECOND_SENTENCE_RE = re.compile(r"\.\s+[A-Z]")
+# Licences for code and data, spelled as in the data file. Papers use the arXiv licences in
+# scripts/recheck.py with " (paper)" appended. A new licence is added here on purpose.
+CODE_LICENCES = {
+    "not stated",
+    "MIT",
+    "Apache-2.0",
+    "BSD-3-Clause",
+    "GPL-3.0",
+    "CC BY 4.0",
+    "CC BY-SA 4.0",
+    "CC BY-NC 4.0",
+    "CC BY-NC-SA 4.0",
+    "CC0 1.0",
+    "BSD 3-Clause License with Machine Learning Restriction",
+    "SONAR Source-Available License v1.0",
+}
+PAPER_LICENCES = {f"{name} (paper)" for name in recheck.ARXIV_LICENCES.values()}
+# Markup that GitHub would hide or that would end the generated block early.
+MARKUP = ("<", "-->")
 MIN_YEAR = 1990
 
 
@@ -68,13 +89,20 @@ def check_data(
             continue
         sections.append(s)
         for key in ("id", "title", "blurb"):
-            if s.get(key) in (None, ""):
+            if s.get(key) is None or (isinstance(s[key], str) and not s[key].strip()):
                 problems.append(f"section {s.get('id')!r}: missing '{key}'")
             elif not isinstance(s[key], str):
                 problems.append(f"section {s.get('id')!r}: {key} must be a string")
             elif render.CONTROL_RE.search(s[key]):
                 problems.append(f"section {s.get('id')!r}: {key} contains a line break or control character")
     section_ids = [s.get("id") for s in sections]
+    titles = [s["title"].lower() for s in sections if isinstance(s.get("title"), str)]
+    if len(set(titles)) != len(titles):
+        problems.append("sections: duplicate section title (two headings would share one anchor)")
+    for s in sections:
+        for key in ("title", "blurb"):
+            if isinstance(s.get(key), str) and any(m in s[key] for m in MARKUP):
+                problems.append(f"section {s.get('id')!r}: {key} must not contain '<' or '-->'")
     if len(set(section_ids)) != len(section_ids):
         problems.append("sections: duplicate section id")
     seen_urls: dict[str, str] = {}
@@ -85,7 +113,7 @@ def check_data(
             problems.append(f"entry {i}: must be an object")
             continue
         label = f"entry {i} ({e.get('name', '?')})"
-        missing = [k for k in REQUIRED if e.get(k) in (None, "")]
+        missing = [k for k in REQUIRED if e.get(k) is None or (isinstance(e[k], str) and not e[k].strip())]
         if missing:
             problems.append(f"{label}: missing {', '.join(missing)}")
             continue
@@ -95,6 +123,11 @@ def check_data(
             continue
         problems += [f"{label}: {k} contains a line break or control character"
                      for k in STRING_FIELDS if k in e and render.CONTROL_RE.search(e[k])]
+        problems += [f"{label}: {k} must not contain '<' or '-->'"
+                     for k in STRING_FIELDS if k in e and any(m in e[k] for m in MARKUP)]
+        if "[" in e["name"] or "]" in e["name"]:
+            problems.append(f"{label}: name must not contain '[' or ']' (it is the link text)")
+        problems += check_licence(label, e)
         extra = set(e) - set(REQUIRED) - {"venue"}
         if extra:
             problems.append(f"{label}: unknown field(s) {', '.join(sorted(extra))}")
@@ -136,12 +169,28 @@ def check_data(
         s = e["summary"]
         if len(s) > MAX_SUMMARY:
             problems.append(f"{label}: summary longer than {MAX_SUMMARY} characters")
-        if not s.endswith("."):
+        if not s.endswith(".") or SECOND_SENTENCE_RE.search(s):
             problems.append(f"{label}: summary should be one sentence ending in a period")
     for sid in section_ids:
         if sid not in used_sections:
             problems.append(f"section {sid!r}: has no entries")
     return problems
+
+
+def check_licence(label: str, e: dict) -> list[str]:
+    """The licence must be a known spelling, with ' (paper)' on papers and only on papers."""
+    lic, is_paper = e["licence"], e["kind"] == "paper"
+    if lic.endswith(" (paper)") != is_paper:
+        if is_paper:
+            return [f"{label}: a paper's licence ends in ' (paper)', e.g. 'CC BY 4.0 (paper)'"]
+        return [f"{label}: only papers have ' (paper)' in the licence"]
+    known = PAPER_LICENCES if is_paper else CODE_LICENCES
+    if lic in known:
+        return []
+    near = [k for k in known if k.lower() == lic.lower()]
+    hint = f" (did you mean {near[0]!r}?)" if near else ""
+    return [f"{label}: licence {lic!r} is not in the known list{hint}; "
+            "a new licence is added to CODE_LICENCES in scripts/validate.py"]
 
 
 def check_readme(data: dict, readme_text: str) -> list[str]:

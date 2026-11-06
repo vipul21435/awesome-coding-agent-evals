@@ -185,3 +185,45 @@ def test_control_characters_rejected_in_every_string_field():
         assert any(f"{field} contains a line break or control character" in p for p in out), (field, out)
     out = problems(lambda d: d["sections"][0].update(blurb="x\ty."))
     assert any("blurb contains a line break" in p for p in out)
+
+
+def test_summary_must_be_one_sentence():
+    out = problems(lambda d: d["entries"][0].update(summary="First sentence. Second sentence."))
+    assert any("one sentence" in p for p in out)
+    assert problems(lambda d: d["entries"][0].update(summary="Covers v1.0 and 2.5 versions.")) == []
+
+
+def test_whitespace_only_strings_count_as_missing():
+    out = problems(lambda d: d["entries"][0].update(name="   "))
+    assert any("missing name" in p for p in out)
+    out = problems(lambda d: d["sections"][0].update(title=" "))
+    assert any("missing 'title'" in p for p in out)
+
+
+def test_licence_must_be_a_known_spelling():
+    out = problems(lambda d: d["entries"][0].update(licence="mit"))
+    assert any("licence 'mit' is not in the known list (did you mean 'MIT'?)" in p for p in out), out
+    out = problems(lambda d: d["entries"][0].update(licence="Some Licence"))
+    assert any("not in the known list" in p for p in out)
+
+
+def test_paper_suffix_only_on_papers():
+    out = problems(lambda d: d["entries"][1].update(licence="CC BY 4.0"))
+    assert any("a paper's licence ends in ' (paper)'" in p for p in out), out
+    out = problems(lambda d: d["entries"][0].update(licence="CC BY 4.0 (paper)"))
+    assert any("only papers" in p for p in out), out
+    out = problems(lambda d: d["entries"][1].update(licence="MIT (paper)"))
+    assert any("not in the known list" in p for p in out), out
+
+
+def test_duplicate_section_title():
+    out = problems(lambda d: d["sections"][1].update(title="alpha benchmarks"))
+    assert any("duplicate section title" in p for p in out)
+
+
+def test_markup_rejected():
+    for field, text in (("summary", "See <!-- END ENTRIES --> here."), ("summary", "Hidden <!-- c --> text."),
+                        ("summary", "A <b>bold</b> claim."), ("venue", "x --> y"), ("name", "Foo ] bar"),
+                        ("name", "[Foo")):
+        out = problems(lambda d, f=field, t=text: d["entries"][1].update({f: t}))
+        assert any(f"{field} must not contain" in p for p in out), (field, text, out)
