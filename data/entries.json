@@ -26,6 +26,16 @@
       "id": "terminal",
       "title": "Terminal and tool-use benchmarks",
       "blurb": "Benchmarks where the agent works through a shell, tools or a simulated user rather than returning a single patch."
+    },
+    {
+      "id": "method",
+      "title": "Evaluation methodology and statistics",
+      "blurb": "How to measure, compare and report results: estimators, error bars, judge behaviour and benchmark design."
+    },
+    {
+      "id": "contam",
+      "title": "Contamination and leakage analyses",
+      "blurb": "Studies of test data leaking into training data or into the task itself, and benchmarks built to limit it."
     }
   ],
   "entries": [
@@ -530,6 +540,178 @@
       "year": 2025,
       "licence": "Apache-2.0",
       "summary": "Tasks for agents working in a real terminal sandbox, such as compiling code or setting up servers, with an execution harness; this repository holds the first version.",
+      "fetched": "2026-11-06"
+    },
+    {
+      "name": "Evaluating Large Language Models Trained on Code",
+      "url": "https://arxiv.org/abs/2107.03374",
+      "section": "method",
+      "kind": "paper",
+      "year": 2021,
+      "licence": "arXiv non-exclusive (paper)",
+      "summary": "Introduces Codex and the HumanEval set and reports how solve rates rise when many samples are drawn per problem.",
+      "fetched": "2026-11-06"
+    },
+    {
+      "name": "Adding Error Bars to Evals",
+      "url": "https://arxiv.org/abs/2411.00640",
+      "section": "method",
+      "kind": "paper",
+      "year": 2024,
+      "licence": "arXiv non-exclusive (paper)",
+      "summary": "Treats eval questions as a sample from a larger population and gives formulas for standard errors, paired model comparisons and sample size planning.",
+      "fetched": "2026-11-06"
+    },
+    {
+      "name": "Judging LLM-as-a-Judge with MT-Bench and Chatbot Arena",
+      "url": "https://arxiv.org/abs/2306.05685",
+      "section": "method",
+      "kind": "paper",
+      "year": 2023,
+      "licence": "arXiv non-exclusive (paper)",
+      "summary": "Studies strong models as judges of open-ended answers and documents position, verbosity and self-enhancement biases alongside agreement with humans.",
+      "fetched": "2026-11-06",
+      "venue": "NeurIPS 2023 Datasets and Benchmarks"
+    },
+    {
+      "name": "Large Language Models are not Fair Evaluators",
+      "url": "https://arxiv.org/abs/2305.17926",
+      "section": "method",
+      "kind": "paper",
+      "year": 2023,
+      "licence": "arXiv non-exclusive (paper)",
+      "summary": "Shows that a model judge's preference between two responses can flip when their order is swapped, and proposes calibration strategies.",
+      "fetched": "2026-11-06"
+    },
+    {
+      "name": "Judging the Judges",
+      "url": "https://arxiv.org/abs/2406.12624",
+      "section": "method",
+      "kind": "paper",
+      "year": 2024,
+      "licence": "CC0 1.0 (paper)",
+      "summary": "Compares thirteen judge models with human scores and finds weaknesses such as leniency and sensitivity to prompt length and complexity.",
+      "fetched": "2026-11-06"
+    },
+    {
+      "name": "Rigorous Evaluation of Large Language Models for Code Generation",
+      "url": "https://arxiv.org/abs/2305.01210",
+      "section": "method",
+      "kind": "paper",
+      "year": 2023,
+      "licence": "arXiv non-exclusive (paper)",
+      "summary": "The EvalPlus paper: shows that the small test suites in existing code benchmarks accept wrong solutions, and extends them with generated tests.",
+      "fetched": "2026-11-06"
+    },
+    {
+      "name": "Establishing Best Practices for Building Rigorous Agentic Benchmarks",
+      "url": "https://arxiv.org/abs/2507.02825",
+      "section": "method",
+      "kind": "paper",
+      "year": 2025,
+      "licence": "arXiv non-exclusive (paper)",
+      "summary": "Catalogues task setup and reward design flaws in agentic benchmarks and proposes the Agentic Benchmark Checklist (ABC).",
+      "fetched": "2026-11-06"
+    },
+    {
+      "name": "SWE-agent: Agent-Computer Interfaces",
+      "url": "https://arxiv.org/abs/2405.15793",
+      "section": "method",
+      "kind": "paper",
+      "year": 2024,
+      "licence": "CC BY 4.0 (paper)",
+      "summary": "Argues that the interface an agent uses to view and edit code affects its results, and studies interface design choices on SWE-bench.",
+      "fetched": "2026-11-06"
+    },
+    {
+      "name": "Agentless (paper)",
+      "url": "https://arxiv.org/abs/2407.01489",
+      "section": "method",
+      "kind": "paper",
+      "year": 2024,
+      "licence": "CC BY 4.0 (paper)",
+      "summary": "Asks whether complex autonomous agents are needed for issue resolution and compares them with a fixed localise-repair-validate pipeline.",
+      "fetched": "2026-11-06"
+    },
+    {
+      "name": "SWE-Bench+",
+      "url": "https://arxiv.org/abs/2410.06992",
+      "section": "contam",
+      "kind": "paper",
+      "year": 2024,
+      "licence": "CC BY 4.0 (paper)",
+      "summary": "Manual review of successful SWE-bench patches that finds solutions leaked in the issue text, tests too weak to reject wrong patches, and most issues predating model knowledge cut-offs.",
+      "fetched": "2026-11-06"
+    },
+    {
+      "name": "The SWE-Bench Illusion",
+      "url": "https://arxiv.org/abs/2506.12286",
+      "section": "contam",
+      "kind": "paper",
+      "year": 2025,
+      "licence": "CC BY-NC-ND 4.0 (paper)",
+      "summary": "Probes whether models can name the buggy file path from the issue text alone, as evidence that SWE-bench Verified scores partly reflect memorisation.",
+      "fetched": "2026-11-06"
+    },
+    {
+      "name": "LiveCodeBench (paper)",
+      "url": "https://arxiv.org/abs/2403.07974",
+      "section": "contam",
+      "kind": "paper",
+      "year": 2024,
+      "licence": "CC BY 4.0 (paper)",
+      "summary": "Describes LiveCodeBench and uses problem release dates relative to model training cut-offs to show contamination on older problems.",
+      "fetched": "2026-11-06"
+    },
+    {
+      "name": "Data Contamination Through the Lens of Time",
+      "url": "https://arxiv.org/abs/2310.10628",
+      "section": "contam",
+      "kind": "paper",
+      "year": 2023,
+      "licence": "arXiv non-exclusive (paper)",
+      "summary": "Uses model training cut-offs as a natural experiment on Codeforces and Project Euler problems released over time to find contamination trends.",
+      "fetched": "2026-11-06"
+    },
+    {
+      "name": "Rethinking Benchmark and Contamination with Rephrased Samples",
+      "url": "https://arxiv.org/abs/2311.04850",
+      "section": "contam",
+      "kind": "paper",
+      "year": 2023,
+      "licence": "arXiv non-exclusive (paper)",
+      "summary": "Shows that paraphrased or translated test items pass n-gram decontamination, including for HumanEval, and proposes a model-based decontamination check.",
+      "fetched": "2026-11-06"
+    },
+    {
+      "name": "Benchmarking Benchmark Leakage in Large Language Models",
+      "url": "https://arxiv.org/abs/2404.18824",
+      "section": "contam",
+      "kind": "paper",
+      "year": 2024,
+      "licence": "arXiv non-exclusive (paper)",
+      "summary": "Detects possible benchmark leakage with perplexity and n-gram accuracy and proposes a Benchmark Transparency Card for reporting.",
+      "fetched": "2026-11-06"
+    },
+    {
+      "name": "SWE-rebench (paper)",
+      "url": "https://arxiv.org/abs/2505.20411",
+      "section": "contam",
+      "kind": "paper",
+      "year": 2025,
+      "licence": "CC BY 4.0 (paper)",
+      "summary": "Describes the pipeline that collects over 21,000 interactive Python tasks for SWE-rebench and a contamination-free benchmark built from freshly collected tasks.",
+      "fetched": "2026-11-06",
+      "venue": "NeurIPS 2025"
+    },
+    {
+      "name": "SWE-bench Goes Live!",
+      "url": "https://arxiv.org/abs/2505.23419",
+      "section": "contam",
+      "kind": "paper",
+      "year": 2025,
+      "licence": "arXiv non-exclusive (paper)",
+      "summary": "The SWE-bench-Live paper: argues fixed benchmarks risk overfitting and contamination and presents a continuously updated set of tasks.",
       "fetched": "2026-11-06"
     }
   ]

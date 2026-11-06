@@ -19,6 +19,8 @@ A curated list of benchmarks, harnesses, datasets and papers for evaluating and 
 - [Agent harnesses and scaffolds](#agent-harnesses-and-scaffolds) (11)
 - [Training environments and datasets for coding agents](#training-environments-and-datasets-for-coding-agents) (11)
 - [Terminal and tool-use benchmarks](#terminal-and-tool-use-benchmarks) (6)
+- [Evaluation methodology and statistics](#evaluation-methodology-and-statistics) (9)
+- [Contamination and leakage analyses](#contamination-and-leakage-analyses) (8)
 
 ## Function-level code benchmarks
 
@@ -105,7 +107,38 @@ Benchmarks where the agent works through a shell, tools or a simulated user rath
 | [tau2-bench](https://github.com/sierra-research/tau2-bench) | 2025 | code+data | MIT | Successor to tau-bench that adds a dual-control setting in which both the agent and the simulated user act on a shared environment. |
 | [Terminal-Bench](https://github.com/harbor-framework/terminal-bench-1) | 2025 | code+data | Apache-2.0 | Tasks for agents working in a real terminal sandbox, such as compiling code or setting up servers, with an execution harness; this repository holds the first version. |
 
-50 entries, all fetched on 2026-11-06.
+## Evaluation methodology and statistics
+
+How to measure, compare and report results: estimators, error bars, judge behaviour and benchmark design.
+
+| Name | Year | Kind | Licence | What it is |
+|---|---|---|---|---|
+| [Evaluating Large Language Models Trained on Code](https://arxiv.org/abs/2107.03374) | 2021 | paper | arXiv non-exclusive (paper) | Introduces Codex and the HumanEval set and reports how solve rates rise when many samples are drawn per problem. |
+| [Judging LLM-as-a-Judge with MT-Bench and Chatbot Arena](https://arxiv.org/abs/2306.05685) | 2023 | paper | arXiv non-exclusive (paper); NeurIPS 2023 Datasets and Benchmarks | Studies strong models as judges of open-ended answers and documents position, verbosity and self-enhancement biases alongside agreement with humans. |
+| [Large Language Models are not Fair Evaluators](https://arxiv.org/abs/2305.17926) | 2023 | paper | arXiv non-exclusive (paper) | Shows that a model judge's preference between two responses can flip when their order is swapped, and proposes calibration strategies. |
+| [Rigorous Evaluation of Large Language Models for Code Generation](https://arxiv.org/abs/2305.01210) | 2023 | paper | arXiv non-exclusive (paper) | The EvalPlus paper: shows that the small test suites in existing code benchmarks accept wrong solutions, and extends them with generated tests. |
+| [Adding Error Bars to Evals](https://arxiv.org/abs/2411.00640) | 2024 | paper | arXiv non-exclusive (paper) | Treats eval questions as a sample from a larger population and gives formulas for standard errors, paired model comparisons and sample size planning. |
+| [Agentless (paper)](https://arxiv.org/abs/2407.01489) | 2024 | paper | CC BY 4.0 (paper) | Asks whether complex autonomous agents are needed for issue resolution and compares them with a fixed localise-repair-validate pipeline. |
+| [Judging the Judges](https://arxiv.org/abs/2406.12624) | 2024 | paper | CC0 1.0 (paper) | Compares thirteen judge models with human scores and finds weaknesses such as leniency and sensitivity to prompt length and complexity. |
+| [SWE-agent: Agent-Computer Interfaces](https://arxiv.org/abs/2405.15793) | 2024 | paper | CC BY 4.0 (paper) | Argues that the interface an agent uses to view and edit code affects its results, and studies interface design choices on SWE-bench. |
+| [Establishing Best Practices for Building Rigorous Agentic Benchmarks](https://arxiv.org/abs/2507.02825) | 2025 | paper | arXiv non-exclusive (paper) | Catalogues task setup and reward design flaws in agentic benchmarks and proposes the Agentic Benchmark Checklist (ABC). |
+
+## Contamination and leakage analyses
+
+Studies of test data leaking into training data or into the task itself, and benchmarks built to limit it.
+
+| Name | Year | Kind | Licence | What it is |
+|---|---|---|---|---|
+| [Data Contamination Through the Lens of Time](https://arxiv.org/abs/2310.10628) | 2023 | paper | arXiv non-exclusive (paper) | Uses model training cut-offs as a natural experiment on Codeforces and Project Euler problems released over time to find contamination trends. |
+| [Rethinking Benchmark and Contamination with Rephrased Samples](https://arxiv.org/abs/2311.04850) | 2023 | paper | arXiv non-exclusive (paper) | Shows that paraphrased or translated test items pass n-gram decontamination, including for HumanEval, and proposes a model-based decontamination check. |
+| [Benchmarking Benchmark Leakage in Large Language Models](https://arxiv.org/abs/2404.18824) | 2024 | paper | arXiv non-exclusive (paper) | Detects possible benchmark leakage with perplexity and n-gram accuracy and proposes a Benchmark Transparency Card for reporting. |
+| [LiveCodeBench (paper)](https://arxiv.org/abs/2403.07974) | 2024 | paper | CC BY 4.0 (paper) | Describes LiveCodeBench and uses problem release dates relative to model training cut-offs to show contamination on older problems. |
+| [SWE-Bench+](https://arxiv.org/abs/2410.06992) | 2024 | paper | CC BY 4.0 (paper) | Manual review of successful SWE-bench patches that finds solutions leaked in the issue text, tests too weak to reject wrong patches, and most issues predating model knowledge cut-offs. |
+| [SWE-bench Goes Live!](https://arxiv.org/abs/2505.23419) | 2025 | paper | arXiv non-exclusive (paper) | The SWE-bench-Live paper: argues fixed benchmarks risk overfitting and contamination and presents a continuously updated set of tasks. |
+| [SWE-rebench (paper)](https://arxiv.org/abs/2505.20411) | 2025 | paper | CC BY 4.0 (paper); NeurIPS 2025 | Describes the pipeline that collects over 21,000 interactive Python tasks for SWE-rebench and a contamination-free benchmark built from freshly collected tasks. |
+| [The SWE-Bench Illusion](https://arxiv.org/abs/2506.12286) | 2025 | paper | CC BY-NC-ND 4.0 (paper) | Probes whether models can name the buggy file path from the issue text alone, as evidence that SWE-bench Verified scores partly reflect memorisation. |
+
+67 entries, all fetched on 2026-11-06.
 
 <!-- END ENTRIES -->
 
