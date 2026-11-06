@@ -22,5 +22,7 @@ jobs:
         run: uv run python scripts/validate.py
       - name: Check README is rendered from the data
         run: uv run python scripts/render.py --check
+      - name: Lint
+        run: uv run ruff check .
       - name: Tests
         run: uv run pytest -q

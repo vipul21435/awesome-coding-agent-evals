@@ -50,8 +50,8 @@ Self-contained problems scored by running unit tests on a single generated funct
 | [MBPP](https://huggingface.co/datasets/google-research-datasets/mbpp) | 2021 | dataset | CC BY 4.0 | About 1,000 crowd-sourced entry-level Python problems, each with a task description, a reference solution and three test cases. |
 | [DS-1000](https://github.com/xlang-ai/DS-1000) | 2022 | code+data | CC-BY-SA-4.0 | 1,000 data science problems drawn from StackOverflow and spanning seven Python libraries such as NumPy and Pandas, with execution-based checks. |
 | [EvalPlus (HumanEval+ and MBPP+)](https://github.com/evalplus/evalplus) | 2023 | code+data | Apache-2.0 | Framework that adds many generated test inputs to HumanEval and MBPP so that plausible but wrong solutions are caught. |
-| [BigCodeBench](https://github.com/bigcode-project/bigcodebench) | 2024 | code+data | Apache-2.0 | Python tasks that require calls to many functions across common libraries, offered as docstring completion and as natural-language instructions. |
-| [CRUXEval](https://github.com/facebookresearch/cruxeval) | 2024 | code+data | MIT | 800 short Python functions, each with one input-output pair, used for two tasks: predict the output from the input and predict an input for the output. |
+| [BigCodeBench](https://github.com/bigcode-project/bigcodebench) | 2024 | code+data | Apache-2.0 | Python tasks that require calls to many functions across common libraries, offered as docstring completion and as natural-language instructions; the repository is archived. |
+| [CRUXEval](https://github.com/facebookresearch/cruxeval) | 2024 | code+data | MIT | 800 short Python functions, each with one input-output pair, used for two tasks: predict the output from the input and predict an input for the output; the repository is archived. |
 | [LiveCodeBench](https://github.com/LiveCodeBench/LiveCodeBench) | 2024 | code+data | MIT | Code benchmark that keeps adding problems from programming contests with their release dates, covering generation, self-repair, test output prediction and execution. |
 
 ## Repository-level and issue-resolution benchmarks

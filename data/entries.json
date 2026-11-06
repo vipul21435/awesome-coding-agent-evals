@@ -96,7 +96,7 @@
       "kind": "code+data",
       "year": 2024,
       "licence": "MIT",
-      "summary": "800 short Python functions, each with one input-output pair, used for two tasks: predict the output from the input and predict an input for the output.",
+      "summary": "800 short Python functions, each with one input-output pair, used for two tasks: predict the output from the input and predict an input for the output; the repository is archived.",
       "fetched": "2026-11-06"
     },
     {
@@ -116,7 +116,7 @@
       "kind": "code+data",
       "year": 2024,
       "licence": "Apache-2.0",
-      "summary": "Python tasks that require calls to many functions across common libraries, offered as docstring completion and as natural-language instructions.",
+      "summary": "Python tasks that require calls to many functions across common libraries, offered as docstring completion and as natural-language instructions; the repository is archived.",
       "fetched": "2026-11-06"
     },
     {

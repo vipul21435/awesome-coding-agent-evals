@@ -1,8 +1,9 @@
 import copy
 
+from test_render import sample
+
 import render
 import validate
-from test_render import sample
 
 
 def problems(mutate):
@@ -72,3 +73,27 @@ def test_repository_data_and_readme_are_valid():
     data = render.load()
     assert validate.check_data(data) == []
     assert validate.check_readme(data, render.README.read_text(encoding="utf-8")) == []
+
+
+def test_main_exit_codes(tmp_path, capsys):
+    import json
+
+    d = sample()
+    data = tmp_path / "entries.json"
+    data.write_text(json.dumps(d))
+    readme = tmp_path / "README.md"
+    readme.write_text(render.rendered_readme(d, f"x\n{render.BEGIN}\n{render.END}\n"))
+    assert validate.main(["--data", str(data), "--readme", str(readme)]) == 0
+    assert "ok: 3 entries in 2 sections" in capsys.readouterr().out
+    assert validate.main(["--data", str(data), "--readme", str(readme), "--max-year", "2022"]) == 1
+    assert "outside" in capsys.readouterr().out
+    readme.write_text("stale\n")
+    assert validate.main(["--data", str(data), "--readme", str(readme)]) == 1
+
+
+def test_top_level_and_section_problems():
+    out = validate.check_data({"entries": []})
+    assert any("missing 'fetched'" in p for p in out)
+    out = problems(lambda d: d["sections"].append({"id": "a", "title": "", "blurb": "x"}))
+    assert any("duplicate section id" in p for p in out)
+    assert any("missing 'title'" in p for p in out)
