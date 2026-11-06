@@ -9,6 +9,7 @@ No network access: links are checked for shape only.
 from __future__ import annotations
 
 import argparse
+import datetime as dt
 import re
 import sys
 from pathlib import Path
@@ -21,15 +22,37 @@ KINDS = {"paper", "code", "dataset", "code+data"}
 URL_RE = re.compile(r"^https://[A-Za-z0-9.-]+\.[A-Za-z]{2,}(/[^\s|()<>]*)?$")
 DATE_RE = re.compile(r"^\d{4}-\d{2}-\d{2}$")
 MAX_SUMMARY = 220
+MIN_YEAR = 1990
 
 
-def check_data(data: dict, min_year: int = 1990, max_year: int = 2026) -> list[str]:
+def parse_date(text: object) -> dt.date | None:
+    if not DATE_RE.match(str(text)):
+        return None
+    try:
+        return dt.date.fromisoformat(str(text))
+    except ValueError:
+        return None
+
+
+def check_data(
+    data: dict, min_year: int = MIN_YEAR, max_year: int | None = None, today: dt.date | None = None
+) -> list[str]:
+    """Return one line per problem. max_year defaults to the current year; today is a
+    parameter so tests can fix it."""
+    today = today or dt.date.today()
+    if max_year is None:
+        max_year = today.year
     problems: list[str] = []
     for key in ("fetched", "sections", "entries"):
         if key not in data:
             problems.append(f"top level: missing '{key}'")
     if problems:
         return problems
+    top_fetched = parse_date(data["fetched"])
+    if top_fetched is None:
+        problems.append("top level: fetched must be a real YYYY-MM-DD date")
+    elif top_fetched > today:
+        problems.append(f"top level: fetched {data['fetched']} is in the future")
     section_ids = [s.get("id") for s in data["sections"]]
     for s in data["sections"]:
         for key in ("id", "title", "blurb"):
@@ -68,8 +91,15 @@ def check_data(data: dict, min_year: int = 1990, max_year: int = 2026) -> list[s
             problems.append(f"{label}: year must be an integer")
         elif not min_year <= e["year"] <= max_year:
             problems.append(f"{label}: year {e['year']} outside {min_year}-{max_year}")
-        if not DATE_RE.match(str(e["fetched"])):
-            problems.append(f"{label}: fetched must be YYYY-MM-DD")
+        fetched = parse_date(e["fetched"])
+        if fetched is None:
+            problems.append(f"{label}: fetched must be a real YYYY-MM-DD date")
+        elif fetched > today:
+            problems.append(f"{label}: fetched {e['fetched']} is in the future")
+        elif top_fetched is not None and fetched > top_fetched:
+            problems.append(f"{label}: fetched {e['fetched']} is later than the top-level {data['fetched']}")
+        elif isinstance(e["year"], int) and e["year"] > fetched.year:
+            problems.append(f"{label}: year {e['year']} is later than its fetch date")
         s = e["summary"]
         if len(s) > MAX_SUMMARY:
             problems.append(f"{label}: summary longer than {MAX_SUMMARY} characters")
@@ -97,8 +127,10 @@ def main(argv: list[str] | None = None) -> int:
     ap = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     ap.add_argument("--data", type=Path, default=render.DATA)
     ap.add_argument("--readme", type=Path, default=render.README)
-    ap.add_argument("--min-year", type=int, default=1990)
-    ap.add_argument("--max-year", type=int, default=2026)
+    ap.add_argument("--min-year", type=int, default=MIN_YEAR,
+                    help=f"earliest allowed year (default {MIN_YEAR})")
+    ap.add_argument("--max-year", type=int, default=None,
+                    help="latest allowed year (default: the current year)")
     args = ap.parse_args(argv)
     data = render.load(args.data)
     problems = check_data(data, args.min_year, args.max_year)

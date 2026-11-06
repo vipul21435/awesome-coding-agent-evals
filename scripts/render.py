@@ -94,9 +94,17 @@ def render_block(data: dict) -> str:
               "Counted from the data file. For papers this is the licence of the text on arXiv.", ""]
     lines += licence_table(entries)
     lines += ["", kind_line(entries), ""]
-    lines.append(f"{len(entries)} entries, all fetched on {data['fetched']}.")
+    lines.append(fetched_line(entries, data["fetched"]))
     lines += ["", END]
     return "\n".join(lines)
+
+
+def fetched_line(entries: list[dict], latest: str) -> str:
+    """State the fetch dates honestly: one date if they agree, else the range."""
+    first = min((e["fetched"] for e in entries), default=latest)
+    if first == latest:
+        return f"{len(entries)} entries, all fetched on {latest}."
+    return f"{len(entries)} entries, fetched between {first} and {latest}."
 
 
 def splice(readme_text: str, block: str) -> str:

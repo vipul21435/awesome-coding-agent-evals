@@ -81,3 +81,11 @@ def test_licence_table_and_kind_line():
     assert "| MIT | 1 | 0 |" in block
     assert "By kind: code 1, dataset 1, paper 1." in block
     assert "- [Licences at a glance](#licences-at-a-glance)" in block
+
+
+def test_fetched_line_reports_a_range_when_dates_differ():
+    entries = [{"fetched": "2026-11-01"}, {"fetched": "2026-11-06"}]
+    line = render.fetched_line(entries, "2026-11-06")
+    assert line == "2 entries, fetched between 2026-11-01 and 2026-11-06."
+    same = [{"fetched": "2026-11-06"}, {"fetched": "2026-11-06"}]
+    assert render.fetched_line(same, "2026-11-06") == "2 entries, all fetched on 2026-11-06."

@@ -1,19 +1,22 @@
 import copy
+import datetime as dt
 
 from test_render import sample
 
 import render
 import validate
 
+TODAY = dt.date(2026, 11, 6)
+
 
 def problems(mutate):
     d = copy.deepcopy(sample())
     mutate(d)
-    return validate.check_data(d)
+    return validate.check_data(d, today=TODAY)
 
 
 def test_sample_is_clean():
-    assert validate.check_data(sample()) == []
+    assert validate.check_data(sample(), today=TODAY) == []
 
 
 def test_missing_field():
@@ -40,7 +43,31 @@ def test_duplicate_name():
 def test_year_range_and_type():
     assert any("outside" in p for p in problems(lambda d: d["entries"][0].update(year=2031)))
     assert any("integer" in p for p in problems(lambda d: d["entries"][0].update(year="2024")))
-    assert validate.check_data(sample(), min_year=2022) != []
+    assert validate.check_data(sample(), min_year=2022, today=TODAY) != []
+    # the default upper bound is the current year, not a fixed one
+    later = dt.date(2027, 3, 1)
+
+    def to_2027(d):
+        d["fetched"] = "2027-03-01"
+        d["entries"][0].update(year=2027, fetched="2027-03-01")
+
+    d = copy.deepcopy(sample())
+    to_2027(d)
+    assert validate.check_data(d, today=later) == []
+    assert any("outside" in p for p in validate.check_data(d, today=TODAY))
+
+
+def test_fetched_dates_checked_against_today_and_top_level():
+    out = problems(lambda d: d["entries"][0].update(fetched="2026-11-07"))
+    assert any("in the future" in p for p in out)
+    out = problems(lambda d: d.update(fetched="2026-11-01"))
+    assert any("later than the top-level" in p for p in out)
+    out = problems(lambda d: d.update(fetched="2026-12-01"))
+    assert any("top level: fetched 2026-12-01 is in the future" in p for p in out)
+    out = problems(lambda d: d["entries"][0].update(fetched="2026-02-30"))
+    assert any("real YYYY-MM-DD" in p for p in out)
+    out = problems(lambda d: d["entries"][0].update(fetched="2023-01-01"))
+    assert any("later than its fetch date" in p for p in out)
 
 
 def test_unknown_section_and_empty_section():

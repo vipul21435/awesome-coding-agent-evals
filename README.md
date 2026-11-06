@@ -267,7 +267,7 @@ Repository history:
 3. Run `uv run python scripts/render.py` to regenerate the tables, then `uv run python scripts/validate.py` and `uv run pytest`.
 4. Optionally run `uv run python scripts/recheck.py` to compare the new record with its page; it needs the network.
 
-The validator works offline: it checks required fields, URL shape, year range, duplicate URLs and names, known sections, and that the README tables match the data file. It does not check that links are still live; `scripts/recheck.py` does, on demand.
+The validator works offline: it checks required fields, URL shape, year range (up to the current year by default), fetch dates (real dates, not in the future, not later than the top-level date, not earlier than the entry's year), duplicate URLs and names, known sections, and that the README tables match the data file. It does not check that links are still live; `scripts/recheck.py` does, on demand.
 
 ## Licence
 
