@@ -2,6 +2,12 @@
 
 ## Unreleased
 
+- 10 more entries (99 in all): CodeContests and the AlphaCode paper, bigcode-evaluation-harness, RepoCoder and RepoEval, DevEval, the Multi-SWE-bench paper, SWE-bench-extra, Gorilla and BFCL, AI Agents That Matter, and a study of contamination in code generation benchmarks.
+- Corrected summaries for SWE-Bench Pro, Benchmarking Benchmark Leakage, SWE-Lancer and HumanEval; venues for Judging the Judges and MLE-bench; SWE-bench experiments moved to methodology.
+- `validate.py` accepts only the URL forms `recheck.py` can fetch, written one way, so arXiv versions, `.git` and trailing slashes no longer hide duplicates; checks field types, control characters, markup, one-sentence summaries, licence spellings, the ` (paper)` suffix and unique section titles; reports unreadable files in one line with exit code 2.
+- `render.py` collapses control characters and escapes backslashes in table cells.
+- `recheck.py` matches licence-file titles by whole words, counts dropped connections as failed fetches, and reports a journal reference for a paper with no venue.
+- README: recheck result on the first screen, install and quickstart before the tables, how the scripts work, related lists, CI badge.
 - Author tools section regrouped by topic, each tool tied to the listed paper it relates to; contamscan linked.
 - Entry tables now follow the selection rules directly; Quickstart, Re-checking and Limitations moved below them.
 - Agentless and SWE-agent papers moved to the harness section, Benchmarks as Software to methodology.
