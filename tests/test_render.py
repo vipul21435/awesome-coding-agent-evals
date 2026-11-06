@@ -89,3 +89,19 @@ def test_fetched_line_reports_a_range_when_dates_differ():
     assert line == "2 entries, fetched between 2026-11-01 and 2026-11-06."
     same = [{"fetched": "2026-11-06"}, {"fetched": "2026-11-06"}]
     assert render.fetched_line(same, "2026-11-06") == "2 entries, all fetched on 2026-11-06."
+
+
+def test_cli_reports_bad_input_in_one_line(tmp_path, capsys):
+    import json
+    data = tmp_path / "entries.json"
+    data.write_text(json.dumps(sample()))
+    readme = tmp_path / "README.md"
+    readme.write_text("no markers\n")
+    assert render.main(["--data", str(data), "--readme", str(readme)]) == 2
+    assert "markers" in capsys.readouterr().err
+    assert render.main(["--data", str(data), "--readme", str(tmp_path / "none.md")]) == 2
+    assert "none.md" in capsys.readouterr().err
+    data.write_text("{,}")
+    readme.write_text(f"t\n{render.BEGIN}\n{render.END}\n")
+    assert render.main(["--data", str(data), "--readme", str(readme)]) == 2
+    assert "line 1 column 2" in capsys.readouterr().err

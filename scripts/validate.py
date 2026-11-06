@@ -2,7 +2,8 @@
 
     python scripts/validate.py [--data PATH] [--readme PATH] [--min-year N] [--max-year N]
 
-Exits 0 when there are no problems, 1 otherwise, printing one line per problem.
+Exits 0 when there are no problems, 1 when there are (one line per problem), and 2
+when a file cannot be read or parsed.
 No network access: links are checked for shape only, and must be one of the three
 forms scripts/recheck.py can fetch (GitHub repository, arXiv abstract, Hugging Face dataset).
 """
@@ -20,6 +21,7 @@ import recheck  # noqa: E402
 import render  # noqa: E402
 
 REQUIRED = ("name", "url", "section", "kind", "year", "licence", "summary", "fetched")
+STRING_FIELDS = ("name", "url", "section", "kind", "licence", "summary", "fetched", "venue")
 KINDS = {"paper", "code", "dataset", "code+data"}
 DATE_RE = re.compile(r"^\d{4}-\d{2}-\d{2}$")
 MAX_SUMMARY = 220
@@ -44,9 +46,14 @@ def check_data(
     if max_year is None:
         max_year = today.year
     problems: list[str] = []
+    if not isinstance(data, dict):
+        return ["top level: must be a JSON object"]
     for key in ("fetched", "sections", "entries"):
         if key not in data:
             problems.append(f"top level: missing '{key}'")
+    for key in ("sections", "entries"):
+        if key in data and not isinstance(data[key], list):
+            problems.append(f"top level: {key} must be a list")
     if problems:
         return problems
     top_fetched = parse_date(data["fetched"])
@@ -54,21 +61,35 @@ def check_data(
         problems.append("top level: fetched must be a real YYYY-MM-DD date")
     elif top_fetched > today:
         problems.append(f"top level: fetched {data['fetched']} is in the future")
-    section_ids = [s.get("id") for s in data["sections"]]
-    for s in data["sections"]:
+    sections = []
+    for j, s in enumerate(data["sections"]):
+        if not isinstance(s, dict):
+            problems.append(f"section {j}: must be an object")
+            continue
+        sections.append(s)
         for key in ("id", "title", "blurb"):
-            if not s.get(key):
+            if s.get(key) in (None, ""):
                 problems.append(f"section {s.get('id')!r}: missing '{key}'")
+            elif not isinstance(s[key], str):
+                problems.append(f"section {s.get('id')!r}: {key} must be a string")
+    section_ids = [s.get("id") for s in sections]
     if len(set(section_ids)) != len(section_ids):
         problems.append("sections: duplicate section id")
     seen_urls: dict[str, str] = {}
     seen_names: dict[str, str] = {}
     used_sections: set[str] = set()
     for i, e in enumerate(data["entries"]):
+        if not isinstance(e, dict):
+            problems.append(f"entry {i}: must be an object")
+            continue
         label = f"entry {i} ({e.get('name', '?')})"
         missing = [k for k in REQUIRED if e.get(k) in (None, "")]
         if missing:
             problems.append(f"{label}: missing {', '.join(missing)}")
+            continue
+        wrong = [k for k in STRING_FIELDS if k in e and not isinstance(e[k], str)]
+        if wrong:
+            problems += [f"{label}: {k} must be a string" for k in wrong]
             continue
         extra = set(e) - set(REQUIRED) - {"venue"}
         if extra:
@@ -142,10 +163,19 @@ def main(argv: list[str] | None = None) -> int:
     ap.add_argument("--max-year", type=int, default=None,
                     help="latest allowed year (default: the current year)")
     args = ap.parse_args(argv)
-    data = render.load(args.data)
+    try:
+        data = render.load(args.data)
+    except (OSError, ValueError) as exc:
+        print(render.describe_error(args.data, exc), file=sys.stderr)
+        return 2
     problems = check_data(data, args.min_year, args.max_year)
     if not problems:
-        problems += check_readme(data, args.readme.read_text(encoding="utf-8"))
+        try:
+            readme_text = args.readme.read_text(encoding="utf-8")
+        except (OSError, ValueError) as exc:
+            print(render.describe_error(args.readme, exc), file=sys.stderr)
+            return 2
+        problems += check_readme(data, readme_text)
     for p in problems:
         print(p)
     if problems:

@@ -1,5 +1,6 @@
 import copy
 import datetime as dt
+import json
 
 from test_render import sample
 
@@ -123,8 +124,6 @@ def test_repository_data_and_readme_are_valid():
 
 
 def test_main_exit_codes(tmp_path, capsys):
-    import json
-
     d = sample()
     data = tmp_path / "entries.json"
     data.write_text(json.dumps(d))
@@ -144,3 +143,37 @@ def test_top_level_and_section_problems():
     out = problems(lambda d: d["sections"].append({"id": "a", "title": "", "blurb": "x"}))
     assert any("duplicate section id" in p for p in out)
     assert any("missing 'title'" in p for p in out)
+
+
+def test_wrong_types_are_reported_not_raised():
+    cases = [
+        (lambda d: d["entries"][0].update(summary=5), "summary must be a string"),
+        (lambda d: d["entries"][0].update(name=5), "name must be a string"),
+        (lambda d: d["entries"][0].update(url=5), "url must be a string"),
+        (lambda d: d["entries"][0].update(kind=["code"]), "kind must be a string"),
+        (lambda d: d["entries"][0].update(licence=5), "licence must be a string"),
+        (lambda d: d["entries"][0].update(venue=5), "venue must be a string"),
+        (lambda d: d["entries"].append("oops"), "entry 3: must be an object"),
+        (lambda d: d.update(sections=None), "sections must be a list"),
+        (lambda d: d.update(entries={}), "entries must be a list"),
+        (lambda d: d["sections"].append(7), "section 2: must be an object"),
+        (lambda d: d["sections"][0].update(title=3), "title must be a string"),
+    ]
+    for mutate, want in cases:
+        out = problems(mutate)
+        assert any(want in p for p in out), (want, out)
+    assert validate.check_data([]) == ["top level: must be a JSON object"]
+
+
+def test_cli_reports_unreadable_input_in_one_line(tmp_path, capsys):
+    bad = tmp_path / "t.json"
+    bad.write_text('{"fetched": "2026-11-06", "sections": [')
+    assert validate.main(["--data", str(bad)]) == 2
+    err = capsys.readouterr().err.strip()
+    assert len(err.splitlines()) == 1 and "line 1 column" in err
+    assert validate.main(["--data", str(tmp_path / "missing.json")]) == 2
+    assert "missing.json" in capsys.readouterr().err
+    good = tmp_path / "e.json"
+    good.write_text(json.dumps(sample()))
+    assert validate.main(["--data", str(good), "--readme", str(tmp_path / "no.md")]) == 2
+    assert "no.md" in capsys.readouterr().err

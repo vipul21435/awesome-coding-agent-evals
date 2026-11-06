@@ -138,3 +138,10 @@ def test_main_with_stubbed_fetch(tmp_path, monkeypatch, capsys):
 def test_observe_rejects_unknown_source():
     with pytest.raises(ValueError):
         recheck.observe("other", "https://example.org", 1.0)
+
+
+def test_main_reports_bad_json_in_one_line(tmp_path, capsys):
+    data = tmp_path / "entries.json"
+    data.write_text("[1,")
+    assert recheck.main(["--data", str(data), "--delay", "0"]) == 2
+    assert "line 1 column" in capsys.readouterr().err

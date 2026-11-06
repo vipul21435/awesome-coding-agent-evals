@@ -23,8 +23,18 @@ END = "<!-- END ENTRIES -->"
 
 
 def load(path: Path = DATA) -> dict:
+    """Read the data file; raises OSError or ValueError (including JSONDecodeError)."""
     with path.open(encoding="utf-8") as fh:
         return json.load(fh)
+
+
+def describe_error(path: Path, exc: Exception) -> str:
+    """One line naming the file and what is wrong with it, for the scripts' error output."""
+    if isinstance(exc, json.JSONDecodeError):
+        return f"{path}: line {exc.lineno} column {exc.colno}: {exc.msg}"
+    if isinstance(exc, OSError):
+        return f"{path}: {exc.strerror or exc}"
+    return f"{path}: {exc}"
 
 
 def anchor(title: str) -> str:
@@ -127,8 +137,25 @@ def main(argv: list[str] | None = None) -> int:
     ap.add_argument("--readme", type=Path, default=README,
                     help="path to README.md (default README.md)")
     args = ap.parse_args(argv)
-    current = args.readme.read_text(encoding="utf-8")
-    new = rendered_readme(load(args.data), current)
+    try:
+        data = load(args.data)
+    except (OSError, ValueError) as exc:
+        print(describe_error(args.data, exc), file=sys.stderr)
+        return 2
+    try:
+        current = args.readme.read_text(encoding="utf-8")
+    except (OSError, ValueError) as exc:
+        print(describe_error(args.readme, exc), file=sys.stderr)
+        return 2
+    try:
+        new = rendered_readme(data, current)
+    except ValueError as exc:
+        print(describe_error(args.readme, exc), file=sys.stderr)
+        return 2
+    except (KeyError, TypeError, AttributeError):
+        print(f"{args.data}: records are not in the expected shape; run: python scripts/validate.py",
+              file=sys.stderr)
+        return 2
     if args.check:
         if new != current:
             print("README.md is out of date; run: python scripts/render.py", file=sys.stderr)

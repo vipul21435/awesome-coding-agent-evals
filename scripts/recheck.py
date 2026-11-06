@@ -12,8 +12,9 @@ Sources, by URL:
   huggingface.co/datasets/ID     -> the Hugging Face dataset API (card licence, createdAt)
 
 Set GITHUB_TOKEN to raise the GitHub API rate limit. The exit code is 0 when every page
-was fetched, 1 when any fetch failed. Licence and year differences are reported, not
-treated as errors, because a repository's creation date is not always its first release.
+was fetched, 1 when any fetch failed, and 2 when the data file cannot be read. Licence and
+year differences are reported, not treated as errors, because a repository's creation date
+is not always its first release.
 """
 
 from __future__ import annotations
@@ -214,7 +215,11 @@ def main(argv: list[str] | None = None) -> int:
     ap.add_argument("--json", type=Path, help="also write the full report to this file")
     args = ap.parse_args(argv)
 
-    data = render.load(args.data)
+    try:
+        data = render.load(args.data)
+    except (OSError, ValueError) as exc:
+        print(render.describe_error(args.data, exc), file=sys.stderr)
+        return 2
     report = []
     failed = 0
     for entry in data["entries"]:
