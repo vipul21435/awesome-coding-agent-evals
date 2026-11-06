@@ -1,5 +1,11 @@
 # Changelog
 
+## Unreleased
+
+### Fixed
+
+- The validator accepted GitHub and Hugging Face URLs with a space, `|` or `)` in them, so a URL with a trailing space listed the same page twice. Each URL part now allows only the characters the host allows in names, and a final newline no longer matches.
+
 ## 0.1.0 - 2026-11-06
 
 ### Added

@@ -227,3 +227,18 @@ def test_markup_rejected():
                         ("name", "[Foo")):
         out = problems(lambda d, f=field, t=text: d["entries"][1].update({f: t}))
         assert any(f"{field} must not contain" in p for p in out), (field, text, out)
+
+
+def test_url_parts_limited_to_the_characters_the_host_allows():
+    # a trailing space, a ')' copied from a Markdown link, or a '|' must not pass as canonical
+    for bad in ("https://github.com/o/z ", "https://github.com/o/z)", "https://github.com/o/a|b",
+                "https://github.com/o o/z", "https://github.com/o/z\n", "https://github.com/o_x/z",
+                "https://huggingface.co/datasets/o/b ", "https://huggingface.co/datasets/o/b)",
+                "https://arxiv.org/abs/2101.00001\n"):
+        out = problems(lambda d, bad=bad: d["entries"][0].update(url=bad))
+        assert any("url must be" in p for p in out), (bad, out)
+    out = problems(lambda d: d["entries"].append({**d["entries"][0], "name": "Zed again",
+                                                  "url": "https://github.com/o/z "}))
+    assert any("url must be" in p for p in out), out
+    for good in ("https://github.com/O-1/z.y_w-2", "https://huggingface.co/datasets/a.b/c_d-1.0"):
+        assert problems(lambda d, good=good: d["entries"][0].update(url=good)) == [], good

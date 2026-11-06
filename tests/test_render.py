@@ -134,12 +134,18 @@ def unescaped_pipes(line):
     return n
 
 
+URL_TAILS = st.text(alphabet=st.sampled_from("az09._-/ |()[]#?\\\t\n"), min_size=0, max_size=12)
+
+
 @settings(max_examples=300, deadline=None)
-@given(name=st.text(min_size=1, max_size=40), summary=st.text(min_size=1, max_size=150))
-def test_any_text_that_passes_validation_renders_one_five_cell_row(name, summary):
+@given(name=st.text(min_size=1, max_size=40), summary=st.text(min_size=1, max_size=150),
+       url=st.one_of(st.just("https://github.com/o/z"),
+                     st.builds("https://github.com/o/z{}".format, URL_TAILS),
+                     st.builds("https://github.com/{}/z".format, URL_TAILS), st.text(max_size=40)))
+def test_any_text_that_passes_validation_renders_one_five_cell_row(name, summary, url):
     d = sample()
     d["entries"] = d["entries"][:1]
-    d["entries"][0].update(name=name, summary=summary.rstrip() + ".")
+    d["entries"][0].update(name=name, summary=summary.rstrip() + ".", url=url)
     d["sections"] = d["sections"][:1]
     if validate.check_data(d, today=dt.date(2026, 11, 6)):
         return
@@ -148,5 +154,6 @@ def test_any_text_that_passes_validation_renders_one_five_cell_row(name, summary
     rows = [line for line in block.splitlines() if line.startswith("| [")]
     assert len(rows) == 1
     assert unescaped_pipes(rows[0]) == 6
+    assert f"]({url}) |" in rows[0] and not any(c in url for c in " |()[]\\")
     readme = render.rendered_readme(d, f"x\n{render.BEGIN}\n{render.END}\ny\n")
     assert render.rendered_readme(d, readme) == readme

@@ -38,9 +38,12 @@ import render  # noqa: E402
 
 USER_AGENT = "awesome-coding-agent-evals-recheck/0.1 (+https://github.com/vipul21435/awesome-coding-agent-evals)"
 
-GITHUB_RE = re.compile(r"^https://github\.com/([^/#?]+)/([^/#?]+?)(?:\.git)?/?$")
-ARXIV_RE = re.compile(r"^https://arxiv\.org/abs/(\d{4}\.\d{4,5})(v\d+)?/?$")
-HF_RE = re.compile(r"^https://huggingface\.co/datasets/([^/#?]+/[^/#?]+)/?$")
+# Each part allows only the characters the host allows in names (GitHub owners: letters, digits
+# and '-'; repositories and Hugging Face names: also '.' and '_'), so a URL with a space, '|' or
+# ')' is rejected instead of being listed as a second spelling. \Z, not $, so a final newline fails.
+GITHUB_RE = re.compile(r"^https://github\.com/([A-Za-z0-9-]+)/([A-Za-z0-9._-]+?)(?:\.git)?/?\Z")
+ARXIV_RE = re.compile(r"^https://arxiv\.org/abs/(\d{4}\.\d{4,5})(v\d+)?/?\Z")
+HF_RE = re.compile(r"^https://huggingface\.co/datasets/([A-Za-z0-9._-]+/[A-Za-z0-9._-]+)/?\Z")
 CANONICAL = {
     "github": "https://github.com/{}",
     "arxiv": "https://arxiv.org/abs/{}",
