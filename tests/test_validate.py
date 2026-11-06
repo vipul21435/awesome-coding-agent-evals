@@ -89,6 +89,9 @@ def test_fetched_dates_checked_against_today_and_top_level():
     assert any("real YYYY-MM-DD" in p for p in out)
     out = problems(lambda d: d["entries"][0].update(fetched="2023-01-01"))
     assert any("later than its fetch date" in p for p in out)
+    for bad in ("2026-13-01", "2026/11/06", "yesterday"):
+        out = problems(lambda d, bad=bad: d.update(fetched=bad))
+        assert "top level: fetched must be a real YYYY-MM-DD date" in out, (bad, out)
 
 
 def test_unknown_section_and_empty_section():
@@ -227,6 +230,32 @@ def test_markup_rejected():
                         ("name", "[Foo")):
         out = problems(lambda d, f=field, t=text: d["entries"][1].update({f: t}))
         assert any(f"{field} must not contain" in p for p in out), (field, text, out)
+
+
+def test_markup_rejected_in_section_title_and_blurb():
+    for field, text in (("blurb", "A <b>b</b> c."), ("blurb", "See <!-- END ENTRIES --> here."),
+                        ("title", "Alpha --> beta")):
+        out = problems(lambda d, f=field, t=text: d["sections"][0].update({f: t}))
+        assert f"section 'a': {field} must not contain '<' or '-->'" in out, (field, text, out)
+
+
+def test_summary_length_boundary():
+    at_limit = "x" * (validate.MAX_SUMMARY - 1) + "."
+    assert validate.MAX_SUMMARY == 220 and len(at_limit) == 220
+    assert problems(lambda d: d["entries"][0].update(summary=at_limit)) == []
+    out = problems(lambda d: d["entries"][0].update(summary="x" + at_limit))
+    assert any("summary longer than 220 characters" in p for p in out), out
+
+
+def test_year_lower_bound_boundary():
+    def old(year):
+        return lambda d: d["entries"][0].update(year=year)
+
+    assert validate.MIN_YEAR == 1990
+    assert problems(old(1990)) == []
+    assert any("year 1989 outside 1990-2026" in p for p in problems(old(1989)))
+    assert any("year 2027 outside" in p for p in problems(old(2027)))
+    assert problems(old(2026)) == []
 
 
 def test_url_parts_limited_to_the_characters_the_host_allows():

@@ -58,6 +58,10 @@ def test_splice_replaces_only_marked_block():
 def test_splice_without_markers_raises():
     with pytest.raises(ValueError):
         render.splice("no markers here", "x")
+    for text in (f"only the end\n{render.END}\n", f"only the start\n{render.BEGIN}\n",
+                 f"{render.END}\nswapped\n{render.BEGIN}\n"):
+        with pytest.raises(ValueError):
+            render.splice(text, "x")
 
 
 def test_check_mode_reports_stale_readme(tmp_path):
