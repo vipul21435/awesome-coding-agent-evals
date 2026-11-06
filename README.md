@@ -16,6 +16,7 @@ A curated list of benchmarks, harnesses, datasets and papers for evaluating and 
 
 - [Function-level code benchmarks](#function-level-code-benchmarks) (8)
 - [Repository-level and issue-resolution benchmarks](#repository-level-and-issue-resolution-benchmarks) (14)
+- [Agent harnesses and scaffolds](#agent-harnesses-and-scaffolds) (11)
 
 ## Function-level code benchmarks
 
@@ -53,7 +54,25 @@ Tasks set inside a real code base: resolve an issue, complete code that depends 
 | [SWE-Lancer](https://github.com/openai/SWELancer-Benchmark) | 2025 | code+data | not stated | Over 1,400 freelance software tasks with their real payouts, including both coding tasks graded by end-to-end tests and managerial choices between proposals; the repository is archived. |
 | [SWE-PolyBench](https://github.com/amazon-science/SWE-PolyBench) | 2025 | code+data | MIT | Repository-level, execution-based benchmark of coding tasks in Python, Java, JavaScript and TypeScript, with additional metrics based on syntax tree analysis. |
 
-22 entries, all fetched on 2026-11-06.
+## Agent harnesses and scaffolds
+
+Open-source agents and the tooling used to run them against the benchmarks above.
+
+| Name | Year | Kind | Licence | What it is |
+|---|---|---|---|---|
+| [Aider](https://github.com/Aider-AI/aider) | 2023 | code | Apache-2.0 | Pair-programming tool that runs in the terminal and edits files in a local git repository through a language model. |
+| [Moatless Tools](https://github.com/aorwall/moatless-tools) | 2023 | code | MIT | Experimental code-editing tools for large existing code bases, built around putting the right context into the prompt, evaluated on SWE-bench. |
+| [Agentless](https://github.com/OpenAutoCoder/Agentless) | 2024 | code | MIT | Fixed three-phase pipeline of localisation, repair and patch validation for issue resolution, without letting the model choose its next action. |
+| [AutoCodeRover](https://github.com/AutoCodeRoverSG/auto-code-rover) | 2024 | code | SONAR Source-Available License v1.0 | Program-improvement agent that uses code search over the program structure to localise an issue before writing a patch. |
+| [OpenHands](https://github.com/OpenHands/OpenHands) | 2024 | code | MIT | Open platform for software development agents that write code, run commands and browse the web inside a sandbox. |
+| [sb-cli](https://github.com/SWE-bench/sb-cli) | 2024 | code | MIT | Command-line client for submitting SWE-bench predictions and running the evaluation remotely. |
+| [SWE-agent](https://github.com/SWE-agent/SWE-agent) | 2024 | code | MIT | Agent that takes a GitHub issue and tries to fix it through a purpose-built agent-computer interface for viewing, searching and editing files. |
+| [SWE-bench experiments](https://github.com/SWE-bench/experiments) | 2024 | code+data | not stated | Published predictions, execution logs, trajectories and results from many system submissions to SWE-bench. |
+| [Codex CLI](https://github.com/openai/codex) | 2025 | code | Apache-2.0 | Coding agent that runs locally in the terminal. |
+| [Harbor](https://github.com/harbor-framework/harbor) | 2025 | code | Apache-2.0 | Framework for evaluating and improving agents, pointed to by the Terminal-Bench authors for running Terminal-Bench 2.0. |
+| [mini-swe-agent](https://github.com/SWE-agent/mini-swe-agent) | 2025 | code | MIT | Agent of about 100 lines of Python whose only tool is bash, from the SWE-agent team, usable as a baseline or a command-line helper. |
+
+33 entries, all fetched on 2026-11-06.
 
 <!-- END ENTRIES -->
 

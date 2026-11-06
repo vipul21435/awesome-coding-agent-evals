@@ -11,6 +11,11 @@
       "id": "repo",
       "title": "Repository-level and issue-resolution benchmarks",
       "blurb": "Tasks set inside a real code base: resolve an issue, complete code that depends on other files, or ship a change that passes the project's tests."
+    },
+    {
+      "id": "harness",
+      "title": "Agent harnesses and scaffolds",
+      "blurb": "Open-source agents and the tooling used to run them against the benchmarks above."
     }
   ],
   "entries": [
@@ -234,6 +239,116 @@
       "year": 2024,
       "licence": "CC BY-NC-SA 4.0 (paper)",
       "summary": "980 whole-function generation tasks from 11 large Python projects, many needing repository context, each checked by the project's developer-written tests.",
+      "fetched": "2026-11-06"
+    },
+    {
+      "name": "SWE-agent",
+      "url": "https://github.com/SWE-agent/SWE-agent",
+      "section": "harness",
+      "kind": "code",
+      "year": 2024,
+      "licence": "MIT",
+      "summary": "Agent that takes a GitHub issue and tries to fix it through a purpose-built agent-computer interface for viewing, searching and editing files.",
+      "fetched": "2026-11-06"
+    },
+    {
+      "name": "mini-swe-agent",
+      "url": "https://github.com/SWE-agent/mini-swe-agent",
+      "section": "harness",
+      "kind": "code",
+      "year": 2025,
+      "licence": "MIT",
+      "summary": "Agent of about 100 lines of Python whose only tool is bash, from the SWE-agent team, usable as a baseline or a command-line helper.",
+      "fetched": "2026-11-06"
+    },
+    {
+      "name": "OpenHands",
+      "url": "https://github.com/OpenHands/OpenHands",
+      "section": "harness",
+      "kind": "code",
+      "year": 2024,
+      "licence": "MIT",
+      "summary": "Open platform for software development agents that write code, run commands and browse the web inside a sandbox.",
+      "fetched": "2026-11-06"
+    },
+    {
+      "name": "Aider",
+      "url": "https://github.com/Aider-AI/aider",
+      "section": "harness",
+      "kind": "code",
+      "year": 2023,
+      "licence": "Apache-2.0",
+      "summary": "Pair-programming tool that runs in the terminal and edits files in a local git repository through a language model.",
+      "fetched": "2026-11-06"
+    },
+    {
+      "name": "Agentless",
+      "url": "https://github.com/OpenAutoCoder/Agentless",
+      "section": "harness",
+      "kind": "code",
+      "year": 2024,
+      "licence": "MIT",
+      "summary": "Fixed three-phase pipeline of localisation, repair and patch validation for issue resolution, without letting the model choose its next action.",
+      "fetched": "2026-11-06"
+    },
+    {
+      "name": "AutoCodeRover",
+      "url": "https://github.com/AutoCodeRoverSG/auto-code-rover",
+      "section": "harness",
+      "kind": "code",
+      "year": 2024,
+      "licence": "SONAR Source-Available License v1.0",
+      "summary": "Program-improvement agent that uses code search over the program structure to localise an issue before writing a patch.",
+      "fetched": "2026-11-06"
+    },
+    {
+      "name": "Moatless Tools",
+      "url": "https://github.com/aorwall/moatless-tools",
+      "section": "harness",
+      "kind": "code",
+      "year": 2023,
+      "licence": "MIT",
+      "summary": "Experimental code-editing tools for large existing code bases, built around putting the right context into the prompt, evaluated on SWE-bench.",
+      "fetched": "2026-11-06"
+    },
+    {
+      "name": "Codex CLI",
+      "url": "https://github.com/openai/codex",
+      "section": "harness",
+      "kind": "code",
+      "year": 2025,
+      "licence": "Apache-2.0",
+      "summary": "Coding agent that runs locally in the terminal.",
+      "fetched": "2026-11-06"
+    },
+    {
+      "name": "sb-cli",
+      "url": "https://github.com/SWE-bench/sb-cli",
+      "section": "harness",
+      "kind": "code",
+      "year": 2024,
+      "licence": "MIT",
+      "summary": "Command-line client for submitting SWE-bench predictions and running the evaluation remotely.",
+      "fetched": "2026-11-06"
+    },
+    {
+      "name": "SWE-bench experiments",
+      "url": "https://github.com/SWE-bench/experiments",
+      "section": "harness",
+      "kind": "code+data",
+      "year": 2024,
+      "licence": "not stated",
+      "summary": "Published predictions, execution logs, trajectories and results from many system submissions to SWE-bench.",
+      "fetched": "2026-11-06"
+    },
+    {
+      "name": "Harbor",
+      "url": "https://github.com/harbor-framework/harbor",
+      "section": "harness",
+      "kind": "code",
+      "year": 2025,
+      "licence": "Apache-2.0",
+      "summary": "Framework for evaluating and improving agents, pointed to by the Terminal-Bench authors for running Terminal-Bench 2.0.",
       "fetched": "2026-11-06"
     }
   ]
