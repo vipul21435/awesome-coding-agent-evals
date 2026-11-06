@@ -125,8 +125,10 @@ def check_readme(data: dict, readme_text: str) -> list[str]:
 
 def main(argv: list[str] | None = None) -> int:
     ap = argparse.ArgumentParser(description=__doc__.splitlines()[0])
-    ap.add_argument("--data", type=Path, default=render.DATA)
-    ap.add_argument("--readme", type=Path, default=render.README)
+    ap.add_argument("--data", type=Path, default=render.DATA,
+                    help="path to entries.json (default data/entries.json)")
+    ap.add_argument("--readme", type=Path, default=render.README,
+                    help="path to README.md (default README.md)")
     ap.add_argument("--min-year", type=int, default=MIN_YEAR,
                     help=f"earliest allowed year (default {MIN_YEAR})")
     ap.add_argument("--max-year", type=int, default=None,

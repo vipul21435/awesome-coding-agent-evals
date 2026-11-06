@@ -194,8 +194,9 @@ def observe(source: str, key: str, timeout: float) -> dict:
 
 def main(argv: list[str] | None = None) -> int:
     ap = argparse.ArgumentParser(description=__doc__.splitlines()[0])
-    ap.add_argument("--data", type=Path, default=render.DATA)
-    ap.add_argument("--only", choices=("github", "arxiv", "hf"))
+    ap.add_argument("--data", type=Path, default=render.DATA,
+                    help="path to entries.json (default data/entries.json)")
+    ap.add_argument("--only", choices=("github", "arxiv", "hf"), help="check only entries from this source")
     ap.add_argument("--delay", type=float, default=1.0, help="seconds between requests (default 1)")
     ap.add_argument("--timeout", type=float, default=30.0, help="per-request timeout (default 30)")
     ap.add_argument("--json", type=Path, help="also write the full report to this file")

@@ -122,8 +122,10 @@ def rendered_readme(data: dict, readme_text: str) -> str:
 def main(argv: list[str] | None = None) -> int:
     ap = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     ap.add_argument("--check", action="store_true", help="only report whether README.md is current")
-    ap.add_argument("--data", type=Path, default=DATA)
-    ap.add_argument("--readme", type=Path, default=README)
+    ap.add_argument("--data", type=Path, default=DATA,
+                    help="path to entries.json (default data/entries.json)")
+    ap.add_argument("--readme", type=Path, default=README,
+                    help="path to README.md (default README.md)")
     args = ap.parse_args(argv)
     current = args.readme.read_text(encoding="utf-8")
     new = rendered_readme(load(args.data), current)
