@@ -61,6 +61,7 @@ def cell(text: str) -> str:
 
 
 def licence_cell(entry: dict) -> str:
+    """The Licence column: the licence, then the venue when there is one."""
     lic = entry["licence"]
     venue = entry.get("venue")
     return f"{lic}; {venue}" if venue else lic
@@ -80,6 +81,7 @@ def licence_table(entries: list[dict]) -> list[str]:
 
 
 def kind_line(entries: list[dict]) -> str:
+    """One line counting entries per kind, largest first."""
     kinds: dict[str, int] = {}
     for e in entries:
         kinds[e["kind"]] = kinds.get(e["kind"], 0) + 1
@@ -88,6 +90,7 @@ def kind_line(entries: list[dict]) -> str:
 
 
 def render_block(data: dict) -> str:
+    """The generated part of the README: contents, one table per section, licence counts."""
     sections = data["sections"]
     entries = data["entries"]
     lines = [BEGIN, "", "## Contents", ""]
@@ -126,6 +129,7 @@ def fetched_line(entries: list[dict], latest: str) -> str:
 
 
 def splice(readme_text: str, block: str) -> str:
+    """Replace the text between the BEGIN and END markers; ValueError if they are missing."""
     start = readme_text.find(BEGIN)
     stop = readme_text.find(END)
     if start == -1 or stop == -1 or stop < start:
@@ -134,6 +138,7 @@ def splice(readme_text: str, block: str) -> str:
 
 
 def rendered_readme(data: dict, readme_text: str) -> str:
+    """The README as it should be for this data."""
     return splice(readme_text, render_block(data))
 
 

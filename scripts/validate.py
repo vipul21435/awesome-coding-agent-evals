@@ -50,6 +50,7 @@ MIN_YEAR = 1990
 
 
 def parse_date(text: object) -> dt.date | None:
+    """A real YYYY-MM-DD date, or None."""
     if not DATE_RE.match(str(text)):
         return None
     try:
@@ -194,6 +195,7 @@ def check_licence(label: str, e: dict) -> list[str]:
 
 
 def check_readme(data: dict, readme_text: str) -> list[str]:
+    """One problem if the README's generated block differs from what the data renders to."""
     try:
         expected = render.rendered_readme(data, readme_text)
     except ValueError as exc:

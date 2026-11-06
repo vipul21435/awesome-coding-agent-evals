@@ -108,7 +108,8 @@ def test_main_with_stubbed_fetch(tmp_path, monkeypatch, capsys):
     data = {"fetched": "2026-11-06", "sections": [], "entries": [
         entry(name="Repo", url="https://github.com/a/b"),
         entry(name="Odd", url="https://github.com/c/d", licence="CC BY-NC 4.0"),
-        entry(name="Paper", url="https://arxiv.org/abs/2310.00001", licence="CC BY 4.0 (paper)", year=2023),
+        entry(name="Paper", url="https://arxiv.org/abs/2310.00001", licence="CC BY 4.0 (paper)", year=2023,
+              kind="paper", venue="Proc. Example 2024"),
         entry(name="Set", url="https://huggingface.co/datasets/e/f", licence="not stated"),
         entry(name="Gone", url="https://huggingface.co/datasets/g/h"),
     ]}
@@ -156,3 +157,37 @@ def test_main_reports_bad_json_in_one_line(tmp_path, capsys):
     data.write_text("[1,")
     assert recheck.main(["--data", str(data), "--delay", "0"]) == 2
     assert "line 1 column" in capsys.readouterr().err
+
+
+def test_compare_notes_a_journal_reference_for_a_paper_without_venue():
+    seen = {"licence": "CC BY 4.0", "year": 2024, "jref": "ICLR 2025"}
+    paper = entry(kind="paper", licence="CC BY 4.0 (paper)")
+    assert recheck.compare(paper, "arxiv", "2401.00001", seen) == ["venue: page names 'ICLR 2025'"]
+    assert recheck.compare({**paper, "venue": "ICLR 2025"}, "arxiv", "2401.00001", seen) == []
+    assert recheck.compare(paper, "arxiv", "2401.00001", {**seen, "jref": ""}) == []
+
+
+def test_a_dropped_connection_is_a_failed_fetch_not_a_crash(tmp_path, monkeypatch, capsys):
+    import http.client
+
+    data = {"fetched": "2026-11-06", "sections": [], "entries": [
+        entry(name="Drop", url="https://github.com/a/b"),
+        entry(name="Reset", url="https://github.com/c/d"),
+        entry(name="Fine", url="https://github.com/e/f"),
+    ]}
+    path = tmp_path / "entries.json"
+    path.write_text(json.dumps(data))
+
+    def fake_fetch(url, timeout, headers=None):
+        if url.endswith("a/b"):
+            raise http.client.RemoteDisconnected("closed")
+        if url.endswith("c/d"):
+            raise ConnectionResetError("reset")
+        return json.dumps({"license": {"spdx_id": "MIT"}, "created_at": "2024-01-01",
+                           "full_name": "e/f"}).encode()
+
+    monkeypatch.setattr(recheck, "fetch", fake_fetch)
+    out_json = tmp_path / "report.json"
+    assert recheck.main(["--data", str(path), "--delay", "0", "--json", str(out_json)]) == 1
+    assert "fetched 1, failed 2" in capsys.readouterr().out
+    assert [r["ok"] for r in json.loads(out_json.read_text())] == [False, False, True]

@@ -8,7 +8,8 @@ This is the only script here that uses the network, and it is not run in CI.
 Sources, by URL:
   github.com/OWNER/REPO          -> the GitHub REST API (licence SPDX id, created_at, archived,
                                     and the canonical name, to spot moved repositories)
-  arxiv.org/abs/ID               -> the arXiv abstract page (licence link, first-version date)
+  arxiv.org/abs/ID               -> the arXiv abstract page (licence link, first-version date,
+                                    and the journal reference, reported for a paper with no venue)
   huggingface.co/datasets/ID     -> the Hugging Face dataset API (card licence, createdAt)
 
 Set GITHUB_TOKEN to raise the GitHub API rate limit. The exit code is 0 when every page
@@ -22,6 +23,7 @@ from __future__ import annotations
 import argparse
 import base64
 import html
+import http.client
 import json
 import os
 import re
@@ -93,6 +95,7 @@ def norm_licence(text: str | None) -> str:
 
 
 def parse_github(payload: dict) -> dict:
+    """Licence, creation year, archived flag and full name from a GitHub repository payload."""
     lic = payload.get("license") or {}
     spdx = lic.get("spdx_id")
     return {
@@ -104,6 +107,7 @@ def parse_github(payload: dict) -> dict:
 
 
 def parse_arxiv(page: str) -> dict:
+    """Licence, first-version year, comments and journal reference from an arXiv abstract page."""
     m = re.search(r'<meta name="citation_date" content="(\d{4})/', page)
     year = int(m.group(1)) if m else None
     licence = None
@@ -119,6 +123,7 @@ def parse_arxiv(page: str) -> dict:
 
 
 def parse_hf(payload: dict) -> dict:
+    """Card licence, creation year and id from a Hugging Face dataset API payload."""
     card = payload.get("cardData") or {}
     lic = card.get("license")
     if isinstance(lic, list):
@@ -196,16 +201,20 @@ def compare(entry: dict, source: str, key: str, seen: dict) -> list[str]:
         notes.append(f"moved: now {canonical}")
     if seen.get("archived"):
         notes.append("archived")
+    if entry.get("kind") == "paper" and not entry.get("venue") and seen.get("jref"):
+        notes.append(f"venue: page names {seen['jref']!r}")
     return notes
 
 
 def fetch(url: str, timeout: float, headers: dict | None = None) -> bytes:
+    """GET a URL and return the body; raises on HTTP errors and timeouts."""
     req = urllib.request.Request(url, headers={"User-Agent": USER_AGENT, **(headers or {})})
     with urllib.request.urlopen(req, timeout=timeout) as resp:
         return resp.read()
 
 
 def observe(source: str, key: str, timeout: float) -> dict:
+    """Fetch what the page for (source, key) states now, as a dict for compare()."""
     if source == "github":
         headers = {"Accept": "application/vnd.github+json"}
         token = os.environ.get("GITHUB_TOKEN")
@@ -249,7 +258,9 @@ def main(argv: list[str] | None = None) -> int:
         row = {"name": entry["name"], "url": entry["url"], "source": source}
         try:
             seen = observe(source, key, args.timeout)
-        except (urllib.error.URLError, TimeoutError, ValueError, KeyError) as exc:
+        except (OSError, http.client.HTTPException, ValueError, KeyError) as exc:
+            # OSError covers URLError, timeouts and reset connections; HTTPException covers
+            # a server that closes the connection before answering.
             failed += 1
             row.update(ok=False, error=str(exc))
             print(f"FAIL  {entry['name']}: {exc}")
