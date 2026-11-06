@@ -205,7 +205,7 @@ $ uv run pytest -q
 
 ## Re-checking the pages
 
-`scripts/recheck.py` fetches every entry's page again and compares it with the data file: for GitHub repositories the REST API (licence SPDX id, creation year, archived flag, canonical name, so a moved repository shows up), for papers the arXiv abstract page (licence link and the date of the first version), and for datasets the Hugging Face dataset API (card licence and creation year). When GitHub cannot match a licence file to an SPDX id it reports `NOASSERTION`; the script then reads the first line of the licence file and compares that. It is the only script that uses the network, and CI does not run it. `GITHUB_TOKEN` raises the GitHub rate limit; `--delay` (default 1 second) spaces the requests.
+`scripts/recheck.py` fetches every entry's page again and compares it with the data file: for GitHub repositories the REST API (licence SPDX id, creation year, archived flag, canonical name, so a moved repository shows up), for papers the arXiv abstract page (licence link and the date of the first version), and for datasets the Hugging Face dataset API (card licence and creation year). When GitHub cannot match a licence file to an SPDX id it reports `NOASSERTION`; the script then reads the first line of the licence file and counts a match only when that line contains the whole licence stated in the data file. It is the only script that uses the network, and CI does not run it. `GITHUB_TOKEN` raises the GitHub rate limit; `--delay` (default 1 second) spaces the requests.
 
 Run on 2026-11-06 over all 89 entries:
 

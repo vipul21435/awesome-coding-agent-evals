@@ -132,8 +132,10 @@ def licence_matches(stated: str, seen: dict) -> bool:
         return True
     title = seen.get("licence_title")
     if title:
+        # The title must contain the whole stated licence, never the other way round:
+        # a generic first line such as "License" would otherwise match anything.
         a, b = norm_licence(stated), norm_licence(title)
-        return a in b or b in a or _cc_words(a) == b
+        return a in b or _cc_words(a) in b
     return False
 
 

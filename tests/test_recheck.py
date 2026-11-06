@@ -83,6 +83,9 @@ def test_licence_file_title_used_when_spdx_unknown():
     assert not recheck.licence_matches("CC BY-SA 4.0", seen)
     seen = {"licence": "NOASSERTION", "licence_title": "SONAR Source-Available License v1.0"}
     assert recheck.licence_matches("SONAR Source-Available License v1.0", seen)
+    generic = {"licence": "NOASSERTION", "licence_title": "License"}
+    assert not recheck.licence_matches("SONAR Source-Available License v1.0", generic)
+    assert not recheck.licence_matches("MIT", generic)
     assert recheck.licence_title("\n\n# Some Licence\nbody") == "Some Licence"
     assert recheck.licence_title("  \n") is None
 
