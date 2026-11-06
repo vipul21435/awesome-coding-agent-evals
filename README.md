@@ -228,7 +228,7 @@ The validator checks:
 
 - required fields, their types, and that no field holds a line break, a control character, `<` or `-->` (GitHub would hide or split such text);
 - the URL is one of the three forms `recheck.py` can fetch, `https://github.com/OWNER/REPO`, `https://arxiv.org/abs/ID` or `https://huggingface.co/datasets/OWNER/NAME`, with only the characters GitHub and Hugging Face allow in names (no spaces, `|` or `)`), written without an arXiv version, trailing slash or `.git`, so the same page cannot be listed twice under two spellings;
-- duplicate URLs and names, known and non-empty sections, and unique section titles (each title becomes an anchor);
+- duplicate URLs and names, known and non-empty sections, and section titles whose anchors are unique and differ from the `Contents` and `Licences at a glance` headings;
 - the year range (up to the current year by default) and the fetch dates (real dates, not in the future, not later than the top-level date, not earlier than the entry's year);
 - the summary is one sentence of at most 220 characters ending in a period;
 - the licence is one of a fixed set of spellings, with ` (paper)` on papers and only on papers, so `mit` and `MIT` cannot both appear;

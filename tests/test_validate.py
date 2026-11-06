@@ -226,6 +226,17 @@ def test_paper_suffix_only_on_papers():
 def test_duplicate_section_title():
     out = problems(lambda d: d["sections"][1].update(title="alpha benchmarks"))
     assert any("duplicate section title" in p for p in out)
+    for title in ("Alpha benchmarks!", "Alpha, benchmarks", "alpha-benchmarks"):
+        out = problems(lambda d, t=title: d["sections"][1].update(title=t))
+        assert any("duplicate section title" in p for p in out), (title, out)
+
+
+def test_section_title_must_not_take_a_generated_heading_anchor():
+    for title in ("Contents", "Licences at a glance", "Licences, at a glance!"):
+        out = problems(lambda d, t=title: d["sections"][1].update(title=t))
+        assert any("is used by a heading the renderer writes" in p for p in out), (title, out)
+    out = problems(lambda d: d["sections"][1].update(title="!!!"))
+    assert any("gives an empty anchor" in p for p in out), out
 
 
 def test_markup_rejected():

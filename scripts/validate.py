@@ -47,6 +47,8 @@ PAPER_LICENCES = {f"{name} (paper)" for name in recheck.ARXIV_LICENCES.values()}
 # Markup that GitHub would hide or that would end the generated block early.
 MARKUP = ("<", "-->")
 MIN_YEAR = 1990
+# Anchors of the headings render.py writes itself.
+RESERVED_ANCHORS = {render.anchor("Contents"), render.anchor("Licences at a glance")}
 
 
 def parse_date(text: object) -> dt.date | None:
@@ -101,9 +103,18 @@ def check_data(
             elif render.CONTROL_RE.search(s[key]):
                 problems.append(f"section {s.get('id')!r}: {key} contains a line break or control character")
     section_ids = [s.get("id") for s in sections]
-    titles = [s["title"].lower() for s in sections if isinstance(s.get("title"), str)]
-    if len(set(titles)) != len(titles):
+    # Compare anchors, not titles: titles that differ only in case or punctuation share one.
+    anchors = [render.anchor(s["title"]) for s in sections if isinstance(s.get("title"), str)]
+    if len(set(anchors)) != len(anchors):
         problems.append("sections: duplicate section title (two headings would share one anchor)")
+    for s in sections:
+        if isinstance(s.get("title"), str) and s["title"].strip():
+            a = render.anchor(s["title"])
+            if a in RESERVED_ANCHORS:
+                problems.append(f"section {s.get('id')!r}: title anchor #{a} is used by a heading the "
+                                "renderer writes")
+            elif not a:
+                problems.append(f"section {s.get('id')!r}: title gives an empty anchor")
     for s in sections:
         for key in ("title", "blurb"):
             if isinstance(s.get(key), str) and any(m in s[key] for m in MARKUP):
