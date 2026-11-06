@@ -5,7 +5,7 @@ A curated list of benchmarks, harnesses, datasets and papers for evaluating and 
 ## How entries are chosen and checked
 
 - Every entry was fetched on the date recorded in `data/entries.json` (2026-11-06): the GitHub repository through the GitHub API, the paper through its arXiv abstract page, or the dataset through its Hugging Face card. An entry whose page could not be fetched is left out. Nothing is listed from memory.
-- **Year** is the year of the paper's first arXiv version, or of the repository's or dataset's first release as shown on its page.
+- **Year** is the year of the paper's first arXiv version; for repositories and datasets, the year GitHub or the Hugging Face Hub shows it was created (see Limitations).
 - **Licence** is what the repository, dataset card or arXiv page states. For code and data it is the licence of that artifact; `not stated` means the page gives none, which does not mean the artifact is free to reuse. For papers it is the licence of the paper text on arXiv, followed by the venue when the arXiv page names one.
 - **Kind** is `code`, `dataset`, `code+data` (a repository that ships both) or `paper`.
 - Each summary is one plain sentence written for this list from the fetched page. There are no star counts, rankings or claims about which tool is best.
