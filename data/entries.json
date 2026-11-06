@@ -66,7 +66,7 @@
       "kind": "code+data",
       "year": 2021,
       "licence": "MIT",
-      "summary": "10,000 coding problems collected from competitive programming sites, ranging from introductory to competition level, graded by test cases.",
+      "summary": "Training and evaluation code and a dataset download for APPS, which its paper's arXiv abstract describes as 10,000 coding problems, from one-line solutions to substantial algorithmic challenges.",
       "fetched": "2026-11-06"
     },
     {
@@ -147,7 +147,7 @@
       "kind": "dataset",
       "year": 2024,
       "licence": "not stated",
-      "summary": "A 300-instance subset of the SWE-bench test set chosen to be cheaper to run.",
+      "summary": "A 300-instance test subset of SWE-bench, issue and pull request pairs from 11 Python repositories checked by unit tests, plus a 23-instance dev split.",
       "fetched": "2026-11-06"
     },
     {
@@ -217,7 +217,7 @@
       "kind": "code+data",
       "year": 2025,
       "licence": "not stated",
-      "summary": "Over 1,400 freelance software tasks with their real payouts, both coding tasks graded by end-to-end tests and choices between proposals; the repository is archived and its code moved to openai/frontier-evals.",
+      "summary": "Repository for SWE-Lancer, which its paper's arXiv abstract describes as over 1,400 freelance software tasks from Upwork with real payouts; it is archived and points to openai/preparedness, now openai/frontier-evals.",
       "fetched": "2026-11-06"
     },
     {
